@@ -4,9 +4,26 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>index</title>
+<link rel="stylesheet" type="text/css" href="./Css/index.css"/>
 </head>
-<body>
-	test
+<body class="index_body">
+	<header>
+		<%@ include file="./Util/header.jsp" %>
+	</header>
+	<main class="index_main">
+		<section>
+			section1
+		</section>
+		<section>
+			section2
+		</section>
+		<section>
+			section3
+		</section>
+	</main>
+	<footer>
+		<%@ include file="./Util/footer.jsp" %>
+	</footer>
 </body>
 </html>
