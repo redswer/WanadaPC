@@ -1,0 +1,12 @@
+/.metadata/
+*.project
+*.prefs
+*.policy
+*.properties
+*.xml
+*.classpath
+*.jsdtscope
+*.component
+*.container
+*.name
+*.MF
