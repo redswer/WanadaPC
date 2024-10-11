@@ -6,31 +6,144 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
-.Product a {
-	text-decoration: none;
-	color: black;
+
+.Product_body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
 }
 
-.Product ul, li {
-	list-style: none;
+.Product_main {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
 }
 
-.Product_body div {
-	display: block;
-	unicode-bidi: isolate;
+.Product_Kategorie ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex; /* 항목들이 한 줄로 나열되도록 설정 */
+    justify-content: space-between; /* 항목들이 경계에 맞게 균등하게 분배 */
+    width: 100%; /* ul 너비를 부모 컨테이너에 맞춤 */
 }
 
-.Search_option ul, li {
-	float: left;
-	padding: 0 20px
+.Product_Kategorie ul li {
+    flex: 1; /* 모든 li가 동일한 너비를 가지도록 설정 */
+    margin: 0 10px; /* 각 li 사이에 여백 추가 */
+    box-sizing: border-box; /* padding과 border를 포함한 크기 계산 */
 }
 
-.Front_Space, .CPU_Product_list {
-	display: block;
-	width: 100%; /* Ensure they are full-width */
-	clear: both; /* Ensure no floating affects them */
+.Product_Kategorie ul li:first-child {
+    margin-left: 0; /* 첫 번째 li의 좌측 여백 제거 */
 }
+
+.Product_Kategorie ul li:last-child {
+    margin-right: 0; /* 마지막 li의 우측 여백 제거 */
+}
+
+.Product_Kategorie ul li a {
+    text-decoration: none;
+    color: #333;
+    font-size: 18px;
+    padding: 10px;
+    display: block;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    text-align: center;
+    width: 100%; /* a 태그가 li의 전체 너비를 차지하도록 설정 */
+}
+
+.Product_Kategorie ul li a:hover {
+    background-color: #e9e9e9;
+}
+
+
+/* 제품 옵션 테이블 스타일 */
+.Product_list {
+    display: none;
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+}
+
+.Product_list table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.Product_list th, .Product_list td {
+    text-align: left;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.Product_list th {
+    background-color: #f9f9f9;
+}
+
+.Product_list td input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+/* 카테고리 클릭 시 나타나는 스타일 */
+.Product_list.active {
+    display: block;
+}
+
+/* 상품 정렬 옵션 스타일 */
+.Product_option ul {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.Product_option ul li {
+    margin: 10px 0;
+}
+
+.Product_option ul li a {
+    text-decoration: none;
+    color: #333;
+    padding: 10px 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.Product_option ul li a:hover {
+    background-color: #e9e9e9;
+}
+
+
 </style>
+<script>
+    // 페이지 로드 시 CPU 리스트를 기본적으로 보여줌
+    document.addEventListener("DOMContentLoaded", function() {
+        showOptions('CPU_Product_list');
+    });
+
+    function showOptions(selectedId) {
+        // 모든 옵션 리스트를 숨김
+        var productLists = document.querySelectorAll('.Product_list');
+        productLists.forEach(function(list) {
+            list.style.display = 'none';
+        });
+
+        // 선택된 카테고리의 옵션만 표시
+        var selectedProductList = document.getElementById(selectedId);
+        if (selectedProductList) {
+            selectedProductList.style.display = 'block';
+        }
+    }
+</script>
 </head>
 <body class="Product_body">
 	<form action="" method="post" name="indexForm" id="indexForm">
@@ -45,18 +158,19 @@
 			<div class="Product">
 				<div class="Product_Kategorie">
 					<ul>
-						<li><a href="#">메인보드</a></li>
-						<li><a href="#">CPU</a></li>
-						<li><a href="#">쿨러</a></li>
-						<li><a href="#">메모리</a></li>
-						<li><a href="#">그래픽카드</a></li>
-						<li><a href="#">SSD</a></li>
-						<li><a href="#">HDD</a></li>
-						<li><a href="#">케이스</a></li>
-						<li><a href="#">파워</a></li>
+						<li><a href="#" onclick="showOptions('CPU_Product_list')">CPU</a></li>
+						<li><a href="#" onclick="showOptions('COOLER_Product_list')">쿨러</a></li>
+						<li><a href="#"
+							onclick="showOptions('MainBoard_Product_list')">메인보드</a></li>
+						<li><a href="#" onclick="showOptions('REM_Product_list')">메모리</a></li>
+						<li><a href="#" onclick="showOptions('GPU_Product_list')">그래픽카드</a></li>
+						<li><a href="#" onclick="showOptions('SSD_Product_list')">SSD</a></li>
+						<li><a href="#" onclick="showOptions('HDD_Product_list')">HDD</a></li>
+						<li><a href="#" onclick="showOptions('CASE_Product_list')">케이스</a></li>
+						<li><a href="#" onclick="showOptions('POWER_Product_list')">파워</a></li>
 					</ul>
 				</div>
-				<div class="CPU_Product_list">
+				<div id="CPU_Product_list" class="Product_list" style="display:none;">
 					<div class="CPU_Option_item">
 						<table>
 							<tr>
@@ -82,7 +196,8 @@
 						</table>
 					</div>
 				</div>
-				<div class="COOLER_Product_list">
+				<div id="COOLER_Product_list" class="Product_list"
+					style="display: none;">
 					<div class="COOLER_Option_item">
 						<table>
 							<tr>
@@ -108,7 +223,8 @@
 						</table>
 					</div>
 				</div>
-				<div class="MainBoard_Product_list">
+				<div id="MainBoard_Product_list" class="Product_list"
+					style="display: none;">
 					<div class="MainBoard_Option_item">
 						<table>
 							<tr>
@@ -136,7 +252,8 @@
 						</table>
 					</div>
 				</div>
-				<div class="REM_Product_list">
+				<div id="REM_Product_list" class="Product_list"
+					style="display: none;">
 					<div class="REM_Option_item">
 						<table>
 							<tr>
@@ -165,7 +282,8 @@
 						</table>
 					</div>
 				</div>
-				<div class="GPU_Product_list">
+				<div id="GPU_Product_list" class="Product_list"
+					style="display: none;">
 					<div class="GPU_Option_item">
 						<table>
 							<tr>
@@ -198,7 +316,8 @@
 						</table>
 					</div>
 				</div>
-				<div class="SSD_Product_list">
+				<div id="SSD_Product_list" class="Product_list"
+					style="display: none;">
 					<div class="SSD_Option_item">
 						<table>
 							<tr>
@@ -228,7 +347,8 @@
 						</table>
 					</div>
 				</div>
-				<div class="HDD_Product_list">
+				<div id="HDD_Product_list" class="Product_list"
+					style="display: none;">
 					<div class="HDD_Option_item">
 						<table>
 							<tr>
@@ -256,7 +376,8 @@
 						</table>
 					</div>
 				</div>
-				<div class="CASE_Product_list">
+				<div id="CASE_Product_list" class="Product_list"
+					style="display: none;">
 					<div class="CASE_Option_item">
 						<table>
 							<tr>
@@ -286,7 +407,8 @@
 						</table>
 					</div>
 				</div>
-				<div class="POWER_Product_list">
+				<div id="POWER_Product_list" class="Product_list"
+					style="display: none;">
 					<div class="POWER_Option_item">
 						<table>
 							<tr>
@@ -318,7 +440,7 @@
 				</div>
 			</div>
 			<div class="Product_Show">
-			<div class="Product_option">
+				<div class="Product_option">
 					<ul>
 						<li><a href="#">이름순(오름차순)</a></li>
 						<li><a href="#">이름순(내림차순)</a></li>
