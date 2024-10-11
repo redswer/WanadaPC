@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 <style type="text/css">
 
-body {
+.Product_body {
     font-family: Arial, sans-serif;
     background-color: #f5f5f5;
 }
