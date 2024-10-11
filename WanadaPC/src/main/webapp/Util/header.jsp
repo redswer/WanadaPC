@@ -16,13 +16,10 @@
 				</a>
 			</div>
 			<div>
-				<div class="test">123</div>
-				<form action="" name="header_search_bar" method="get">
-					<div id="header_search_container">
-						<input name="header_search" placeholder="검색어를 입력해주세요.">
-						<button class="header_search_button"></button>
-					</div>
-				</form>
+				<div class="header_search_container">
+					<input name="" placeholder="검색어를 입력하세요.">
+					<button class="header_search_button"></button>
+				</div>
 			</div>
 			<div class="header_link">
 				<a href="">로그인</a>

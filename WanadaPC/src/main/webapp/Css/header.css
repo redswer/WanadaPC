@@ -9,27 +9,6 @@
 	justify-content: space-between;
 }
 
-.test {
-	width: 100px;
-	height: 20px;
-	border: 1px solid black;
-}
-
-#header_search_container {
-	width: 350px;
-	height: 50px;
-	border: 1px solid black;
-	border-radius: 30px;
-}
-
-.header_search_container input {
-	border: none;
-}
-
-.header_search_button {
-	float: right;
-}
-
 .header_navigation {
 	margin: 20px 0;
 	padding: 0;
