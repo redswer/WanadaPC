@@ -9,17 +9,21 @@
 	justify-content: space-between;
 }
 
-.header_main_logo {
-	width: 240px;
+.test {
+	width: 100px;
+	height: 20px;
+	border: 1px solid black;
 }
 
-.header_search_bar input {
+#header_search_container {
 	width: 350px;
-	border: 2px solid green;
-	border-radius: 30px;
 	height: 50px;
-	font-size: 20px;
-	text-align: center;
+	border: 1px solid black;
+	border-radius: 30px;
+}
+
+.header_search_container input {
+	border: none;
 }
 
 .header_search_button {
