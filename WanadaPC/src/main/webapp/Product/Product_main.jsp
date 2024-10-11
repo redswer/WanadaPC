@@ -6,16 +6,16 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
-Product a {
+.Product a {
 	text-decoration: none;
 	color: black;
 }
 
-Product ul, li {
+.Product ul, li {
 	list-style: none;
 }
 
-Product_body div {
+.Product_body div {
 	display: block;
 	unicode-bidi: isolate;
 }
