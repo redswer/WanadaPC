@@ -90,7 +90,7 @@
     opacity: 1; /* 활성화된 이미지만 보이게 설정 */
 }
 
-.page-indicator {
+.page_indicator {
     position: absolute;
     top: 5px;
     right: 5px;
@@ -100,8 +100,54 @@
     align-items: center;
 }
 
-.page-indicator label {
+.page_indicator label {
     margin: 2px 0;
+}
+
+.game_pc_section {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* 이미지 사이 간격 설정 */
+}
+
+.game_pc_section a {
+    text-decoration: none;
+    color: black;
+}
+
+.game_pc_section div {
+    flex: 1 1 calc(33.33% - 20px); /* 한 줄에 3개씩, 간격 고려 */
+    text-align: center; /* 이미지 중앙 정렬 */
+    transition: transform 0.3s; /* 호버 효과를 위한 전환 */
+}
+
+.game_pc_section div:hover {
+    transform: scale(1.05); /* 호버 시 확대 효과 */
+}
+
+.game_pc_section img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px; /* 이미지 둥글게 */
+}
+
+.index_game_pc_main_txt {
+    display: block; /* 텍스트 블록 형태로 표시 */
+    font-weight: bold; /* 두꺼운 글씨 */
+    margin: 10px 0 5px; /* 위 아래 마진 */
+}
+
+.index_game_pc_sub_txt {
+    color: #777; /* 부가 텍스트 색상 */
+    font-size: 0.9em; /* 작은 글씨 */
+}
+
+.sub_section {
+	margin-top: 70px;
+}
+
+.ad {
+	margin-top: 30px;
 }
 </style>
 </head>
@@ -110,72 +156,110 @@
         <%@ include file="./Util/header.jsp" %>
     </header>
     <main class="index_main">
-    	<a href="">
-    		<img alt="main_ad" src="./Image/main_ad_1.jpg">
-    	</a>
         <section class="main_banner">
-            <div>
-                <ul>
-                    <li class="active" onclick="showBanner(0)">게임용 PC</li>
-                    <li onclick="showBanner(1)">사무용 PC</li>
-                    <li onclick="showBanner(2)">전문가용 PC</li>
-                    <li onclick="showBanner(3)">브랜드존</li>
-                </ul>
-            </div>
             <div class="banner_content active">
                 <div class="banner_images">
                 	<a href="">
-                    	<img class="active" alt="" src="./Image/game_pc_banner_leagueOfLegend.jpg">
+                    	<img class="active" alt="" src="./Image/index_banner_pc_rtx_40.jpg">
                     </a>
                     <a href="#">
-                    	<img alt="" src="./Image/game_pc_banner_battleGround.jpg">
+                    	<img alt="" src="./Image/index_banner_pc_home.jpg">
                    	</a>
                    	<a href="#">
-                    	<img alt="" src="./Image/game_pc_banner_blackMyth.jpg">
+                    	<img alt="" src="./Image/index_banner_pc_office.jpg">
                     </a>
                     <a href="#">
-                    	<img alt="" src="./Image/game_pc_banner_diablo.jpg">
+                    	<img alt="" src="./Image/index_banner_pc_ryzen_9000.jpg">
                    	</a>
                    	<a href="#">
-                    	<img alt="" src="./Image/game_pc_banner_godOfWar.jpg">
+                    	<img alt="" src="./Image/index_banner_pc_intel.jpg">
                    	</a>
                    	<a href="#">
-                    	<img alt="" src="./Image/game_pc_banner_lostArk.jpg">
+                    	<img alt="" src="./Image/index_banner_pc_programmer.jpg">
                     </a>
-                    <a href="#">
-                    	<img alt="" src="./Image/game_pc_banner_worldOfWarcraft.jpg">
+                   	<a href="#">
+                    	<img alt="" src="./Image/index_banner_pc_bj.jpg">
                     </a>
                 </div>
-                <div class="page-indicator">
+                <div class="page_indicator">
                     <label>
-                        <input type="radio" name="page" value="1" checked>
+                        <input type="radio" name="page" value="1" checked disabled>
                     </label>
                     <label>
-                        <input type="radio" name="page" value="2">
+                        <input type="radio" name="page" value="2" disabled>
                     </label>
                     <label>
-                        <input type="radio" name="page" value="3">
+                        <input type="radio" name="page" value="3" disabled>
                     </label>
                     <label>
-                        <input type="radio" name="page" value="4">
+                        <input type="radio" name="page" value="4" disabled>
                     </label>
                     <label>
-                        <input type="radio" name="page" value="5">
+                        <input type="radio" name="page" value="5" disabled>
                     </label>
                     <label>
-                        <input type="radio" name="page" value="6">
+                        <input type="radio" name="page" value="6" disabled>
                     </label>
                     <label>
-                        <input type="radio" name="page" value="7">
+                        <input type="radio" name="page" value="7" disabled>
                     </label>
                 </div>
             </div>
-            <div class="banner_content">사무용 PC 배너 내용</div>
-            <div class="banner_content">전문가용 PC 배너 내용</div>
-            <div class="banner_content">브랜드존 배너 내용</div>
             <div class="arrow left" onclick="prevImage()">&#10094;</div>
             <div class="arrow right" onclick="nextImage()">&#10095;</div>
         </section>
+        <section class="sub_section">
+        	<h2>게임용 PC</h2>
+        	<div class="game_pc_section">
+	        	<div>
+	        		<a href="">
+	        			<img alt="" src="./Image/index_game_pc_godOfWar.jpeg">
+	        			<span class="index_game_pc_main_txt">갓 오브 워: 라그나로츠 추천 PC</span>
+	        			<span class="index_game_pc_sub_txt">pc로 돌아온 라그나로크</span>
+	        		</a>
+	        	</div>
+	        	<div>
+	        		<a href="">
+	        			<img alt="" src="./Image/index_game_pc_blackMyth.jpeg">
+	        			<span class="index_game_pc_main_txt">검은 신화: 오공 추천 PC</span>
+	        			<span class="index_game_pc_sub_txt">새로운 신화를 써내려가다</span>
+	        		</a>
+	        	</div>
+	        	<div>
+	        		<a href="">
+	        			<img alt="" src="./Image/index_game_pc_diablo.jpeg">
+	        			<span class="index_game_pc_main_txt">디아블로4 추천 PC</span>
+	        			<span class="index_game_pc_sub_txt">증오의 군주를 막아라</span>
+	        		</a>
+	        	</div>
+	        	<div>
+	        		<a href="">
+	        			<img alt="" src="./Image/index_game_pc_battleGround.jpeg">
+	        			<span class="index_game_pc_main_txt">배틀그라운드 추천 PC</span>
+	        			<span class="index_game_pc_sub_txt">최적의 사양으로 즐거운 치킨 사냥</span>
+	        		</a>
+	        	</div>
+	        	<div>
+	        		<a href="">
+	        			<img alt="" src="./Image/index_game_pc_leagueOfLegend.jpeg">
+	        			<span class="index_game_pc_main_txt">리그 오브 레전드 추천 PC</span>
+	        			<span class="index_game_pc_sub_txt">오늘도 전설은 계속된다</span>
+	        		</a>
+	        	</div>
+	        	<div>
+	        		<a href="">
+	        			<img alt="" src="./Image/index_game_pc_lostArk.jpeg">
+	        			<span class="index_game_pc_main_txt">로스트아크 추천 PC</span>
+	        			<span class="index_game_pc_sub_txt">고대하던 시즌3 시작</span>
+	        		</a>
+	        	</div>
+        	</div>
+        </section>
+        <div class="ad">
+	       	<a href="">
+	    		<img alt="main_ad" src="./Image/ad_index_1.jpg">
+	    	</a>
+        </div>
         <section>
         	<h3>커뮤니티</h3>
            	<div>커뮤니티 내용</div>
@@ -190,66 +274,46 @@
     </footer>
 
 <script>
-    let currentIndex = 0;
-    let currentImageIndex = 0;
-    let autoSlideInterval;
-
-    function showBanner(index) {
-        const banners = document.querySelectorAll('.banner_content');
-        const tabs = document.querySelectorAll('.main_banner li');
-
-        banners.forEach((banner, i) => {
-            banner.classList.remove('active');
-            tabs[i].classList.remove('active');
-        });
-
-        banners[index].classList.add('active');
-        tabs[index].classList.add('active');
-        currentIndex = index; // 현재 인덱스 업데이트
-        currentImageIndex = 0; // 이미지 인덱스 초기화
-        updateImages(index); // 선택한 배너의 이미지를 업데이트
-
-        // 자동 슬라이드 초기화
-        resetAutoSlide();
-    }
-
-    function nextImage() {
-        const images = document.querySelectorAll('.banner_content.active .banner_images img');
-        currentImageIndex = (currentImageIndex + 1) % images.length; // 다음 이미지로 이동 (순환)
-        updateImages(currentIndex);
-    }
-
-    function prevImage() {
-        const images = document.querySelectorAll('.banner_content.active .banner_images img');
-        currentImageIndex = (currentImageIndex - 1 + images.length) % images.length; // 이전 이미지로 이동 (순환)
-        updateImages(currentIndex);
-    }
-
-    function updateImages(bannerIndex) {
-        const images = document.querySelectorAll('.banner_content.active .banner_images img');
-        const indicators = document.querySelectorAll('.page-indicator input[type="radio"]');
-
-        images.forEach((image, i) => {
-            image.classList.remove('active');
-        });
-
-        images[currentImageIndex].classList.add('active'); // 현재 이미지 활성화
-
-        // 페이지 인디케이터 업데이트
-        indicators.forEach((indicator, i) => {
-            indicator.checked = (i === currentImageIndex);
-        });
-    }
-
-    function resetAutoSlide() {
-        clearInterval(autoSlideInterval); // 기존 인터벌을 클리어
-        autoSlideInterval = setInterval(nextImage, 5000); // 10초마다 다음 이미지로 이동
-        
-    }
-    
-    window.onload = function() {
-        showBanner(0);
-    }
+	let currentImageIndex = 0;
+	let autoSlideInterval;
+	
+	function nextImage() {
+	    const images = document.querySelectorAll('.banner_content.active .banner_images img');
+	    currentImageIndex = (currentImageIndex + 1) % images.length; // 다음 이미지로 이동 (순환)
+	    updateImages();
+	}
+	
+	function prevImage() {
+	    const images = document.querySelectorAll('.banner_content.active .banner_images img');
+	    currentImageIndex = (currentImageIndex - 1 + images.length) % images.length; // 이전 이미지로 이동 (순환)
+	    updateImages();
+	}
+	
+	function updateImages() {
+	    const images = document.querySelectorAll('.banner_content.active .banner_images img');
+	    const indicators = document.querySelectorAll('.page_indicator input[type="radio"]');
+	
+	    images.forEach((image) => {
+	        image.classList.remove('active');
+	    });
+	
+	    images[currentImageIndex].classList.add('active'); // 현재 이미지 활성화
+	
+	    // 페이지 인디케이터 업데이트
+	    indicators.forEach((indicator, i) => {
+	        indicator.disabled = (i === currentImageIndex); // 현재 인디케이터를 활성화
+	        indicator.checked = (i === currentImageIndex); // 체크된 상태 업데이트
+	    });
+	}
+	
+	function resetAutoSlide() {
+	    clearInterval(autoSlideInterval); // 기존 인터벌을 클리어
+	    autoSlideInterval = setInterval(nextImage, 5000); // 5초마다 다음 이미지로 이동
+	}
+	
+	window.onload = function() {
+	    resetAutoSlide();
+	};
 </script>
 
 </body>
