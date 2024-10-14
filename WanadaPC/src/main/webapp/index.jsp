@@ -278,7 +278,7 @@
         	</div>
         </section>
         <div class="ad">
-	       	<a href="">
+	       	<a href="#">
 	    		<img alt="main_ad" src="./Image/ad_index_1.jpg">
 	    	</a>
         </div>
