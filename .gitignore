@@ -16,3 +16,7 @@
 *.ser
 *.setup
 .metadata/
+Servers/
+WanadaPC/.settings/
+WanadaPC/src/main/webapp/META-INF/
+WanadaPC/.classpath
