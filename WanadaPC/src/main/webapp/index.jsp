@@ -104,6 +104,28 @@
     margin: 2px 0;
 }
 
+.page_indicator input[type="radio"] {
+    appearance: none; /* 기본 라디오 버튼 스타일 제거 */
+    width: 13px; /* 크기 설정 */
+    height: 13px; /* 크기 설정 */
+    margin-right: 5px; /* 라디오 버튼과 레이블 사이의 간격 */
+    border: 2px solid white; /* 테두리 색상 */
+    border-radius: 50%; /* 둥글게 만들기 */
+    outline: none; /* 포커스 아웃라인 제거 */
+    cursor: pointer; /* 커서 변경 */
+    transition: background-color 0.2s; /* 배경 색상 전환 효과 */
+}
+
+.page_indicator input[type="radio"]:checked {
+    background-color: white; /* 선택된 상태의 배경 색상 */
+}
+
+.page_indicator input[type="radio"]:disabled {
+    cursor: not-allowed; /* 클릭 불가 스타일 */
+    border-color: white; /* 비활성화된 상태의 테두리 색상 */
+}
+
+
 .game_pc_section {
     display: flex;
     flex-wrap: wrap;
@@ -278,19 +300,19 @@
 	let autoSlideInterval;
 	
 	function nextImage() {
-	    const images = document.querySelectorAll('.banner_content.active .banner_images img');
+	    const images = document.querySelectorAll('.banner_images img');
 	    currentImageIndex = (currentImageIndex + 1) % images.length; // 다음 이미지로 이동 (순환)
 	    updateImages();
 	}
 	
 	function prevImage() {
-	    const images = document.querySelectorAll('.banner_content.active .banner_images img');
+	    const images = document.querySelectorAll('.banner_images img');
 	    currentImageIndex = (currentImageIndex - 1 + images.length) % images.length; // 이전 이미지로 이동 (순환)
 	    updateImages();
 	}
 	
 	function updateImages() {
-	    const images = document.querySelectorAll('.banner_content.active .banner_images img');
+	    const images = document.querySelectorAll('.banner_images img');
 	    const indicators = document.querySelectorAll('.page_indicator input[type="radio"]');
 	
 	    images.forEach((image) => {
@@ -299,11 +321,13 @@
 	
 	    images[currentImageIndex].classList.add('active'); // 현재 이미지 활성화
 	
-	    // 페이지 인디케이터 업데이트
-	    indicators.forEach((indicator, i) => {
-	        indicator.disabled = (i === currentImageIndex); // 현재 인디케이터를 활성화
-	        indicator.checked = (i === currentImageIndex); // 체크된 상태 업데이트
+	    // 모든 페이지 인디케이터 비활성화
+	    indicators.forEach((indicator) => {
+	        indicator.disabled = true; // 모든 인디케이터 비활성화
 	    });
+	
+	    // 현재 인디케이터 활성화
+	    indicators[currentImageIndex].checked = true;
 	}
 	
 	function resetAutoSlide() {
