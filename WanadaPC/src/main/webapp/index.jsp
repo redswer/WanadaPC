@@ -121,10 +121,12 @@
 }
 
 .page_indicator input[type="radio"]:disabled {
-    cursor: not-allowed; /* 클릭 불가 스타일 */
     border-color: white; /* 비활성화된 상태의 테두리 색상 */
 }
 
+.sub_section {
+	margin-top: 70px;
+}
 
 .game_pc_section {
     display: flex;
@@ -164,13 +166,25 @@
     font-size: 0.9em; /* 작은 글씨 */
 }
 
-.sub_section {
-	margin-top: 70px;
-}
-
 .ad {
 	margin-top: 30px;
 }
+
+.recommend_product_section {
+    display: flex;
+    flex-direction: column; /* 세로 방향으로 정렬 */
+    gap: 20px; /* 이미지 사이 간격 설정 */
+}
+
+.recommend_product_section div {
+    display: flex; /* 각 항목을 flex로 설정 */
+    justify-content: flex-start; /* 기본적으로 왼쪽 정렬 */
+}
+
+.recommend_product_section div:nth-child(even) {
+    justify-content: flex-end; /* 짝수 번째 아이템은 오른쪽 정렬 */
+}
+
 </style>
 </head>
 <body class="index_body">
@@ -277,11 +291,49 @@
 	        	</div>
         	</div>
         </section>
-        <div class="ad">
-	       	<a href="">
-	    		<img alt="main_ad" src="./Image/ad_index_1.jpg">
-	    	</a>
-        </div>
+        	<div class="ad">
+		       	<a href="">
+		    		<img alt="main_ad" src="./Image/ad_index_1.jpg">
+		    	</a>
+       		</div>
+        <section class="sub_section">
+        	<h2>추천 상품</h2>
+        	<div class="recommend_product_section">
+        		<div>
+        			<a>
+        				<img alt="" src="./Image/index_recommend_product_intel.jpg">
+        			</a>
+        			<a>
+        				상품 내용
+        			</a>
+        		</div>
+        		<div>
+        			<a>
+        				상품 내용
+        			</a>
+        			<a>
+        				<img alt="" src="./Image/index_recommend_product_ryzen_7000.jpg">
+        			</a>
+        		</div>
+        		<div>
+        			<a>
+        				<img alt="" src="./Image/index_recommend_product_nvidia.jpg">
+        			</a>
+        			<a>
+        				상품 내용
+        			</a>
+        		</div>
+        		<div>
+        			<a>
+        				상품 내용
+        			</a>
+        			<a>
+        				<img alt="" src="./Image/index_recommend_product_radeon.jpg">
+        			</a>
+        		</div>
+        		
+        	</div>
+        </section>
         <section>
         	<h3>커뮤니티</h3>
            	<div>커뮤니티 내용</div>
