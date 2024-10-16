@@ -198,7 +198,7 @@
                 	<a href="">
                     	<img class="active" alt="" src="./Image/index_banner_pc_rtx_40.jpg">
                     </a>
-                    <a href="#">
+                    <a href="./Pc/etcPC.jsp">
                     	<img alt="" src="./Image/index_banner_pc_home.jpg">
                    	</a>
                    	<a href="#">
@@ -211,7 +211,7 @@
                     	<img alt="" src="./Image/index_banner_pc_intel.jpg">
                    	</a>
                    	<a href="#">
-                    	<img alt="" src="./Image/index_banner_pc_programmer.jpg">
+                    	<img alt="" src="./Image/index_banner_pc_edit.jpg">
                     </a>
                    	<a href="#">
                     	<img alt="" src="./Image/index_banner_pc_bj.jpg">
