@@ -1,145 +1,168 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<meta charset="utf-8">
-<meta name = "viewport" content="wigth=device-width", inital-scale=1.0, maxinum-scale=1.0, mininum-scale=1.0, user-scalable=no">
-<meta http-equlv ="X-UA-Compatible" content="IE=edge">
-<meta name="supported-color-schmes" content="light">
-<title>와나다 회원가입</title>
-
-<html>
+<html lang="ko">
 <head>
-<Style TYPE="text/css">
-
-</Style>
-<title>Insert title here</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>와나다 회원가입</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .signup-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 15px;
+        }
+        label {
+            margin-bottom: 5px;
+            color: #555;
+        }
+        input[type="text"],
+        input[type="password"],
+        input[type="email"] {
+            width: 90%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .button {
+            width: 100%;
+            padding: 10px;
+            background-color: #1ec800;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .button:hover {
+            background-color: #17a300;
+        }
+        .terms {
+            font-size: 0.9em;
+            color: #555;
+        }
+    </style>
 </head>
 <body>
-	<div class ="container">
-		<div class ="inner">
-			<h1 class ="logo_naver">
-				<a href="http://wanada.com" class="link">
-				::before
-				<spasn class="blind">와나다</spasn>
-				</a>
-			</h1>
-			<div class="content">
-				<from id="join from" method="post" action="/user2/join/end" class="from">
-					<input type="hidden" id="token_sjoin" name="token_sjoin" value="hk@ybFJ6gpSgyDD2">
-					<input type="hidden" id="nid_kb2" name="nid_kb2" value>
-					<input type="hidden" id="joinMode" name="joinMode" value="joindentity">
-					<input type="hidden" id="encPswd" name="encPswd" value>
-					<input type="hidden" id="enKey" name="enKey" value>
-					<input type="hidden" id="telecom" name="telecom" value>
-					<input type="hidden" id="birthday" name="birthday" value>
-					<div class ="from_content">
-						<div class="from_section">
-							<div class="join_toggle" id="divToggle">
-								<input type="checkbox" id=join_toggle" checked>
-								<label for ="join_toggle">
-								"실명 인증된 아이디로 가입"
-								::after
-								</label>
-							</div>
-							<div class="form_list"> <div>
-								<div class="from_item user" id="divld">
-									::before
-									<input type="text" id="id" name="id" placeholder="아이디" class="input" value maxlength="20"
-									autocapitalize="off">
-									<div class="id_naver">@naver.com</div>
-									::after
-								</div>
-								<div class="from_item lock password" id="divpasswd">
-									::before
-									<input type="password" id="pswd" name="pswd1" placeholder="비밀번호" class="input" value maxlength="20"
-									autocomplete="new-password">
-									<div class="password_info">
-										<em class="how_secure" id=secureLevel"></em>
-										<button type="button" class="btn_show hide">
-											::before
-											<span class="blind">비밀번호 보기</span>
-										</button>
-									</div>
-									::after
-								</div>
-								<div class="from_item email" id="divEmail">
-									::before
-									<span class="placeholder_prefix">[선택]</span>
-									<input type="email" id="email" name="email" placeholder="[선택] 이메일주소 (비밀번호 찾기 등 본인 확인용)" 
-									class="input" value maxlength="100">
-									::after
-								</div>
-								::after
-							</div>	
-							<div class="error_text item_style" id="idMsg" style=display: none"></div>
-							<div class="error_text item_style" id="pswd1Msg" style=display: none"></div>
-							<div class="error_text item_style" id="emailMsg" style=display: none"></div>
-							<div class="form_list">
-								<div class="form_item user" id="divName"></div>
-								::before
-								<input type="text" id="name" name="name" placeholder="이름" class="input" value maxlength="40">
-								::after
-							</div>
-							<div class="form_item calendar" id="divBirthday"> 
-								::before
-								<input type="text" id=birthdayinput" placeholder="생년월일 8자리" class="input" value maxiength="13"> 
-								::after 
-							</div>
-							<div class="form_item telecom" id="divTelecom">
-								::before
-								<button type="button" id="btn_telecom" class="btn_telecom" aria-expanded="false" aria-controls="telecom_menu">
-									<span class="placeholder">통신사 선택</span>
-									::after
-								</button>
-								<ul role="menu" id="telecom_menu" class="telecom_menu">
-									<li role="presentation" class="item">
-										<button types="button" role="menuitem" class="button" id="btnTelecom1">
-											<span class="text">SKT</span>
-										</button>
-									</li>
-									<li role="presentation" class="item">
-										<button types="button" role="menuitem" class="button" id="btnTelecom2">
-											<span class="text">SKT 알뜰폰</span>
-										</button>
-									</li>
-									<li role="presentation" class="item">
-										<button types="button" role="menuitem" class="button" id="btnTelecom3">
-											<span class="text">KT</span>
-										</button>
-									</li>
-									<li role="presentation" class="item">
-										<button types="button" role="menuitem" class="button" id="btnTelecom4">
-											<span class="text">KT 알뜰폰</span>
-										</button>
-									</li>
-									<li role="presentation" class="item">
-										<button types="button" role="menuitem" class="button" id="btnTelecom5">
-											<span class="text">LG U+</span>
-										</button>
-									</li>
-									<li role="presentation" class="item">
-										<button types="button" role="menuitem" class="button" id="btnTelecom6">
-											<span class="text">LG U+ 알뜰폰</span>
-										</button>
-									</li>	
-								</ul>
-								::after
-							</div>
-							<div class="from_item adult" id="divIdentityGender">
-								<ul class=adult_list" id="listIdentityGender">
-									<li class="radio_item">
-										<input type="radio" id="IdentityGender1" name="IdentityGender" value="M" class="blind">
-										<label for="IdentityGender1">남자</label>
-									</li>
-									<li class="radio_item">
-										<input type="radio" id="IdentityGender2" name="IdentityGender" value="F" class="blind">
-										<label for="IdentityGender1">여자</label>
-									</li>
-								</ul>
-								
-					</div>
-			</div>		
-		</div>
-	</div>
+    <div class="inner">
+        <h1 class="logo_wanada">
+            <a href="http://wanada.com" class="link">
+            <span class="blind">와나다</span>
+            </a>
+        </h1>
+        <div class="signup-container">
+            <h1>회원가입</h1>
+            <div class="form section">
+                <div class="join_toggle" id="divToggle">
+                    <input type="checkbox" id="join_toggle" checked>
+                    <label for="join_toggle">실명 인증된 아이디로 가입</label>
+                </div>
+            </div>
+            <form action="/user_insert" method="POST" name="userForm">
+                <div class="User_email">
+                    <label for="email">아이디(e-mail)</label>
+                    <input type="text" id="email" name="email" size="13" maxlength="15" placeholder=" (아이디)이메일을 입력하세요">@ 
+                    <input type="text" name="customEmailDomain" size="13" maxlength="15" placeholder="직접 입력할 도메인">
+                    <select name="emailDomain" id="emailDomain">
+                        <option value="0">직접입력</option>
+                        <option value="naver.com">naver.com</option>    
+                        <option value="daum.net">daum.net</option>
+                        <option value="nate.com">nate.com</option>
+                        <option value="gmail.com">gmail.com</option>
+                        <option value="yahoo.com">yahoo.com</option>
+                    </select>
+                </div>
+                <div class="User_password">
+                    <label for="password">비밀번호</label>
+                    <input type="password" id="password" name="password" placeholder="비밀번호를 입력하세요">
+                </div>
+                <div class="User_repassword">
+                    <label for="repassword">비밀번호 확인</label>
+                    <input type="password" id="repassword" name="repassword" placeholder="비밀번호를 다시 입력하세요">
+                </div>
+                <div class="User_gender">
+                    <label for="gender">성별</label>
+                    <input type="radio" id="gender1" name="gender" value="M">
+                    <label for="gender1">남자</label>
+                    <input type="radio" id="gender2" name="gender" value="F">
+                    <label for="gender2">여자</label>
+                </div>
+                <div class="User_phone">
+                    <label for="tel">휴대폰 번호</label>
+                    <input type="text" id="tel" name="tel" placeholder="휴대폰 번호를 입력하세요">
+                </div>
+                <p class="terms">
+                    <input type="checkbox" id="terms" name="terms">
+                    <label for="terms">약관에 동의합니다</label>
+                </p>
+                <button type="button" class="button" onclick="send()">가입하기</button>
+            </form>
+        </div>
+    </div>
 </body>
+<script>
+    function send() {
+        const form = document.forms['userForm'];
+
+        // 아이디 (이메일)
+        if (!form.email.value) {
+            alert("이메일을 입력하세요");
+            form.email.focus();
+            return;
+        }
+     // 이메일 도메인 체크
+        const emailDomain = form.emailDomain.value === "0" ? form.customEmailDomain.value : form.emailDomain.value;
+        if (!emailDomain) {
+            alert("이메일 도메인을 입력하세요");
+            form.customEmailDomain.focus();
+            return;
+        }
+        // 비밀번호 체크
+        if (!form.password.value) {
+            alert("비밀번호를 입력하세요");
+            form.password.focus();
+            return;
+        }
+        // 비밀번호 확인 체크
+        if (form.password.value !== form.repassword.value) {
+            alert("비밀번호를 확인해주세요");
+            form.repassword.focus();
+            return;
+        }
+        // 성별 체크
+        if (!form.gender.value) {
+            alert("성별을 선택하세요");
+            return; // radio button의 경우 focus()는 필요 없음
+        }
+        // 전화번호 체크
+        if (!form.tel.value) {
+            alert("전화번호를 입력하세요");
+            form.tel.focus();
+            return;
+        }
+
+        // 모든 검증 통과 시 제출
+        form.submit();
+    }
+</script>
 </html>
