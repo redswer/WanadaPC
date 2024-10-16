@@ -198,22 +198,22 @@
                 	<a href="">
                     	<img class="active" alt="" src="./Image/index_banner_pc_rtx_40.jpg">
                     </a>
-                    <a href="./Pc/etcPC.jsp">
+                    <a href="/Pc/etcPC.jsp">
                     	<img alt="" src="./Image/index_banner_pc_home.jpg">
                    	</a>
-                   	<a href="#">
+                   	<a href="">
                     	<img alt="" src="./Image/index_banner_pc_office.jpg">
                     </a>
-                    <a href="#">
+                    <a href="">
                     	<img alt="" src="./Image/index_banner_pc_ryzen_9000.jpg">
                    	</a>
-                   	<a href="#">
+                   	<a href="">
                     	<img alt="" src="./Image/index_banner_pc_intel.jpg">
                    	</a>
-                   	<a href="#">
+                   	<a href="">
                     	<img alt="" src="./Image/index_banner_pc_edit.jpg">
                     </a>
-                   	<a href="#">
+                   	<a href="">
                     	<img alt="" src="./Image/index_banner_pc_bj.jpg">
                     </a>
                 </div>
