@@ -8,7 +8,7 @@
 </head>
 <style>
 /* 공통 스타일 */
-.CPU_body {
+.POWER_body {
     font-family: 'Arial', sans-serif;
     width:1260;
 	margin:0 auto;
@@ -91,9 +91,7 @@
     border-radius: 5px;
    
 }
-
-/* compare_cpu_one과 compare_cpu_two를 같은 박스에 넣기 */
-.compare_cpu_container {
+.compare_power_container {
     display: flex; /* 두 요소를 가로로 배치 */
     flex-direction: row;
     justify-content: space-between;
@@ -107,7 +105,7 @@
 }
 
 /* 비교 테이블 스타일 */
-.compare_cpu_one, .compare_cpu_two {
+.compare_power_one, .compare_power_two {
     width: 100%; /* 두 요소가 같은 박스 안에서 균등한 크기로 나란히 */
     margin-top: 0;
     background-color: #f9f9f9;
@@ -119,7 +117,7 @@
 
 
 /* 테이블 스타일 */
-.compare_cpu_one th, .compare_cpu_two th {
+.compare_power_one th, .compare_power_two th {
     background-color: #f1f1f1;
     font-weight: bold;
     text-align: center;
@@ -128,38 +126,38 @@
     padding: 12px; /* 여백을 통해 가독성 향상 */
 }
 
-.compare_cpu_one td, .compare_cpu_two td {
+.compare_power_one td, .compare_power_two td {
     padding: 12px;
     text-align: left;
     border-bottom: 1px solid #ddd;
 }
 
 
-/* 인텔 CPU종류까지만 보이고 나머지 항목 스크롤 */
-.compare_cpu_two {
+
+.compare_power_two {
     max-height: 300px; /* 스크롤이 필요한 높이 설정 */
     overflow-y: auto;
 }
 
-.compare_cpu_two table {
+.compare_power_two table {
     width: 100%;
 }
 
-.compare_cpu_two tr:nth-child(1) ~ tr {
+.compare_power_two tr:nth-child(1) ~ tr {
      width: 100%;
 }
 
 /* 스크롤바 스타일 (웹킷 기반 브라우저) */
-.compare_cpu_two::-webkit-scrollbar {
+.compare_power_two::-webkit-scrollbar {
     width: 8px;
 }
 
-.compare_cpu_two::-webkit-scrollbar-thumb {
+.compare_power_two::-webkit-scrollbar-thumb {
     background-color: #888;
     border-radius: 4px;
 }
 
-.compare_cpu_two::-webkit-scrollbar-track {
+.compare_power_two::-webkit-scrollbar-track {
     background-color: #f1f1f1;
 }
 
@@ -171,7 +169,7 @@
 
 </style>
 <%@ include file="/Util/header.jsp" %>
-<body class="CPU_body">
+<body class="POWER_body">
     <div class="header">
         <header>
             <div class="Product_Show">
@@ -199,7 +197,7 @@
     </div>
     <div class="compare">
         <section>
-            <div class="compare_cpu_one" id="defaultOption">
+            <div class="compare_power_one" id="defaultOption">
                 <table>
                     <colgroup>
                         <col style="width:130px;" />
@@ -219,7 +217,7 @@
                 </table>
             </div>
 
-            <div class="compare_cpu_two">
+            <div class="compare_power_two">
                 <table>
                     <tr>
                         <th>제조사</th>
@@ -230,7 +228,7 @@
                         <td></td>
                     </tr>
                     <tr>
-                        <th>CPU종류</th>
+                        <th>파워종류</th>
                         <td></td>
                     </tr>
                     <!-- 아래는 스크롤 영역 -->
