@@ -8,7 +8,9 @@
 <style type="text/css">
 .Product_body {
 	font-family: Arial, sans-serif;
-	background-color: #f5f5f5;
+	width:1260;
+	margin:0 auto;
+	margin-top:10px;
 }
 
 .Product_main {
@@ -233,6 +235,7 @@
 </script>
 </head>
 <body class="Product_body">
+<%@ include file="/Util/header.jsp" %>
 	<div class="header">
 		<header>
 			<form action="" method="post" name="indexForm" id="indexForm">
@@ -559,5 +562,6 @@
 			</div>
 		</section>
 	</div>
+<%@ include file="/Util/footer.jsp" %>
 </body>
 </html>
