@@ -334,11 +334,11 @@ color:black;
 /* 리스트 스타일 */
 .left_community, .right_community {
     width: 100%; /* 전체 너비 사용 */
-    max-width: 600px; /* 최대 너비 설정 */
     padding: 0;
     list-style: none;
     display: flex; /* 플렉스박스 사용 */
-    justify-content: space-between; /* 좌우 정렬 */
+    justify-content: space-around; /* 좌우 정렬 */
+    
 }
 
 /* 왼쪽 리스트 스타일 */
@@ -347,6 +347,7 @@ color:black;
     align-items: center;
     margin-bottom: 20px;
     justify-content: flex-start; /* 왼쪽 정렬 */
+    width: 500px;
 }
 
 /* 오른쪽 리스트 스타일 */
@@ -354,7 +355,7 @@ color:black;
     display: flex;
     align-items: center;
     margin-bottom: 20px;
-    justify-content: flex-end; /* 오른쪽 정렬 */
+	width:500px;
 }
 
 .left_community li img, .right_community li img {
@@ -501,8 +502,8 @@ color:black;
 }
 </style>
 </head>
-<%@ include file="/Util/header.jsp" %>
 <body class="freeboard">
+<%@ include file="/Util/header.jsp" %>
     <!-- Header Section -->
     <header>
         <div class="header-container">
@@ -738,15 +739,12 @@ color:black;
         </ul>
     </div>
 	</div>
-
-
-
     </main>
 
     <!-- Footer Section -->
-    <footer>
-        <p>© 2024 커뮤니티. All Rights Reserved.</p>
+  <footer>
+        <%@ include file="/Util/footer.jsp" %>
     </footer>
-
+   
 </body>
 </html>
