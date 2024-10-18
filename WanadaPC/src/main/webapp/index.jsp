@@ -1,10 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>index</title>
+<title>와나다 PC</title>
 <style type="text/css">
 .index_body {
     width: 1260px;
@@ -195,50 +196,19 @@
         <section class="main_banner">
             <div class="banner_content active">
                 <div class="banner_images">
-                	<a href="">
-                    	<img class="active" alt="" src="./Image/index_banner_pc_rtx_40.jpg">
-                    </a>
-                    <a href="/Pc/etcPC.jsp">
-                    	<img alt="" src="./Image/index_banner_pc_home.jpg">
-                   	</a>
-                   	<a href="">
-                    	<img alt="" src="./Image/index_banner_pc_office.jpg">
-                    </a>
-                    <a href="">
-                    	<img alt="" src="./Image/index_banner_pc_ryzen_9000.jpg">
-                   	</a>
-                   	<a href="">
-                    	<img alt="" src="./Image/index_banner_pc_intel.jpg">
-                   	</a>
-                   	<a href="">
-                    	<img alt="" src="./Image/index_banner_pc_edit.jpg">
-                    </a>
-                   	<a href="">
-                    	<img alt="" src="./Image/index_banner_pc_bj.jpg">
-                    </a>
+	     			<c:forEach var="i" items="${index_banner_list}" varStatus="status">
+	        			<a href="${i.page_link}">
+	        				<c:out value="${i.page_link}"/>
+	            			<img class="${status.index == 0 ? 'active' : ''}" src="./Image/${i.image}">
+	        			</a>
+	   				 </c:forEach>
                 </div>
                 <div class="page_indicator">
-                    <label>
-                        <input type="radio" name="page" value="1" checked disabled>
-                    </label>
-                    <label>
-                        <input type="radio" name="page" value="2" disabled>
-                    </label>
-                    <label>
-                        <input type="radio" name="page" value="3" disabled>
-                    </label>
-                    <label>
-                        <input type="radio" name="page" value="4" disabled>
-                    </label>
-                    <label>
-                        <input type="radio" name="page" value="5" disabled>
-                    </label>
-                    <label>
-                        <input type="radio" name="page" value="6" disabled>
-                    </label>
-                    <label>
-                        <input type="radio" name="page" value="7" disabled>
-                    </label>
+                	<c:forEach var="i" items="${index_banner_list}" varStatus="status">
+         		    	<label>
+                        	<input type="radio" name="page" value="${status.index + 1}" <c:if test="${status.index == 0}">checked</c:if> disabled>
+                    	</label>
+                	</c:forEach>
                 </div>
             </div>
             <div class="arrow left" onclick="prevImage()">&#10094;</div>
@@ -247,48 +217,15 @@
         <section class="sub_section">
         	<h2>게임용 PC</h2>
         	<div class="game_pc_section">
-	        	<div>
-	        		<a href="">
-	        			<img alt="" src="./Image/index_game_pc_godOfWar.jpeg">
-	        			<span class="index_game_pc_main_txt">갓 오브 워: 라그나로츠 추천 PC</span>
-	        			<span class="index_game_pc_sub_txt">pc로 돌아온 라그나로크</span>
-	        		</a>
-	        	</div>
-	        	<div>
-	        		<a href="">
-	        			<img alt="" src="./Image/index_game_pc_blackMyth.jpeg">
-	        			<span class="index_game_pc_main_txt">검은 신화: 오공 추천 PC</span>
-	        			<span class="index_game_pc_sub_txt">새로운 신화를 써내려가다</span>
-	        		</a>
-	        	</div>
-	        	<div>
-	        		<a href="">
-	        			<img alt="" src="./Image/index_game_pc_diablo.jpeg">
-	        			<span class="index_game_pc_main_txt">디아블로4 추천 PC</span>
-	        			<span class="index_game_pc_sub_txt">증오의 군주를 막아라</span>
-	        		</a>
-	        	</div>
-	        	<div>
-	        		<a href="">
-	        			<img alt="" src="./Image/index_game_pc_battleGround.jpeg">
-	        			<span class="index_game_pc_main_txt">배틀그라운드 추천 PC</span>
-	        			<span class="index_game_pc_sub_txt">최적의 사양으로 즐거운 치킨 사냥</span>
-	        		</a>
-	        	</div>
-	        	<div>
-	        		<a href="">
-	        			<img alt="" src="./Image/index_game_pc_leagueOfLegend.jpeg">
-	        			<span class="index_game_pc_main_txt">리그 오브 레전드 추천 PC</span>
-	        			<span class="index_game_pc_sub_txt">오늘도 전설은 계속된다</span>
-	        		</a>
-	        	</div>
-	        	<div>
-	        		<a href="">
-	        			<img alt="" src="./Image/index_game_pc_lostArk.jpeg">
-	        			<span class="index_game_pc_main_txt">로스트아크 추천 PC</span>
-	        			<span class="index_game_pc_sub_txt">고대하던 시즌3 시작</span>
-	        		</a>
-	        	</div>
+        		<c:forEach var="i" items="${index_game_pc_list}">
+        			<div>
+		        		<a href="">
+		        			<img alt="" src="./Image/${i.image}">
+		        			<span class="index_game_pc_main_txt">${i.subject}</span>
+		        			<span class="index_game_pc_sub_txt">${i.infomation}</span>
+		        		</a>
+	        		</div>
+        		</c:forEach>
         	</div>
         </section>
         	<div class="ad">
@@ -348,48 +285,41 @@
     </footer>
 
 <script>
-	let currentImageIndex = 0;
-	let autoSlideInterval;
-	
-	function nextImage() {
-	    const images = document.querySelectorAll('.banner_images img');
-	    currentImageIndex = (currentImageIndex + 1) % images.length; // 다음 이미지로 이동 (순환)
-	    updateImages();
-	}
-	
-	function prevImage() {
-	    const images = document.querySelectorAll('.banner_images img');
-	    currentImageIndex = (currentImageIndex - 1 + images.length) % images.length; // 이전 이미지로 이동 (순환)
-	    updateImages();
-	}
-	
-	function updateImages() {
-	    const images = document.querySelectorAll('.banner_images img');
-	    const indicators = document.querySelectorAll('.page_indicator input[type="radio"]');
-	
-	    images.forEach((image) => {
-	        image.classList.remove('active');
-	    });
-	
-	    images[currentImageIndex].classList.add('active'); // 현재 이미지 활성화
-	
-	    // 모든 페이지 인디케이터 비활성화
-	    indicators.forEach((indicator) => {
-	        indicator.disabled = true; // 모든 인디케이터 비활성화
-	    });
-	
-	    // 현재 인디케이터 활성화
-	    indicators[currentImageIndex].checked = true;
-	}
-	
-	function resetAutoSlide() {
-	    clearInterval(autoSlideInterval); // 기존 인터벌을 클리어
-	    autoSlideInterval = setInterval(nextImage, 5000); // 5초마다 다음 이미지로 이동
-	}
-	
-	window.onload = function() {
-	    resetAutoSlide();
-	};
+let currentImageIndex = 0;
+
+function nextImage() {
+    const images = document.querySelectorAll('.banner_images img');
+    currentImageIndex = (currentImageIndex + 1) % images.length; // 다음 이미지로 이동 (순환)
+    updateImages();
+}
+
+function prevImage() {
+    const images = document.querySelectorAll('.banner_images img');
+    currentImageIndex = (currentImageIndex - 1 + images.length) % images.length; // 이전 이미지로 이동 (순환)
+    updateImages();
+}
+
+function updateImages() {
+    const images = document.querySelectorAll('.banner_images img');
+    const indicators = document.querySelectorAll('.page_indicator input[type="radio"]');
+
+    images.forEach((image, index) => {
+        image.classList.remove('active');
+        if (index === currentImageIndex) {
+            image.classList.add('active'); // 현재 이미지 활성화
+        }
+    });
+
+    indicators.forEach((indicator, index) => {
+        indicator.checked = (index === currentImageIndex); // 현재 인디케이터 활성화
+    });
+}
+
+// 페이지 로드 시 첫 이미지 표시
+window.onload = function() {
+    updateImages();
+};
+
 </script>
 
 </body>
