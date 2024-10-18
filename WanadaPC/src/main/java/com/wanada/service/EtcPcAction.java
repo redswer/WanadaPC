@@ -13,6 +13,10 @@ public class EtcPcAction implements Action {
 	public void process(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		
+		String category = request.getParameter("category");
+		
+		request.setAttribute("category", category);
+		
 		RequestDispatcher rd = request.getRequestDispatcher("/Pc/etcPC.jsp");
 		rd.forward(request, response);
 	}
