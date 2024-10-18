@@ -35,6 +35,7 @@ public class IndexDAO {
 				
 				dto.setImage(rs.getString("image"));
 				dto.setPage_link(rs.getString("page_link"));
+				dto.setCategory(rs.getString("category"));
 				
 				list.add(dto);
 			}
