@@ -36,36 +36,37 @@
     height: auto;*
 }
 
-.topmenu {
-	
-	justify-content: center;    
+nav.topmenu {
+	display: flex;             /* 가로로 배치 */
+    justify-content: center; 
 }
 
-.navbar ul,li{
-    display: flex;
-    justify-content: flex-start; /* 메뉴가 왼쪽 정렬 */
-    list-style: none;
+nav.topmenu ul {
+    display: flex;             /* ul을 flex 컨테이너로 설정 */
+    justify-content: center;   /* ul 내부의 li들을 가로로 가운데 정렬 */
     padding: 0;
-    margin: 0 10px;
-    float:left;
-
+    margin: 0;
 }
 
-.navbar li {
-    margin-right: 20px; /* 각 메뉴 사이 간격 */
+nav.topmenu ul li {
+    list-style: none;          /* 리스트 스타일 제거 */
+    margin-right: 20px;        /* li 간 간격 설정 */
 }
 
-.navbar li a {
-    text-decoration: none;
-    color: #000;
-    font-size: 14px;
+nav.topmenu ul li:last-child {
+    margin-right: 0;           /* 마지막 항목 오른쪽 마진 제거 */
+}
+
+nav.topmenu ul li a {
+    text-decoration: none;     /* 링크 밑줄 제거 */
+    color: #333;               /* 링크 기본 색상 */
+    font-size: 14px;           /* 글씨 크기 */
     padding: 10px;
 }
 
-.navbar li a:hover {
-    color: #6200ea; /* 메뉴에 마우스 오버 시 색상 변경 */
+nav.topmenu ul li a:hover {
+    color: #6200ea;            /* 마우스 오버 시 색상 변경 */
 }
-
 /* 반응형을 위한 추가 설정 */
 @media (max-width: 768px) {
     .navbar {
@@ -79,49 +80,105 @@
     }
 }
 /* 검색창 및 글쓰기 버튼 스타일 */
-.search-write-section {
+	.search-bar  {
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
     margin-bottom: 20px;
+	width: 100%;
 }
 
-.search-write-section input {
-    width: 60%;
+.search-bar input {
+    width: 80%;
     padding: 10px;
     font-size: 16px;
+	border: 2px solid #ddd; /* 테두리 추가 */
+    border-radius: 5px; /* 모서리 둥글게 */
+    outline: none; /* 클릭 시 기본 테두리 제거 */
+    transition: border-color 0.3s ease; /* 애니메이션 추가 */
+}
+.search-bar input:focus {
+    border-color: #6200ea; /* 포커스 시 테두리 색상 변경 */
 }
 
-.search-write-section button {
+
+.search-bar button {
     padding: 10px 20px;
     margin-left: 10px;
-    background-color: #6200ea;
+    background: linear-gradient(45deg, #6200ea, #3700b3); /* 그라데이션 배경 */
+	background-color: #6200ea;
     color: #fff;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 그림자 추가 */
+    transition: transform 0.2s, background 0.3s ease; /* 클릭 시 애니메이션 */	
 }
 
-.search-write-section button:hover {
-    background-color: #3700b3;
+.search-bar button:hover {
+   	background: linear-gradient(45deg, #3700b3, #6200ea); /* 호버 시 그라데이션 반전 */
+    transform: translateY(-2px); /* 호버 시 약간 위로 이동 */
+}
+.search-bar button:active {
+    transform: translateY(0); /* 클릭 시 원래 위치로 돌아옴 */
 }
 
 /* 알림 및 공지 사항 */
+.notice.section {
+    width: 80%; /* 너비 조정 (필요에 따라 변경) */
+    max-width: 600px; /* 최대 너비 설정 */
+    margin: 20px auto; /* 위 아래 여백 20px, 좌우 자동으로 가운데 정렬 */
+    padding: 20px; /* 내부 여백 */
+    background-color: #f1f1f1; /* 배경색 */
+    border: 1px solid #ddd; /* 테두리 */
+    border-radius: 5px; /* 모서리 둥글게 */
+    text-align: center; /* 텍스트 가운데 정렬 */
+}
+.notice-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px; /* 헤더와 내용 사이 간격 */
+}
+
+.notice-header .icon {
+    margin-right: 10px; /* 아이콘과 텍스트 간격 */
+    font-size: 18px; /* 아이콘 크기 */
+    color: #000; /* 아이콘 색상 */
+}
+
+.notice-header .title {
+    font-weight: bold; /* 알림판 텍스트 굵게 */
+    font-size: 18px; /* 알림판 텍스트 크기 */
+}
+
+
 .notice {
     background-color: #f1f1f1;
     padding: 10px;
     border: 1px solid #ddd;
     margin-bottom: 20px;
+	
 }
+
 
 .notice p {
     margin: 0;
     padding: 5px 0;
     font-size: 14px;
+	
 }
 
 .notice p span {
     color: #6200ea;
     font-weight: bold;
+	
+.notice-icon {
+    display: inline-block;
+    margin-right: 5px;
+    color: #6200ea; /* 아이콘 색상 */
+}
+
+
+
 }
 
 /* 게시판 테이블 스타일 */
@@ -261,45 +318,60 @@ color:black;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     margin-top: 20px;
-    text-align: center;
+    display: flex; /* 플렉스박스 사용 */
+    flex-direction: column; /* 세로 방향으로 정렬 */
+    align-items: center; /* 가운데 정렬 */
 }
 
-.best-community-section h2 {
+/* 제목 스타일 - 가운데 정렬 */
+.best-community-title {
     margin-bottom: 15px;
     font-size: 18px;
     color: #6200ea;
+    text-align: center; /* 제목을 가운데 정렬 */
 }
 
-.best-community-section ol {
-    list-style: none;
+/* 리스트 스타일 */
+.left_community, .right_community {
+    width: 100%; /* 전체 너비 사용 */
+    max-width: 600px; /* 최대 너비 설정 */
     padding: 0;
-    text-align: left;
-    max-width: 600px;
-    margin: 0 auto;
+    list-style: none;
+    display: flex; /* 플렉스박스 사용 */
+    justify-content: space-between; /* 좌우 정렬 */
 }
 
-.best-community-section ol li {
+/* 왼쪽 리스트 스타일 */
+.left_community li {
     display: flex;
     align-items: center;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
+    justify-content: flex-start; /* 왼쪽 정렬 */
 }
 
-.best-community-section ol li img {
-    width: 50px;
-    height: 50px;
-    margin-right: 10px;
+/* 오른쪽 리스트 스타일 */
+.right_community li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    justify-content: flex-end; /* 오른쪽 정렬 */
+}
+
+.left_community li img, .right_community li img {
+    width: 70px;
+    height: 60px;
+    margin-right: 10px; /* 이미지와 텍스트 간 간격 */
     border-radius: 5px;
 }
 
-.best-community-section ol li a {
+.left_community li a, .right_community li a {
     text-decoration: none;
     color: #333;
     font-size: 14px;
 }
 
-.best-community-section ol li a:hover {
+.left_community li a:hover, .right_community li a:hover {
     color: #6200ea;
-}
 }
 /* 종합 주요 뉴스 스타일 */
 .news-section {
@@ -346,6 +418,19 @@ color:black;
 	text-decoration: none;
 }
 
+/* 이미지 섹션 스타일 */
+.image-section {
+  text-align: center;   /* 이미지 중앙 정렬 */
+  margin-top: 20px;     /* 뉴스와 이미지 사이의 추가 여백 */
+}
+
+.image-section img {
+  max-width: 100%;      /* 이미지 크기를 화면에 맞게 조절 */
+  height: auto;         /* 비율 유지하며 높이 자동 조절 */
+  border-radius: 8px;   /* 이미지 모서리 둥글게 */
+}
+
+
 /* 푸터 스타일 */
 .footer {
     text-align: center;
@@ -355,6 +440,64 @@ color:black;
     border-top: 1px solid #ddd;
     font-size: 12px;
     color: #666;
+}
+.content-container {
+    display: flex;
+    justify-content: space-between; /* 양쪽 섹션 사이에 여유 공간 */
+    margin-top: 20px;
+    gap: 20px; /* 두 섹션 사이 간격 */
+}
+
+/* 게시글 리스트 스타일 */
+.post-list {
+    width: 65%; /* post-list는 왼쪽에서 더 많은 공간을 차지 */
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.post-list table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.post-list th, .post-list td {
+    border-bottom: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+/* 뉴스 섹션 스타일 */
+.news-section {
+    width: 30%; /* news-section은 오른쪽에서 상대적으로 작은 공간을 차지 */
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.news-section h2 {
+    margin-bottom: 15px;
+    color: #6200ea;
+}
+
+.news-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.news-section ul li {
+    margin-bottom: 10px;
+}
+
+.news-section ul li a {
+    text-decoration: none;
+    color: #333;
+    font-size: 14px;
+}
+
+.news-section ul li a:hover {
+    color: #6200ea;
 }
 </style>
 </head>
@@ -388,48 +531,60 @@ color:black;
         </div>
 	<!-- 베스트 커뮤니티 섹션 추가 -->
 	<div class="best-community-section">
-    <h2>베스트 커뮤니티</h2>
-    <ol>
-        <li>
-            <img src="image1.jpg" alt="코카콜라 화장실 표시" />
-            <a href="#">코카콜라 본사의 화장실 표시</a> (25)
+    <h2 class="best-community-title">베스트 커뮤니티</h2>
+    <ol class="left_community">
+        <li class="left-align">
+            <img src="https://img.danawa.com/images/descFiles/6/673/5672795_tr9n3ZiSqc_1729058763190.png" alt="특가몰에서 PentaWave Z06D (화이트)를 빠르게 구매 했네요" />
+            <a href="#">특가몰에서 PentaWave Z06D (화이트)를 빠르게 구매 했네요</a> (25)
         </li>
-        <li>
-            <img src="image2.jpg" alt="어른용 용가리 치킨 출시" />
+        <li class="left-align">
+            <img src="https://img.danawa.com/images/descFiles/6/672/5671987_1728954766582.png" alt="어른용 용가리 치킨 출시" />
             <a href="#">어른용 용가리 치킨 출시</a> (27)
         </li>
-        <li><a href="#">컴퓨터 부품을 주워왔네요</a> (25)</li>
-        <li><a href="#">[포인트 마켓] 찰만 ZM-GP3 A 만수...</a> (35)</li>
-        <!-- 추가 항목 -->
     </ol>
-	</div>
-
+    <ol class="right_community">
+        <li class="right-align">
+            <img src="https://img.danawa.com/images/descFiles/6/673/5672729_M7IB5R69R7_1729052842019.jpeg" alt="우동+공기밥" />
+            <a href="#">우동+공기밥</a> (25)
+        </li>
+        <li class="right-align">
+            <img src="https://img.danawa.com/images/attachFiles/6/674/5673189_1.jpg?fitting=Large|140:105&crop=140:105;*,*" alt="어이없는 실수" />
+            <a href="#">어이없는 실수</a> (35)
+        </li>
+    </ol>
+</div>
+	
 
         <div class="notice-section">
-            <div class="alert">
-                <strong>안내:</strong> 찾은 오류, PC속도 잡자! PC안정화 위해 이건 꼭!
+            <div class="notice-header">
+        <span class="icon">📢</span> <!-- 아이콘 추가 -->
+        <span class="title">알림판</span> <!-- 알림판 텍스트 -->
+    </div>
+            <div class="notice">
+                <strong>안내:</strong> 잦은 오류, PC속도 잡자! PC안정화 위해 이건 꼭!
             </div>
-            <div class="alert">
+            <div class="notice">
                 <strong>안내:</strong> 자유게시판 이용안내
             </div>
-            <div class="alert">
+            <div class="notice">
                 <strong>안내:</strong> 게임별 VGA 성능평가표
             </div>
         </div>
 
-        <!-- Post List Section -->
-        <div class="post-list">
-            <table>
-                <thead>
-                    <tr>
-                        <th>제목</th>
-                        <th>작성자</th>
-                        <th>작성일</th>
-                        <th>조회</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
+      <div class="content-container">
+    <!-- 게시글 리스트 -->
+    <div class="post-list">
+        <table>
+            <thead>
+                <tr>
+                    <th>제목</th>
+                    <th>작성자</th>
+                    <th>작성일</th>
+                    <th>조회</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
                         <td><a href="#">쿠팡 댓글 알바라고 하는 사기 미리 체험해보세요</a></td>
                         <td>민들레차</td>
                         <td>2024.10.14</td>
@@ -554,20 +709,21 @@ color:black;
                 <td>인형수집가</td>
                 <td>2024.10.01</td>
                 <td>765</td>
-            </tr>             
-                </tbody>
-            </table>
-        </div>
+            </tr>           
+            </tbody>
+        </table>
+    </div>
 
- <!-- 종합 주요 뉴스 부분 -->
+    <!-- 종합 주요 뉴스 -->
     <div class="news-section">
         <h2>종합 주요 뉴스</h2>
+
         <ul>
             <li><a href="#">2024년 최고로 뜨는 기술 트렌드 발표</a></li>
             <li><a href="#">세계 경제 전망: 불황 극복할 수 있을까?</a></li>
             <li><a href="#">스마트폰 시장의 미래는?</a></li>
             <li><a href="#">2024 올림픽, 유망 종목에 대한 예측</a></li>
-            <li><a href="#">AI가 바꾸는 미래의 직업</a></li>
+           <li><a href="#">AI가 바꾸는 미래의 직업</a></li>
             <li><a href="#">최신 건강관리법: 웨어러블 기기 사용법</a></li>
             <li><a href="#">넥스트 제너레이션 게임 콘솔 출시 예정</a></li>
             <li><a href="#">자율주행차 상용화 시점, 그리고 대응 전략</a></li>
@@ -578,8 +734,10 @@ color:black;
             <li><a href="#">음악과 AI의 결합, 새로운 창작의 시대</a></li>
             <li><a href="#">2024년 테크놀로지 혁신을 주도할 10대 기업</a></li>
             <li><a href="#">디지털 화폐의 미래와 그로 인한 경제 변화</a></li>
+         <img src="https://images.dable.io/t/img.danawa.com/200X125/m001/40e1da3ac3fb5c4bd358e65675e1826a.webp" alt="뉴스 이미지">           
         </ul>
     </div>
+	</div>
 
 
 
