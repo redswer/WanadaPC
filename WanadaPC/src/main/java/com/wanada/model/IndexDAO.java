@@ -64,11 +64,16 @@ public class IndexDAO {
 				dto.setImage(rs.getString("image"));
 				dto.setSubject(rs.getString("subject"));
 				dto.setInfomation(rs.getString("infomation"));
+				dto.setCategory(rs.getString("category"));
+				dto.setGame_pc_menu(rs.getString("game_pc_menu"));
+				dto.setGame_pc_image(rs.getString("game_pc_image"));
 				
 				list.add(dto);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			DBConnPool.close(con, pstmt, rs);
 		}
 		
 		return list;

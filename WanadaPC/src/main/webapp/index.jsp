@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -60,14 +62,59 @@
     border-radius: 50% 0 0 50%; /* 오른쪽 화살표 둥글게 */
 }
 
+.image-counter {
+    position: absolute;
+    top: 10px; /* 상단에서 위치 조정 */
+    right: 10px; /* 오른쪽에서 위치 조정 */
+    color: white; /* 글자 색상 */
+    font-size: 15px; /* 글자 크기 */
+    background-color: rgba(0, 0, 0, 0.3); /* 배경을 약간 투명하게 설정 */
+    padding: 5px 10px; /* 여백 */
+    border-radius: 50px; /* 모서리 둥글게 */
+    z-index: 1; /* 다른 요소들 위에 표시 */
+}
+
 .sub_section {
-    margin-top: 70px;
+    margin: 50px 0;
+    background-color: #FFF0F5;
+    padding: 15px;
 }
 
 .game_pc_section {
     display: flex;
     flex-wrap: wrap;
     gap: 20px; /* 이미지 사이 간격 설정 */
+    justify-content: space-between;
+}
+
+.windows_guide {
+	width: 30%;
+	display: flex;
+	flex-flow: column;
+	justify-content: space-between;
+	align-items: center;
+	background-color: #FFE4E1;
+}
+
+.windows {
+	width: 50%;
+	padding-bottom: 50px;
+}
+
+.windows a {
+	display: flex;
+	flex-flow: column;
+	align-items: center;
+}
+
+.game_pc {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 50px;
+	width: 65%;
+	justify-content: space-around;
+	padding: 25px 0;
+	background-color: #FFE4E1;
 }
 
 .game_pc_section a {
@@ -76,16 +123,15 @@
 }
 
 .game_pc_section div {
-    flex: 1 1 calc(33.33% - 20px); /* 한 줄에 3개씩, 간격 고려 */
     text-align: center; /* 이미지 중앙 정렬 */
     transition: transform 0.3s; /* 호버 효과를 위한 전환 */
 }
 
-.game_pc_section div:hover {
+.game_pc_section div div:hover {
     transform: scale(1.05); /* 호버 시 확대 효과 */
 }
 
-.game_pc_section img {
+.game_pc img {
     max-width: 100%;
     height: auto;
     border-radius: 5px; /* 이미지 둥글게 */
@@ -117,6 +163,10 @@
     justify-content: flex-start; /* 기본적으로 왼쪽 정렬 */
 }
 
+.recommend_product_section div:not(:last-child) {
+    border-bottom: 1px solid silver;
+}
+
 .recommend_product_section div:nth-child(even) {
     justify-content: flex-end; /* 짝수 번째 아이템은 오른쪽 정렬 */
 }
@@ -136,6 +186,7 @@
                         <a href="${i.page_link}?category=${i.category}">
                             <img src="./Image/${i.image}">
                         </a>
+                        <div class="image-counter">${status.index + 1} / ${fn:length(index_banner_list)}</div>
                     </div>
                 </c:forEach>
             </div>
@@ -145,15 +196,32 @@
         <section class="sub_section">
             <h2>게임용 PC</h2>
             <div class="game_pc_section">
-                <c:forEach var="i" items="${index_game_pc_list}">
-                    <div>
-                        <a href="">
-                            <img alt="" src="./Image/${i.image}">
-                            <span class="index_game_pc_main_txt">${i.subject}</span>
-                            <span class="index_game_pc_sub_txt">${i.infomation}</span>
-                        </a>
-                    </div>
-                </c:forEach>
+            	<div class="game_pc">
+	                <c:forEach var="i" items="${index_game_pc_list}">
+	                    <div class="game_pc_contents">
+	                        <a href="/gamePC?category=${i.category}">
+	                            <img alt="" src="./Image/${i.image}">
+	                            <span class="index_game_pc_main_txt">${i.subject}</span>
+	                            <span class="index_game_pc_sub_txt">${i.infomation}</span>
+	                        </a>
+	                    </div>
+	                </c:forEach>
+                </div>
+                <div class="windows_guide">
+            		<h3>초보자를 위한 조립 PC 가이드</h3>
+            		<div class="windows">
+            			<a href="">
+            				<img src="/Image/windows_guide_1.png">
+            				<span>윈도우 구매 가이드</span>
+            			</a>
+            		</div>
+            		<div class="windows">
+            			<a href="">
+            				<img src="/Image/windows_guide_2.png">
+            				<span>윈도우 설치방법</span>
+            			</a>
+            		</div>
+            	</div>
             </div>
         </section>
         <div class="ad">
