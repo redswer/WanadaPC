@@ -505,23 +505,6 @@ color:black;
 <body class="freeboard">
 <%@ include file="/Util/header.jsp" %>
     <!-- Header Section -->
-    <header>
-        <div class="header-container">
-            <div class="logo">
-            </div>
-            <nav class="topmenu">
-                <ul>
-                    <li><a href="#">전체보기</a></li>
-                    <li><a href="#">최신뉴스</a></li>
-                    <li><a href="#">구매가이드</a></li>
-                    <li><a href="#">동영상</a></li>
-                    <li><a href="#">벤치마크</a></li>
-                    <li><a href="#">소비자사용기</a></li>
-                    <li><a href="#">이벤트</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
 
     <!-- Main Section -->
     <main>
