@@ -83,7 +83,7 @@
     }
 </style>
 <script>
-    function showSection(sectionId) {
+    function showSection(sectionId, menuName) {
         const sections = document.querySelectorAll('.image-section');
         sections.forEach(section => {
             section.style.display = 'none';
@@ -98,7 +98,25 @@
     window.onload = function() {
         const category = '<%= request.getAttribute("category") %>'; // 서버에서 전달받은 category
         if (category) {
-            showSection(category); // 해당 섹션 보여주기
+            let menuName = '조립 PC'; // 기본값
+
+            // 카테고리 확인 및 메뉴 이름 설정
+            switch (category) {
+                case 'home':
+                    menuName = '가정용 PC';
+                    break;
+                case 'office':
+                    menuName = '사무용 PC';
+                    break;
+                case 'edit':
+                    menuName = '편집용 PC';
+                    break;
+                case 'bj':
+                    menuName = '방송용 PC';
+                    break;
+            }
+
+            showSection(category, menuName); // 해당 섹션 보여주기
         }
     };
 </script>
@@ -115,14 +133,14 @@
                 </a>
             </div>
             <div class="etcPC_main_contents">
-                <h3>조립 PC</h3>
+                <h2>조립 PC</h2>
                 <div class="pc_list_container">
-                    <ul class="pc-list">
-                        <li class="pc-item" onclick="showSection('home')">가정용 PC</li>
-                        <li class="pc-item" onclick="showSection('office')">사무용 PC</li>
-                        <li class="pc-item" onclick="showSection('edit')">편집용 PC</li>
-                        <li class="pc-item" onclick="showSection('bj')">방송용 PC</li>
-                    </ul>
+					<ul class="pc-list">
+					    <li class="pc-item" onclick="showSection('home', '가정용 PC')">가정용 PC</li>
+					    <li class="pc-item" onclick="showSection('office', '사무용 PC')">사무용 PC</li>
+					    <li class="pc-item" onclick="showSection('edit', '편집용 PC')">편집용 PC</li>
+					    <li class="pc-item" onclick="showSection('bj', '방송용 PC')">방송용 PC</li>
+					</ul>
                 </div>
                 <div id="home" class="image-section" style="display:none;">
                     <img src="/Image/pc_home_main.jpeg" alt="가정용 PC">
