@@ -176,28 +176,6 @@
 }
 
 </style>
-<script>
-    let currentIndex = 0;
-    const items = document.querySelectorAll('.banner_item');
-    
-    function showImage(index) {
-        items.forEach((item, i) => {
-            item.style.display = (i === index) ? 'block' : 'none'; // 현재 이미지만 보이게
-        });
-    }
-
-    function nextImage() {
-        currentIndex = (currentIndex + 1) % items.length; // 다음 이미지 인덱스
-        showImage(currentIndex);
-    }
-
-    function prevImage() {
-        currentIndex = (currentIndex - 1 + items.length) % items.length; // 이전 이미지 인덱스
-        showImage(currentIndex);
-    }
-
-    setInterval(nextImage, 5000); // 5초마다 다음 이미지로 이동
-</script>
 </head>
 <body>
 	<div class="index_body">
@@ -307,4 +285,26 @@
 	    </footer>
     </div>
 </body>
+<script>
+    let currentIndex = 0;
+    const items = document.querySelectorAll('.banner_item');
+    
+    function showImage(index) {
+        items.forEach((item, i) => {
+            item.style.display = (i === index) ? 'block' : 'none'; // 현재 이미지만 보이게
+        });
+    }
+
+    function nextImage() {
+        currentIndex = (currentIndex + 1) % items.length; // 다음 이미지 인덱스
+        showImage(currentIndex);
+    }
+
+    function prevImage() {
+        currentIndex = (currentIndex - 1 + items.length) % items.length; // 이전 이미지 인덱스
+        showImage(currentIndex);
+    }
+
+    setInterval(nextImage, 5000); // 5초마다 다음 이미지로 이동
+</script>
 </html>
