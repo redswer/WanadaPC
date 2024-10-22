@@ -119,7 +119,6 @@
                 <div class="news-title">뉴스</div>
                 <div class="description">PC업계 관련 국내외 최신 소식과 신상품소식을 빠르게 전달해드립니다.</div>
             </div>
-            <a class="button-post" href="#">글쓰기</a>
         </header>
         
         <div class="search-filter">
