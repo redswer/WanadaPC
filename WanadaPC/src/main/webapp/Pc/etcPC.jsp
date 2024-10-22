@@ -92,16 +92,11 @@
         if (activeSection) {
             activeSection.style.display = 'block';
         }
-        
-        // h3 태그에 메뉴 이름 설정
-        const h3Tag = document.querySelector('h3');
-        h3Tag.textContent = menuName;
     }
 
     // 페이지 로드 시 섹션을 보여주는 함수
     window.onload = function() {
         const category = '<%= request.getAttribute("category") %>'; // 서버에서 전달받은 category
-        const h3Tag = document.querySelector('h3');
         if (category) {
             let menuName = '조립 PC'; // 기본값
 
@@ -147,7 +142,6 @@
 					    <li class="pc-item" onclick="showSection('bj', '방송용 PC')">방송용 PC</li>
 					</ul>
                 </div>
-                <h3></h3>
                 <div id="home" class="image-section" style="display:none;">
                     <img src="/Image/pc_home_main.jpeg" alt="가정용 PC">
                     <div>

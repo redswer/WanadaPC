@@ -6,13 +6,9 @@
 <meta charset="UTF-8">
 <title>header</title>
 <style type="text/css">
-	body {
+.header_body {
     margin: 0;
     font-family: Arial, sans-serif;
-}
-
-.header_body {
-    background-color: #f8f8f8;
 }
 
 .header_all {
@@ -104,8 +100,8 @@
 }
 </style>
 </head>
-<body class="header_body">
-	<div>
+<body>
+	<div class="header_body">
 		<div class="header_all">
 			<%@ include file="/Util/main_logo.jsp" %>
 			<div class="header_search_bar">

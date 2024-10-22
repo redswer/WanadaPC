@@ -53,7 +53,7 @@
         display: flex; /* flex로 변경 */
         justify-content: space-between; /* 항목 사이의 간격 조정 */
         border: 1px solid black;
-        width: 80%; /* 원하는 너비 조정 */
+        width: 100%; /* 원하는 너비 조정 */
         margin: 0 auto; /* 중앙 정렬 */
     }
 
@@ -93,16 +93,11 @@
         if (activeSection) {
             activeSection.style.display = 'block';
         }
-        
-        // h3 태그에 메뉴 이름 설정
-        const h3Tag = document.querySelector('h3');
-        h3Tag.textContent = menuName;
     }
 
     // 페이지 로드 시 섹션을 보여주는 함수
     window.onload = function() {
         const category = '<%= request.getAttribute("category") %>'; // 서버에서 전달받은 category
-        const h3Tag = document.querySelector('h3');
         if (category) {
             let menuName = '조립 PC'; // 기본값
 
@@ -139,7 +134,7 @@
                 </a>
             </div>
             <div class="etcPC_main_contents">
-                <h2>조립 PC</h2>
+                <h2>게임용 PC</h2>
                 <div class="pc_list_container">
 					<ul class="pc-list">
 						<c:forEach var="i" items="${list}" varStatus="status">
@@ -147,7 +142,6 @@
 					    </c:forEach>
 					</ul>
                 </div>
-                <h3></h3>
                 <c:forEach var="i" items="${list}" varStatus="status">
 	                <div id="${i.category}" class="image-section" style="display:none;">
 	                    <img src="/Image/${i.game_pc_image}">

@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
-	.main_logo {
+.main_logo {
 	display: flex;
 	text-decoration: none;
 	font-style: italic; 
