@@ -1,9 +1,10 @@
 package com.wanada.model;
 
 public class IndexBannerDTO {
-	String image;
-	String page_link;
-	String category;
+	private int banner_index;
+	private String image;
+	private String page_link;
+	private String category;
 	
 	public String getImage() {
 		return image;
@@ -22,5 +23,11 @@ public class IndexBannerDTO {
 	}
 	public void setCategory(String category) {
 		this.category = category;
+	}
+	public int getBanner_index() {
+		return banner_index;
+	}
+	public void setBanner_index(int banner_index) {
+		this.banner_index = banner_index;
 	}
 }

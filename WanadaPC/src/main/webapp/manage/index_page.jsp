@@ -58,13 +58,14 @@
 			</a>
 		</div>
 		<div>
-			<h2>index 배너</h2>
+			<h2>index 배너 (1260 * 310)</h2>
 			<c:forEach var="i" items="${index_banner_list}" varStatus="status">
 			    <div class="banner_item">
+			    	<div>${status.index + 1}</div>
 			    	<img src="/Image/${i.image}">
-			    	<form action="/index_banner" method="get" name="index_banner_form" enctype="multipart/form-data" class="index_banner_form">
-			    		<div>size : 1260 * 310</div>
-			    		<input type="hidden" name="x_image" value="${i.image}">
+			    	<div>
+			    	<form action="/index_banner?cmd=update" method="get" name="index_banner_update" enctype="multipart/form-data" class="index_banner_form">
+			    		<input type="hidden" name="index" value="${i.banner_index}">
 			    		<div>image: <input type="file" name="image"></div>
 			    		<div>page_link: <input name="page_link" value="${i.page_link}"></div>
 			    		<div>category: <input name="category" value="${i.category}"></div>
@@ -72,6 +73,11 @@
 				    		<button onClick="send()">수정</button>
 			    		</div>
 			    	</form>
+			    	<form action="/index_banner?cmd=delete" method="get" name="index_banner_delete">
+			    		<input type="hidden" name="index" value="${i.banner_index}">
+			    		<button onClick="del()">삭제</button>
+			    	</form>
+			    	</div>
 			    </div>
 			</c:forEach>
 		</div>
@@ -81,7 +87,13 @@
 	function send() {
 		alert("수정합니다.");
 		
-		index_banner_form.submit();
+		index_banner_update.submit();
+	}
+	
+	function del() {
+		alert("삭제합니다.");
+		
+		index_banner_delete.submit();
 	}
 </script>
 </html>

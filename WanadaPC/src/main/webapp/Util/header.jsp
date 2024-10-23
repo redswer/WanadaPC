@@ -117,6 +117,7 @@
 			    </form>
 			</div>
 			<div class="header_link">
+				<a href="/manage">관리자</a>
 				<a href="">로그인</a>
 				<a href="">회원가입</a>
 				<a href="">고객센터</a>

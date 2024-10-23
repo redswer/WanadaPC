@@ -19,9 +19,9 @@ public class ManageDAO {
 	PreparedStatement pstmt = null;
 	ResultSet rs = null;
 	
-	public int indexBannerUpdate(String x_img, String image, String page_link, String category) {
+	public int indexBannerUpdate(int index, String image, String page_link, String category) {
 		int row = 0; 
-		String sql= "update index_banner set image = ?, page_link = ?, category = ? where image = ?";
+		String sql= "update index_banner set image = ?, page_link = ?, category = ? where banner_index = ?";
 		
 		try {
 			con = DBConnPool.getConnection();
@@ -29,7 +29,7 @@ public class ManageDAO {
 			pstmt.setString(1, image);
 			pstmt.setString(2, page_link);
 			pstmt.setString(3, category);
-			pstmt.setString(4, x_img);
+			pstmt.setInt(4, index);
 			
 			row = pstmt.executeUpdate();
 		} catch (Exception e) {
@@ -38,6 +38,24 @@ public class ManageDAO {
 			DBConnPool.close(con, pstmt);
 		}
 		
+		return row;
+	}
+	
+	public int indexBannerDelete(int index) {
+		int row = 0; 
+		String sql= "delete from index_banner where banner_index = ?";
+		
+		try {
+			con = DBConnPool.getConnection();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, index);
+			
+			row = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBConnPool.close(con, pstmt);
+		}
 		return row;
 	}
 }

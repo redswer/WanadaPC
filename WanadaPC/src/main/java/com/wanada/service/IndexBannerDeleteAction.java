@@ -12,21 +12,17 @@ import com.wanada.model.IndexBannerDTO;
 import com.wanada.model.IndexDAO;
 import com.wanada.model.ManageDAO;
 
-public class IndexBannerAction implements Action {
+public class IndexBannerDeleteAction implements Action {
 
 	@Override
 	public void process(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8");
+		int index = Integer.parseInt(request.getParameter("index"));
 		
 		IndexDAO dao = IndexDAO.getInstance();
 		ManageDAO mdao = ManageDAO.getInstance();
 		
-		String x_img = request.getParameter("x_image");
-		String image = request.getParameter("image");
-		String page_link = request.getParameter("page_link");
-		String category = request.getParameter("category");
+		mdao.indexBannerDelete(index);
 		
-		mdao.indexBannerUpdate(x_img, image, page_link, category);
 		List<IndexBannerDTO> list = dao.indexBannerList();
 		
 		request.setAttribute("index_banner_list", list);

@@ -23,7 +23,7 @@ public class IndexDAO {
 	
 	public List<IndexBannerDTO> indexBannerList() {
 		List<IndexBannerDTO> list = new ArrayList<>();
-		String sql = "select * from index_banner";
+		String sql = "select * from index_banner order by banner_index";
 		
 		try {
 			con = DBConnPool.getConnection();
@@ -33,6 +33,7 @@ public class IndexDAO {
 			while(rs.next()) {
 				IndexBannerDTO dto = new IndexBannerDTO();
 				
+				dto.setBanner_index(rs.getInt("banner_index"));
 				dto.setImage(rs.getString("image"));
 				dto.setPage_link(rs.getString("page_link"));
 				dto.setCategory(rs.getString("category"));

@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.wanada.service.Action;
+import com.wanada.service.ManageAction;
 import com.wanada.service.ManageIndexAction;
 
 @WebServlet("/manage")
@@ -24,10 +25,11 @@ public class ManageController extends HttpServlet {
 		
 		Action action = null;
 		
-		if (request.getParameter("cmd").equals("index")) {
+		if (request.getParameter("cmd") == null) {
+			action = new ManageAction();
+		} else if (request.getParameter("cmd").equals("index")) {
 			action = new ManageIndexAction();
 		}
-		
 		
 		action.process(request, response);
 	}

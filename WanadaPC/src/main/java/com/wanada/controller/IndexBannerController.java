@@ -9,7 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.wanada.service.Action;
-import com.wanada.service.IndexBannerAction;
+import com.wanada.service.IndexBannerDeleteAction;
+import com.wanada.service.IndexBannerUpdateAction;
 
 @WebServlet("/index_banner")
 public class IndexBannerController extends HttpServlet {
@@ -20,15 +21,21 @@ public class IndexBannerController extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8");
+		String cmd = request.getParameter("cmd");
 		
-		Action action = new IndexBannerAction();
+		Action action = null;
+		System.out.println(cmd);
+		
+		if (cmd.equals("update")) {
+			action = new IndexBannerUpdateAction();
+		} else if (cmd.equals("delete")) {
+			action = new IndexBannerDeleteAction();
+		}
 		
 		action.process(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8");
 		doGet(request, response);
 	}
 
