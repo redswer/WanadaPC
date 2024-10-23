@@ -503,6 +503,7 @@ color:black;
 </style>
 </head>
 <body class="freeboard">
+
 <%@ include file="/Util/header.jsp" %>
     <!-- Header Section -->
 
