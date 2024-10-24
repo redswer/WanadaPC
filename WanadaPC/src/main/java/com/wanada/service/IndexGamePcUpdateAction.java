@@ -13,7 +13,7 @@ import com.wanada.model.IndexDAO;
 import com.wanada.model.IndexGamePcDTO;
 import com.wanada.model.ManageDAO;
 
-public class IndexBannerUpdateAction implements Action {
+public class IndexGamePcUpdateAction implements Action {
 
 	@Override
 	public void process(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -24,17 +24,26 @@ public class IndexBannerUpdateAction implements Action {
 		
 		int index = Integer.parseInt(request.getParameter("index"));
 		String image = request.getParameter("image");
-		String page_link = request.getParameter("page_link");
+		String subject = request.getParameter("subject");
+		String information = request.getParameter("information");
 		String category = request.getParameter("category");
+		String game_pc_menu = request.getParameter("game_pc_menu");
+		String game_pc_image = request.getParameter("game_pc_image");
 		
-		mdao.indexBannerUpdate(index, image, page_link, category);
+		IndexGamePcDTO dto = new IndexGamePcDTO();
+		dto.setGame_pc_index(index);
+		dto.setImage(image);
+		dto.setSubject(subject);
+		dto.setInformation(information);
+		dto.setCategory(category);
+		dto.setGame_pc_menu(game_pc_menu);
+		dto.setGame_pc_image(game_pc_image);
+		
+		mdao.indexGamePcUpdate(dto);
 		
 		List<IndexBannerDTO> list = dao.indexBannerList();
 		List<IndexGamePcDTO> list2 = dao.indexGamePcList();
 		
-		index = dao.findBannerIndex();
-		
-		request.setAttribute("index", index);
 		request.setAttribute("index_banner_list", list);
 		request.setAttribute("index_game_pc_list", list2);
 		

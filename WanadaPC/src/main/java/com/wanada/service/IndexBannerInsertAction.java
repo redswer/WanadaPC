@@ -13,7 +13,7 @@ import com.wanada.model.IndexDAO;
 import com.wanada.model.IndexGamePcDTO;
 import com.wanada.model.ManageDAO;
 
-public class IndexBannerUpdateAction implements Action {
+public class IndexBannerInsertAction implements Action {
 
 	@Override
 	public void process(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -27,7 +27,7 @@ public class IndexBannerUpdateAction implements Action {
 		String page_link = request.getParameter("page_link");
 		String category = request.getParameter("category");
 		
-		mdao.indexBannerUpdate(index, image, page_link, category);
+		mdao.indexBannerInsert(index, image, page_link, category);
 		
 		List<IndexBannerDTO> list = dao.indexBannerList();
 		List<IndexGamePcDTO> list2 = dao.indexGamePcList();

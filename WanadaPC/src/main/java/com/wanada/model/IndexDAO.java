@@ -62,9 +62,10 @@ public class IndexDAO {
 			while(rs.next()) {
 				IndexGamePcDTO dto = new IndexGamePcDTO();
 				
+				dto.setGame_pc_index(rs.getInt("game_pc_index"));
 				dto.setImage(rs.getString("image"));
 				dto.setSubject(rs.getString("subject"));
-				dto.setInfomation(rs.getString("infomation"));
+				dto.setInformation(rs.getString("information"));
 				dto.setCategory(rs.getString("category"));
 				dto.setGame_pc_menu(rs.getString("game_pc_menu"));
 				dto.setGame_pc_image(rs.getString("game_pc_image"));
@@ -78,5 +79,26 @@ public class IndexDAO {
 		}
 		
 		return list;
+	}
+	
+	public int findBannerIndex() {
+		int max = 0;
+		String sql = "select max(banner_index) from index_banner";
+		
+		try {
+			con = DBConnPool.getConnection();
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			if (rs.next()) {
+				max = rs.getInt(1);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBConnPool.close(con, pstmt, rs);
+		}
+		
+		return max;
 	}
 }

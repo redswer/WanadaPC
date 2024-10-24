@@ -207,7 +207,7 @@
 		                        <a href="/gamePC?category=${i.category}">
 		                            <img alt="" src="./Image/${i.image}">
 		                            <span class="index_game_pc_main_txt">${i.subject}</span>
-		                            <span class="index_game_pc_sub_txt">${i.infomation}</span>
+		                            <span class="index_game_pc_sub_txt">${i.information}</span>
 		                        </a>
 		                    </div>
 		                </c:forEach>
