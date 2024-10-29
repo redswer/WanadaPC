@@ -106,7 +106,6 @@ input[type="text"], input[type="password"], input[type="email"] {
 }
 </style>
 
-
 </head>
 <body>
 	<div class="inner">
@@ -118,17 +117,17 @@ input[type="text"], input[type="password"], input[type="email"] {
 		<div class="signup-container">
 			<h1>회원가입</h1>
 			<form action="/user_insert" method="POST" name="userForm">
-			<div class="form section">
-				<div class="join_toggle" id="divToggle">
-					<input type="checkbox" id="join_toggle" name="join_toggle" checked> <label
-						for="join_toggle">만)19세 이상입니다</label>
+				<div class="form section">
+					<div class="join_toggle" id="divToggle">
+						<input type="checkbox" id="join_toggle" name="join_toggle" checked> 
+						<label for="join_toggle">만)19세 이상입니다</label>
+					</div>
 				</div>
-			</div>
 				<div class="form_group">
-					<label for="email">1) 아이디(e-mail)</label> 
-					<input type="text"id="email" name="email" size="13" maxlength="15" placeholder="아이디를 입력하세요">
-					@ 
-					<input type="text" id="customEmailDomain" name="customEmailDomain" size="13"maxlength="15" placeholder="직접 입력할 도메인"> 
+					<label for="userEmail">1) 아이디(e-mail)</label> 
+					<input type="text" id="userEmail" name="userEmail" size="13" maxlength="15" placeholder="아이디를 입력하세요">
+					@
+					<input type="text" id="customEmailDomain" name="customEmailDomain" size="13" maxlength="15" placeholder="직접 입력할 도메인"> 
 					<select name="emailDomain" id="emailDomain" onchange="updateDomain()">
 						<option value="0">직접입력</option>
 						<option value="naver.com">naver.com</option>
@@ -139,35 +138,44 @@ input[type="text"], input[type="password"], input[type="email"] {
 					</select>
 				</div>
 				<div class="form_group">
-					<label for="password">2) 비밀번호</label> 
-					<input type="password" id="password" name="password" placeholder="비밀번호를 입력하세요">
+					<label for="userPassword">2) 비밀번호</label> 
+					<input type="password" id="userPassword" name="userPassword" placeholder="비밀번호를 입력하세요">
 				</div>
 				<div class="form_group">
-					<label for="repassword">3) 비밀번호 확인</label> 
-					<input type="password" id="repassword" name="repassword" placeholder="비밀번호를 다시 입력하세요">
+					<label for="userRepassword">3) 비밀번호 확인</label> 
+					<input type="password" id="userRepassword" name="userRepassword" placeholder="비밀번호를 다시 입력하세요">
+				</div>
+				<div class="form_group"> 
+					<label for="userName">4) 이름</label>
+					<input type ="text" id ="userName" name="userName" placeholder="이름을 입력하세요">
+				</div>
+				<div class="form_group">
+					<label for = "birthdate">5) 생년월일</label>
+					<input type ="text" id="userBirthdate" name="userBirthdate" placeholder="생년월일을 입력하세요">
 				</div>
 				<div class="form_group" style="display: flex; align-items: center; justify-content: space-between;">
-   					 <label for="gender">4) 성별</label> 
-   				<div>
-        			<input type="radio" id="gender1" name="gender" value="M"> 
-        			<label for="gender1">남자</label>
-        			<input type="radio" id="gender2" name="gender" value="F"> 
-       				<label for="gender2">여자</label>
-    			</div>
+					<label for="gender">6) 성별</label> 
+					<div>
+						<input type="radio" id="gender1" name="gender" value="M"> 
+						<label for="gender1">남자</label>
+						<input type="radio" id="gender2" name="gender" value="F"> 
+						<label for="gender2">여자</label>
+					</div>
 				</div>
 				<div class="form_group">
-					<label for="tel">5) 휴대폰 번호</label> <input type="text" id="tel"
-						name="tel" placeholder="휴대폰 번호를 입력하세요">
+					<label for="tel">7) 휴대폰 번호</label> 
+					<input type="text" id="tell" name="tell" placeholder="휴대폰 번호를 입력하세요                   [예시) 010-1111-1111)]">
 				</div>
 				<p class="terms">
-					<input type="checkbox" id="terms" name="terms"> <label
-						for="terms">약관에 동의합니다</label>
+					<input type="checkbox" id="terms" name="terms"> 
+					<label for="terms">약관에 동의합니다</label>
 				</p>
 				<button type="button" class="button" onclick="send()">가입하기</button>
 			</form>
 		</div>
 	</div>
 </body>
+
 <script>
     function send() {
         const form = document.forms['userForm'];
@@ -177,9 +185,9 @@ input[type="text"], input[type="password"], input[type="email"] {
         	return;
         }        
         // 아이디 (이메일)
-        if (!form.email.value) {
-            alert("이메일을 입력하세요");
-            form.email.focus();
+        if (!form.userEmail.value) {
+            alert("이메일(아이디)를 입력하세요");
+            form.userEmail.focus();
             return;
         }
     	// 이메일 도메인 체크
@@ -190,31 +198,45 @@ input[type="text"], input[type="password"], input[type="email"] {
             return;
         }
         // 비밀번호 체크
-        if (!form.password.value) {
+        if (!form.userPassword.value) {
             alert("비밀번호를 입력하세요");
-            form.password.focus();
+            form.userPassword.focus();
             return;
         }
-        // 비밀번호 확인 체크
-        if (form.password.value !== form.repassword.value) {
-            alert("비밀번호를 확인해주세요");
-            form.repassword.focus();
+        // 비밀번호 확인 
+        if(!form.userRepassword.value){
+        	alert("비밀번호 확인을 입력하세요")
+        	form.userRepassword.focus();
+        	return;
+        }
+        // 비밀번호 확인 체크 
+        if (form.userPassword.value !== form.userRepassword.value) {
+            alert("비밀번호를 다시 확인해주세요");
+            form.userRepassword.focus();
             return;
+        }
+        // 이름 체크 
+        if (!form.userName.value){
+        	alert("이름을 입력하세요");
+        	form.userName.focus();
+        	return; 
         }
         // 성별 체크
         if (!form.gender.value) {
             alert("성별을 선택하세요");
             return; // radio button의 경우 focus()는 필요 없음
         }
-        // 전화번호 체크
-        if (!form.tel.value) {
-            alert("전화번호를 입력하세요");
-            form.tel.focus();
+     // 전화번호 형식 검증 추가
+        const phoneRegex = /^\d{3}-\d{3,4}-\d{4}$/; // "123-4567-8901" 형식
+        if (!phoneRegex.test(form.tell.value)) {
+            alert("올바른 전화번호 형식이 아닙니다. 예: 123-4567-8901");
+            form.tell.focus();
             return;
         }
+
         // 약관 동의 체크
         if (!form.terms.checked) {
-            alert("약관에 동의해야 가입할 수 있습니다.");
+            alert("약관에 동의해 주세요.");
             return;
         }
 
