@@ -118,14 +118,15 @@
 			</div>
 			<div class="header_link">
 				<a href="/manage">관리자</a>
-				<a href="">로그인</a>
-				<a href="">회원가입</a>
+				<a href="/User/user_login.jsp">로그인</a>
+				<a href="/User/user_insert.jsp">회원가입</a>
+				<a href="/User/myPage.jsp">마이 페이지</a>
 				<a href="">고객센터</a>
 			</div>
 		</div>
 		<div>
 			<ul class="header_navigation">
-				<li><a href="">PC 견적</a></li>
+				<li><a href="/etcPC?category=home">조립 PC</a></li>
 				<li><a href="">CPU</a></li>
 				<li><a href="">쿨러/튜닝</a></li>
 				<li><a href="">메인보드</a></li>

@@ -31,6 +31,7 @@
 
 .banner_item {
 	display: flex;
+	margin: 10px auto;
 }
 
 .banner_item img {
@@ -92,14 +93,15 @@
 			<c:forEach var="i" items="${index_banner_list}" varStatus="status">
 			    <div class="banner_item">
 			    	<div>${status.index + 1}</div>
-			    	<img src="/Image/${i.image}">
+			    	<img src="/Image/${i.index_image}">
 			    	<div>
 				    	<form action="/index_banner" method="get" name="index_banner_update" enctype="multipart/form-data" class="index_banner_form">
 				    		<input type="hidden" name="sql" value="update">
 				    		<input type="hidden" name="index" value="${i.banner_index}">
-				    		<div>image: <input type="file" name="image"></div>
+				    		<div>index_image: <input type="file" name="index_image"></div>
 				    		<div>page_link: <input name="page_link" value="${i.page_link}"></div>
 				    		<div>category: <input name="category" value="${i.category}"></div>
+				    		<div>page_image: <input name="page_image" value="${i.page_image}"></div>
 				    		<div>
 					    		<button onClick="send(this.form)">수정</button>
 				    		</div>

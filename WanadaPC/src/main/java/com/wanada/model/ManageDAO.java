@@ -19,17 +19,19 @@ public class ManageDAO {
 	PreparedStatement pstmt = null;
 	ResultSet rs = null;
 	
-	public int indexBannerUpdate(int index, String image, String page_link, String category) {
+	public int indexBannerUpdate(IndexBannerDTO dto) {
 		int row = 0; 
-		String sql= "update index_banner set image = ?, page_link = ?, category = ? where banner_index = ?";
+		String sql= "update index_banner set index_image = ?, page_link = ?, category = ?, subject = ?, page_image = ? where banner_index = ?";
 		
 		try {
 			con = DBConnPool.getConnection();
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, image);
-			pstmt.setString(2, page_link);
-			pstmt.setString(3, category);
-			pstmt.setInt(4, index);
+			pstmt.setString(1, dto.getIndex_image());
+			pstmt.setString(2, dto.getPage_link());
+			pstmt.setString(3, dto.getCategory());
+			pstmt.setString(4, dto.getSubject());
+			pstmt.setString(5, dto.getPage_image());
+			pstmt.setInt(6, dto.getBanner_index());
 			
 			row = pstmt.executeUpdate();
 		} catch (Exception e) {

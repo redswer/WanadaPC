@@ -23,11 +23,21 @@ public class IndexBannerUpdateAction implements Action {
 		ManageDAO mdao = ManageDAO.getInstance();
 		
 		int index = Integer.parseInt(request.getParameter("index"));
-		String image = request.getParameter("image");
+		String index_image = request.getParameter("index_image");
 		String page_link = request.getParameter("page_link");
 		String category = request.getParameter("category");
+		String subject = request.getParameter("subject");
+		String page_image = request.getParameter("page_image");
 		
-		mdao.indexBannerUpdate(index, image, page_link, category);
+		IndexBannerDTO dto = new IndexBannerDTO();
+		dto.setBanner_index(index);
+		dto.setIndex_image(index_image);
+		dto.setPage_link(page_link);
+		dto.setCategory(category);
+		dto.setSubject(subject);
+		dto.setPage_image(page_image);
+		
+		mdao.indexBannerUpdate(dto);
 		
 		List<IndexBannerDTO> list = dao.indexBannerList();
 		List<IndexGamePcDTO> list2 = dao.indexGamePcList();

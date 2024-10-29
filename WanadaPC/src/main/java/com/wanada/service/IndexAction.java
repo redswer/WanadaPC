@@ -1,7 +1,6 @@
 package com.wanada.service;
 
 import java.io.IOException;
-import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -12,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.wanada.model.IndexBannerDTO;
 import com.wanada.model.IndexDAO;
 import com.wanada.model.IndexGamePcDTO;
+import com.wanada.model.RecommandPcDTO;
 
 public class IndexAction implements Action {
 
@@ -23,9 +23,13 @@ public class IndexAction implements Action {
 		
 		List<IndexBannerDTO> list = dao.indexBannerList();
 		List<IndexGamePcDTO> list2 = dao.indexGamePcList();
+		List<RecommandPcDTO> list3 = dao.recommandPcGame();
+		List<RecommandPcDTO> list4 = dao.recommandPcParts();
 		
 		request.setAttribute("index_banner_list", list);
 		request.setAttribute("index_game_pc_list", list2);
+		request.setAttribute("recommand_pc_game_list", list3);
+		request.setAttribute("recommand_pc_parts_list", list4);
 		
 		RequestDispatcher rd = request.getRequestDispatcher("/index.jsp");
 		rd.forward(request, response);

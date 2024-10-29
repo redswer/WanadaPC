@@ -189,7 +189,7 @@
 	                <c:forEach var="i" items="${index_banner_list}" varStatus="status">
 	                    <div class="banner_item" style="display: ${status.index == 0 ? 'block' : 'none'};">
 	                        <a href="${i.page_link}?category=${i.category}">
-	                            <img src="./Image/${i.image}">
+	                            <img src="./Image/${i.index_image}">
 	                        </a>
 	                        <div class="image-counter">${status.index + 1} / ${fn:length(index_banner_list)}</div>
 	                    </div>
@@ -230,46 +230,28 @@
 	            </div>
 	        </section>
 	        <div class="ad">
-	            <a href="">
+	            <a href="/etcPC?category=ryzen">
 	                <img alt="main_ad" src="./Image/ad_index_1.jpg">
 	            </a>
 	        </div>
 	        <section class="sub_section">
 	            <h2>추천 상품</h2>
 	            <div class="recommend_product_section">
-	                <div>
-	                    <a>
-	                        <img alt="" src="./Image/index_recommend_product_intel.jpg">
-	                    </a>
-	                    <a>
-	                        상품 내용
-	                    </a>
-	                </div>
-	                <div>
-	                    <a>
-	                        상품 내용
-	                    </a>
-	                    <a>
-	                        <img alt="" src="./Image/index_recommend_product_ryzen_7000.jpg">
-	                    </a>
-	                </div>
-	                <div>
-	                    <a>
-	                        <img alt="" src="./Image/index_recommend_product_nvidia.jpg">
-	                    </a>
-	                    <a>
-	                        상품 내용
-	                    </a>
-	                </div>
-	                <div>
-	                    <a>
-	                        상품 내용
-	                    </a>
-	                    <a>
-	                        <img alt="" src="./Image/index_recommend_product_radeon.jpg">
-	                    </a>
-	                </div>
-	            </div>
+	            	<c:forEach var="i" items="${recommand_pc_game_list}">
+		                <div>
+				            <a href="/gamePC?category=${i.category}">
+				                <img src="/Image/${i.image}">
+				            </a>
+		                </div>
+	                </c:forEach>
+	                <c:forEach var="i" items="${recommand_pc_parts_list}">
+	                	<div>
+	                		<a href="/etcPC?category=${i.category}">
+	                			<img src="/Image/${i.image}">
+	                		</a>
+	                	</div>
+	                </c:forEach>
+	           	</div>
 	        </section>
 	        <section>
 	            <h3>커뮤니티</h3>
