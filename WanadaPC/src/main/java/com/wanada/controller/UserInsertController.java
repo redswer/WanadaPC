@@ -46,4 +46,4 @@ public class UserInsertController extends HttpServlet {
 		doGet(request, response);
 		//여기서는 POST 요청이 들어와도 doGet 메서드를 호출하여 동일한 작업을 수행하게 설계되어 있습니다. 즉, GET과 POST 모두 같은 로직을 처리합니다.
 }
-} //여기서 작동된 request, response 값이 /user_Insert로 간다는거야 ? 아니면 /user_Insert 즉, userInsert.jsp를 연결만 해준다는거야 ?  
+} //여기서 작동된 request, response 값이 /user_Insert로 간다는거야 ? 아니면 /user_Insert 즉, userInsert.jsp를 연결만 해준다는거야 

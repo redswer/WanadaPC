@@ -8,39 +8,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-/**
- * Servlet implementation class UserLogoutServlet
- */
-@WebServlet("/UserLogoutServlet")
+@WebServlet("/logout")
 public class UserLogoutServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-    /**
-     * Default constructor. 
-     */
-    public UserLogoutServlet() {
-        // TODO Auto-generated constructor stub
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // 현재 세션을 가져와 무효화하여 로그아웃 처리
+        HttpSession session = request.getSession(false);
+        if (session != null) {
+            session.invalidate(); // 세션 무효화 (로그아웃)
+        }
+        // 로그아웃 후 로그인 페이지로 리다이렉트
+        response.sendRedirect("user_login.jsp");
     }
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession(); // 세션개게 얻기
-		session.invalidate();//세션해제
-		//인덱스로 이동
-		response.sendRedirect("/index");
-		//로그인 화면으로 이동 
-		//response.sendRedirect("/User/user_login.jsp");
-		//rd.forward(request, response);
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
-	}
-
 }
