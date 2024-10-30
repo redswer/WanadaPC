@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -117,11 +118,26 @@
 			    </form>
 			</div>
 			<div class="header_link">
-				<a href="/manage">관리자</a>
 				<a href="/User/user_login.jsp">로그인</a>
 				<a href="/User/user_insert.jsp">회원가입</a>
+				<a href="/manage">관리자</a>
+				<a href="">로그아웃</a>
 				<a href="/User/myPage.jsp">마이 페이지</a>
 				<a href="">고객센터</a>
+				<!-- <c:if test="${empty user}">
+					<a href="/User/user_login.jsp">로그인</a>
+					<a href="/User/user_insert.jsp">회원가입</a>
+				</c:if>
+				<c:if test="${!empty user}">
+					<c:if test="${user.userEmail.equals('admin')}">
+						<a href="/manage">관리자</a>
+					</c:if>
+					<a href="/User/user_login.jsp">로그아웃</a>
+					<c:if test="${!user.userEmail.equals('admin')}">
+						<a href="/User/myPage.jsp">마이 페이지</a>
+						<a href="">고객센터</a>
+					</c:if>
+				</c:if> -->
 			</div>
 		</div>
 		<div>

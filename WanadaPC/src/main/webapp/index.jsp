@@ -249,10 +249,6 @@
 	            <h3>커뮤니티</h3>
 	            <div>커뮤니티 내용</div>
 	        </section>
-	        <section>
-	            <h3>유튜브 / 쇼츠</h3>
-	            <div>링크</div>
-	        </section>
 	    </main>
 	    <footer>
 	        <%@ include file="./Util/footer.jsp" %>
