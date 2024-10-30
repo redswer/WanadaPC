@@ -9,31 +9,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.wanada.service.Action;
-import com.wanada.service.IndexBannerDeleteAction;
-import com.wanada.service.IndexBannerInsertAction;
-import com.wanada.service.IndexBannerUpdateAction;
+import com.wanada.service.IndexGamePcUpdateAction;
 
-@WebServlet("/index_banner")
-public class IndexBannerController extends HttpServlet {
+@WebServlet("/index_game_pc")
+public class IndexGamePcController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public IndexBannerController() {
+    public IndexGamePcController() {
         super();
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String sql = request.getParameter("sql");
-		
-		Action action = null;
-		System.out.println(sql);
-		
-		if (sql.equals("update")) {
-			action = new IndexBannerUpdateAction();
-		} else if (sql.equals("delete")) {
-			action = new IndexBannerDeleteAction();
-		} else if (sql.equals("insert")) {
-			action = new IndexBannerInsertAction();
-		}
+		Action action = new IndexGamePcUpdateAction();
 		
 		action.process(request, response);
 	}

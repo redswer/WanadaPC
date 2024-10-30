@@ -1,9 +1,10 @@
 package com.wanada.model;
 
 public class IndexGamePcDTO {
+	private int game_pc_index;
 	private String image;
 	private String subject;
-	private String infomation;
+	private String information;
 	private String category;
 	private String game_pc_menu; 
 	private String game_pc_image; 
@@ -20,11 +21,11 @@ public class IndexGamePcDTO {
 	public void setSubject(String subject) {
 		this.subject = subject;
 	}
-	public String getInfomation() {
-		return infomation;
+	public String getInformation() {
+		return information;
 	}
-	public void setInfomation(String infomation) {
-		this.infomation = infomation;
+	public void setInformation(String information) {
+		this.information = information;
 	}
 	public String getCategory() {
 		return category;
@@ -43,5 +44,11 @@ public class IndexGamePcDTO {
 	}
 	public void setGame_pc_image(String game_pc_image) {
 		this.game_pc_image = game_pc_image;
+	}
+	public int getGame_pc_index() {
+		return game_pc_index;
+	}
+	public void setGame_pc_index(int game_pc_index) {
+		this.game_pc_index = game_pc_index;
 	}
 }

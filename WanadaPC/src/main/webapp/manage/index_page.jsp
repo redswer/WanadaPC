@@ -31,6 +31,7 @@
 
 .banner_item {
 	display: flex;
+	margin: 10px auto;
 }
 
 .banner_item img {
@@ -40,6 +41,36 @@
 
 .index_banner_form * {
 	margin: 5px 0;
+}
+
+.banner_item_image {
+	width: calc(1260px / 100 * 70);
+	line-height: calc(310px / 100 * 70);
+	margin: 5px 20px;
+	font-weight: bold;
+	text-align: center;
+	font-size: 20px;
+	border: 1px solid gray;
+}
+
+.banner_pc_line{
+	margin: 20px 0;
+}
+
+.game_pc_item {
+	display: flex;
+}
+
+.game_pc_item img {
+	margin: 5px 20px;
+}
+
+.index_game_pc_info {
+	display: flex;
+}
+
+.index_game_pc_info div div {
+	margin: 10px 5px;
 }
 </style>
 </head>
@@ -58,30 +89,93 @@
 			</a>
 		</div>
 		<div>
-			<h2>index 배너</h2>
+			<h2>index 배너 (1260 * 310)</h2>
 			<c:forEach var="i" items="${index_banner_list}" varStatus="status">
 			    <div class="banner_item">
-			    	<img src="/Image/${i.image}">
-			    	<form action="/index_banner" method="get" name="index_banner_form" enctype="multipart/form-data" class="index_banner_form">
-			    		<div>size : 1260 * 310</div>
-			    		<input type="hidden" name="x_image" value="${i.image}">
-			    		<div>image: <input type="file" name="image"></div>
-			    		<div>page_link: <input name="page_link" value="${i.page_link}"></div>
-			    		<div>category: <input name="category" value="${i.category}"></div>
-			    		<div>
-				    		<button onClick="send()">수정</button>
-			    		</div>
-			    	</form>
+			    	<div>${status.index + 1}</div>
+			    	<img src="/Image/${i.index_image}">
+			    	<div>
+				    	<form action="/index_banner" method="get" name="index_banner_update" enctype="multipart/form-data" class="index_banner_form">
+				    		<input type="hidden" name="sql" value="update">
+				    		<input type="hidden" name="index" value="${i.banner_index}">
+				    		<div>index_image: <input type="file" name="index_image"></div>
+				    		<div>page_link: <input name="page_link" value="${i.page_link}"></div>
+				    		<div>category: <input name="category" value="${i.category}"></div>
+				    		<div>page_image: <input name="page_image" value="${i.page_image}"></div>
+				    		<div>
+					    		<button onClick="send(this.form)">수정</button>
+				    		</div>
+				    	</form>
+				    	<form action="/index_banner" method="get" name="index_banner_delete">
+				    		<input type="hidden" name="sql" value="delete">
+				    		<input type="hidden" name="index" value="${i.banner_index}">
+				    		<button onClick="del(this.form)">삭제</button>
+				    	</form>
+			    	</div>
 			    </div>
+			</c:forEach>
+			<div class="banner_item">
+			    <div>${index + 1}</div>
+			    <div class="banner_item_image">이미지 등록 (1260 * 310)</div>
+			    <form action="/index_banner" enctype="multipart/form-data" name="index_banner_insert" class="index_banner_form">
+			        <input type="hidden" name="sql" value="insert">
+			        <input type="hidden" name="index" value="${index + 1}">
+			        <div>image: <input type="file" name="image" id="imageInput"></div>
+			        <div>page_link: <input name="page_link"></div>
+			        <div>category: <input name="category"></div>
+			        <button type="button" onclick="insert()">등록</button>
+			    </form>
+			</div>
+		</div>
+		<hr class="banner_pc_line">
+		<div>
+			<h2>게임용 PC (284 * 160)</h2>
+			<c:forEach var="i" items="${index_game_pc_list}" varStatus="status">
+				<div class="game_pc_item">
+					<div>${i.game_pc_index}</div>
+					<img src="/Image/${i.image}">
+					<div>
+						<form action="/index_game_pc" method="get" name="index_game_pc_update" enctype="multipart/form-data" class="index_game_pc_form">
+				    		<input type="hidden" name="sql" value="update">
+				    		<input type="hidden" name="index" value="${i.game_pc_index}">
+				    		<div class="index_game_pc_info">
+					    		<div>
+					    			<div>index 페이지</div>
+						    		<div>image (284 * 160): <input type="file" name="image"></div>
+						    		<div>subject: <input name="subject" value="${i.subject}" size=30></div>
+						    		<div>information: <input name="information" value="${i.information}"></div>
+					    		</div>
+					    		<div>
+					    			<div>게임용 pc 페이지</div>
+						    		<div>category: <input name="category" value="${i.category}"></div>
+						    		<div>game_pc_menu: <input name="game_pc_menu" value="${i.game_pc_menu}"></div>
+						    		<div>game_pc_image: <input name="game_pc_image" value="${i.game_pc_image}"></div>
+					    		</div>
+				    		</div>
+				    		<div>
+					    		<button onClick="send(this.form)">수정</button>
+				    		</div>
+						</form>
+					</div>
+				</div>
 			</c:forEach>
 		</div>
 	</div>
 </body>
 <script type="text/javascript">
-	function send() {
+	function send(form) {
 		alert("수정합니다.");
-		
-		index_banner_form.submit();
+		form.submit(); // 현재 폼을 제출
+	}
+	
+	function del(form) {
+		alert("삭제합니다.");
+		form.submit(); // 현재 폼을 제출
+	}
+	
+	function insert() {
+		alert("등록합니다.");
+		index_banner_insert.submit();
 	}
 </script>
 </html>

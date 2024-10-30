@@ -10,23 +10,29 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.wanada.model.IndexBannerDTO;
 import com.wanada.model.IndexDAO;
-import com.wanada.model.RecommandPcDTO;
+import com.wanada.model.IndexGamePcDTO;
+import com.wanada.model.ManageDAO;
 
-public class EtcPcAction implements Action {
+public class IndexBannerDeleteAction implements Action {
 
 	@Override
 	public void process(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8");
+		int index = Integer.parseInt(request.getParameter("index"));
 		
 		IndexDAO dao = IndexDAO.getInstance();
+		ManageDAO mdao = ManageDAO.getInstance();
+		
+		mdao.indexBannerDelete(index);
 		
 		List<IndexBannerDTO> list = dao.indexBannerList();
-		List<RecommandPcDTO> list2 = dao.recommandPcParts();
+		List<IndexGamePcDTO> list2 = dao.indexGamePcList();
+		index = dao.findBannerIndex();
 		
 		request.setAttribute("index_banner_list", list);
-		request.setAttribute("recommand_pc_parts_list", list2);
+		request.setAttribute("index_game_pc_list", list2);
+		request.setAttribute("index", index);
 		
-		RequestDispatcher rd = request.getRequestDispatcher("/Pc/etcPC.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/manage/index_page.jsp");
 		rd.forward(request, response);
 	}
 
