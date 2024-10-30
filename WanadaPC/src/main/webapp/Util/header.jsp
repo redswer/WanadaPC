@@ -121,9 +121,8 @@
 				<a href="/User/user_login.jsp">로그인</a>
 				<a href="/User/user_insert.jsp">회원가입</a>
 				<a href="/manage">관리자</a>
-				<a href="">로그아웃</a>
+				<a href="/user_logout">로그아웃</a>
 				<a href="/User/myPage.jsp">마이 페이지</a>
-				<a href="">고객센터</a>
 				<!-- <c:if test="${empty user}">
 					<a href="/User/user_login.jsp">로그인</a>
 					<a href="/User/user_insert.jsp">회원가입</a>
@@ -135,7 +134,6 @@
 					<a href="/User/user_login.jsp">로그아웃</a>
 					<c:if test="${!user.userEmail.equals('admin')}">
 						<a href="/User/myPage.jsp">마이 페이지</a>
-						<a href="">고객센터</a>
 					</c:if>
 				</c:if> -->
 			</div>
