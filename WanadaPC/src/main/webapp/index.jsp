@@ -152,10 +152,6 @@
     font-size: 0.9em; /* 작은 글씨 */
 }
 
-.ad {
-	margin-top: 30px;
-}
-
 .recommend_product_section {
     display: flex;
     flex-direction: column; /* 세로 방향으로 정렬 */
@@ -215,13 +211,13 @@
 	                <div class="windows_guide">
 	            		<h3>초보자를 위한 조립 PC 가이드</h3>
 	            		<div class="windows">
-	            			<a href="">
+	            			<a href="/Pc/windowGuide.jsp">
 	            				<img src="/Image/windows_guide_1.png">
 	            				<span>윈도우 구매 가이드</span>
 	            			</a>
 	            		</div>
 	            		<div class="windows">
-	            			<a href="">
+	            			<a href="/Pc/windowInstall.jsp">
 	            				<img src="/Image/windows_guide_2.png">
 	            				<span>윈도우 설치방법</span>
 	            			</a>
@@ -229,11 +225,7 @@
 	            	</div>
 	            </div>
 	        </section>
-	        <div class="ad">
-	            <a href="/etcPC?category=ryzen">
-	                <img alt="main_ad" src="./Image/ad_index_1.jpg">
-	            </a>
-	        </div>
+			<%@ include file="/Util/ad.jsp" %>
 	        <section class="sub_section">
 	            <h2>추천 상품</h2>
 	            <div class="recommend_product_section">
@@ -256,10 +248,6 @@
 	        <section>
 	            <h3>커뮤니티</h3>
 	            <div>커뮤니티 내용</div>
-	        </section>
-	        <section>
-	            <h3>유튜브 / 쇼츠</h3>
-	            <div>링크</div>
 	        </section>
 	    </main>
 	    <footer>

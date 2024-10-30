@@ -129,7 +129,7 @@
 		</div>
 		<hr class="banner_pc_line">
 		<div>
-			<h2>게임용 PC</h2>
+			<h2>게임용 PC (284 * 160)</h2>
 			<c:forEach var="i" items="${index_game_pc_list}" varStatus="status">
 				<div class="game_pc_item">
 					<div>${i.game_pc_index}</div>
