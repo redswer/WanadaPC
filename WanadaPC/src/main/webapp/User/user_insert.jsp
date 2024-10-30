@@ -168,7 +168,7 @@ input[type="text"], input[type="password"], input[type="email"] {
 				</div>
 				<p class="terms">
 					<input type="checkbox" id="terms" name="terms"> 
-					<label for="terms">약관에 동의합니다</label>
+					<label for="terms">본인 정보로 등록합니다.</label>
 				</p>
 				<button type="button" class="button" onclick="send()">가입하기</button>
 			</form>
@@ -177,72 +177,89 @@ input[type="text"], input[type="password"], input[type="email"] {
 </body>
 
 <script>
-    function send() {
-        const form = document.forms['userForm'];
-		
-        if(!form.join_toggle.checked){
-        	alert("성인인증을 체크해주세요");
-        	return;
-        }        
-        // 아이디 (이메일)
-        if (!form.userEmail.value) {
-            alert("이메일(아이디)를 입력하세요");
-            form.userEmail.focus();
-            return;
-        }
-    	// 이메일 도메인 체크
-        const emailDomain = form.emailDomain.value === "0" ? form.customEmailDomain.value : form.emailDomain.value;
-        if (!emailDomain) {
-            alert("이메일 도메인을 입력하세요");
-            form.customEmailDomain.focus();
-            return;
-        }
-        // 비밀번호 체크
-        if (!form.userPassword.value) {
-            alert("비밀번호를 입력하세요");
-            form.userPassword.focus();
-            return;
-        }
-        // 비밀번호 확인 
-        if(!form.userRepassword.value){
-        	alert("비밀번호 확인을 입력하세요")
-        	form.userRepassword.focus();
-        	return;
-        }
-        // 비밀번호 확인 체크 
-        if (form.userPassword.value !== form.userRepassword.value) {
-            alert("비밀번호를 다시 확인해주세요");
-            form.userRepassword.focus();
-            return;
-        }
-        // 이름 체크 
-        if (!form.userName.value){
-        	alert("이름을 입력하세요");
-        	form.userName.focus();
-        	return; 
-        }
-        // 성별 체크
-        if (!form.gender.value) {
-            alert("성별을 선택하세요");
-            return; // radio button의 경우 focus()는 필요 없음
-        }
-     // 전화번호 형식 검증 추가
-        const phoneRegex = /^\d{3}-\d{3,4}-\d{4}$/; // "123-4567-8901" 형식
-        if (!phoneRegex.test(form.tell.value)) {
-            alert("올바른 전화번호 형식이 아닙니다. 예: 123-4567-8901");
-            form.tell.focus();
-            return;
-        }
-
-        // 약관 동의 체크
-        if (!form.terms.checked) {
-            alert("약관에 동의해 주세요.");
-            return;
-        }
-
-        // 모든 검증 통과 시 제출
-        form.submit();
+function send() {
+    const form = document.forms['userForm'];
+    
+    if(!form.join_toggle.checked){
+        alert("성인인증을 체크해주세요");
+        return;
     }
+    
+    // 아이디 (이메일)
+    if (!form.userEmail.value) {
+        alert("이메일(아이디)를 입력하세요");
+        form.userEmail.focus();
+        return;
+    }
+
+    // 이메일 도메인 체크
+    const emailDomain = form.emailDomain.value === "0" ? form.customEmailDomain.value : form.emailDomain.value;
+    if (!emailDomain) {
+        alert("이메일 도메인을 입력하세요");
+        form.customEmailDomain.focus();
+        return;
+    }
+
+    // 비밀번호 체크
+    if (!form.userPassword.value) {
+        alert("비밀번호를 입력하세요");
+        form.userPassword.focus();
+        return;
+    }
+
+    // 비밀번호 확인
+    if (!form.userRepassword.value) {
+        alert("비밀번호 확인을 입력하세요");
+        form.userRepassword.focus();
+        return;
+    }
+
+    // 비밀번호 확인 체크
+    if (form.userPassword.value !== form.userRepassword.value) {
+        alert("비밀번호를 다시 확인해주세요");
+        form.userRepassword.focus();
+        return;
+    }
+
+    // 이름 체크
+    if (!form.userName.value) {
+        alert("이름을 입력하세요");
+        form.userName.focus();
+        return; 
+    }
+
+    // 생년월일 형식 체크
+    const birthdateRegex = /^\d{4}-\d{2}-\d{2}$/; // YYYY-MM-DD 형식
+    if (!form.userBirthdate.value || !birthdateRegex.test(form.userBirthdate.value)) {
+        alert("생년월일을 올바른 형식(YYYY-MM-DD)으로 입력하세요");
+        form.userBirthdate.focus();
+        return;
+    }
+
+    // 성별 체크
+    if (!form.gender.value) {
+        alert("성별을 선택하세요");
+        return;
+    }
+
+    // 전화번호 형식 검증 추가
+    const phoneRegex = /^\d{3}-\d{3,4}-\d{4}$/; // "123-4567-8901" 형식
+    if (!phoneRegex.test(form.tell.value)) {
+        alert("올바른 전화번호 형식이 아닙니다. 예: 123-4567-8901");
+        form.tell.focus();
+        return;
+    }
+
+    // 약관 동의 체크
+    if (!form.terms.checked) {
+        alert("본인 확인에 동의해주세요.");
+        return;
+    }
+
+    // 모든 검증 통과 시 제출
+    form.submit();
+}
+    
   
     function updateDomain() {
         const emailDomain = document.getElementById("emailDomain");
