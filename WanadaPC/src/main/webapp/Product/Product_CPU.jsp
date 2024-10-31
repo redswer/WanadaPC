@@ -177,8 +177,8 @@
                         </tr>
                         <tr>
                             <td><img src="example.jpg" alt="상품 이미지"></td>
-                            <td>상품 설명 예시</td>
-                            <td>₩100,000</td>
+                            <td></td>
+                            <td></td>
                         </tr>
                     </table>
                 </div>
