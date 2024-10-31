@@ -25,6 +25,10 @@
 	color: red;
 	font-weight: bold;
 }
+
+.manage_index_body ul li a:not([href]):hover {
+    text-decoration: line-through;
+}
 </style>
 </head>
 <body>

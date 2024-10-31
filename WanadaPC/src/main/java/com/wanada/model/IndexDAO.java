@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.catalina.webresources.EmptyResource;
+
 import com.wanada.util.DBConnPool;
 
 public class IndexDAO {
@@ -188,4 +190,37 @@ public class IndexDAO {
 		
 		return list;
 	}
+	
+	public List<BoardDTO> searchBoardTheme(String text) {
+		List<BoardDTO> list = new ArrayList<>();
+		String sql = "select * from boardcomment where theme like ? or content like ?";
+		
+		try {
+			con = DBConnPool.getConnection();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, "%" + text + "%");
+			pstmt.setString(2, "%" + text + "%");
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				BoardDTO dto = new BoardDTO();
+				
+				dto.setBoard_index(rs.getInt("board_index"));
+				dto.setTheme(rs.getString("theme"));
+				dto.setContent(rs.getString("content"));
+				dto.setPerson(rs.getString("person"));
+				dto.setEnterdate(rs.getString("enterdate"));
+				dto.setCount(rs.getInt("count"));
+				
+				list.add(dto);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBConnPool.close(con, pstmt, rs);
+		}
+		
+		return list;
+	}
+	
 }
