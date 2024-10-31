@@ -150,7 +150,7 @@
 				<li><a href="">케이스</a></li>
 				<li><a href="">파워</a></li>
 				<li><a href="">소프트웨어</a></li>
-				<li><a href="/boardList">커뮤니티</a></li>
+				<li><a href="boardList">커뮤니티</a></li>
 			</ul>
 		</div>
 	</div>
