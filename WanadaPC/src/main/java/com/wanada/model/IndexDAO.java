@@ -223,4 +223,8 @@ public class IndexDAO {
 		return list;
 	}
 	
+//	public List<ProductDTO> searchProduct(String text) {
+//		List<ProductDTO> list = new ArrayList<>();
+//		String sql = "select * from product";
+//	}
 }

@@ -19,7 +19,7 @@ public class SearchAction implements Action {
 		
 		List<BoardDTO> blist = dao.searchBoardTheme(text);
 		
-		
+		request.setAttribute("board", blist);
 	}
 
 }
