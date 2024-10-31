@@ -171,6 +171,42 @@
     justify-content: flex-end; /* 짝수 번째 아이템은 오른쪽 정렬 */
 }
 
+.board_section {
+	padding: 15px;
+	background-color: honeydew;
+}
+
+.index_board_list {
+	display: flex;
+	height: 150px;
+}
+
+.index_board_list hr {
+	margin: 0 20px;
+} 
+
+.index_board_table {
+	width: calc((100% - 2px - 40px) / 2);
+}
+
+.index_board_table td a {
+	text-decoration: none;
+	color: black;
+}
+
+.index_board_table td a:hover {
+	color: green;
+	text-decoration: underline;
+}
+
+.index_h2 {
+	text-decoration: none;
+	color: black;
+}
+
+.index_h2:hover {
+	color: red;
+}
 </style>
 </head>
 <body>
@@ -195,7 +231,7 @@
 	            <div class="arrow right" onclick="nextImage()">&#10095;</div>
 	        </section>
 	        <section class="sub_section">
-	            <h2>게임용 PC</h2>
+	            <h2><a href="/gamePC?category=leagueOfLegend" class="index_h2">게임용 PC</a></h2>
 	            <div class="game_pc_section">
 	            	<div class="game_pc">
 		                <c:forEach var="i" items="${index_game_pc_list}">
@@ -245,9 +281,39 @@
 	                </c:forEach>
 	           	</div>
 	        </section>
-	        <section>
-	            <h3>커뮤니티</h3>
-	            <div>커뮤니티 내용</div>
+	        <section class="board_section">
+	            <h2><a href="/boardList" class="index_h2">커뮤니티 (최신 글)</a></h2>
+	            <div class="index_board_list">
+		            <table class="index_board_table">
+		            	<tr>
+		            		<th>작성자</th>
+		            		<th>제목</th>
+		            		<th>내용</th>
+		            	</tr>
+						<c:forEach var="i" items="${index_board_list_1}">
+			            	<tr>
+								<td><a href="boardDetail?board_index=${i.board_index}">${i.person}</a></td>
+								<td><a href="boardDetail?board_index=${i.board_index}">${i.theme}</a></td>
+								<td><a href="boardDetail?board_index=${i.board_index}">${i.content}</a></td>
+			            	</tr>
+						</c:forEach>
+		            </table>
+		           <hr>
+		            <table class="index_board_table">
+   		            	<tr>
+		            		<th>작성자</th>
+		            		<th>제목</th>
+		            		<th>내용</th>
+		            	</tr>
+						<c:forEach var="i" items="${index_board_list_2}">
+			            	<tr>
+								<td><a href="boardDetail?board_index=${i.board_index}">${i.person}</a></td>
+								<td><a href="boardDetail?board_index=${i.board_index}">${i.theme}</a></td>
+								<td><a href="boardDetail?board_index=${i.board_index}">${i.content}</a></td>
+			            	</tr>
+						</c:forEach>
+		            </table>
+				</div>
 	        </section>
 	    </main>
 	    <footer>
@@ -275,6 +341,6 @@
         showImage(currentIndex);
     }
 
-    setInterval(nextImage, 5000); // 5초마다 다음 이미지로 이동
+    setInterval(nextImage, 3000); // 5초마다 다음 이미지로 이동
 </script>
 </html>

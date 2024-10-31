@@ -20,6 +20,8 @@ public class BoardDetailAction implements Action {
 		
 		BoardDTO dto = dao.boardDetail(index);
 		
+		dto.setContent(dto.getContent().replace("\n", "<br/>"));
+		
 		request.setAttribute("index", index);
 		request.setAttribute("dto", dto);
 		

@@ -3,6 +3,8 @@ package com.wanada.model;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.wanada.util.DBConnPool;
 
@@ -143,5 +145,36 @@ public class UserDAO {
 	    }
 	    
 	    return row; // 수정된 행 수 반환 (0이면 수정 실패, 1 이상이면 수정 성공)
+	}
+		
+	public List<BoardDTO> myBoard (String id) {
+		List<BoardDTO> list = new ArrayList<>();
+		String sql = "select * from boardcomment where person = ?";
+		
+		try {
+			conn = DBConnPool.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				BoardDTO dto = new BoardDTO();
+				
+				dto.setBoard_index(rs.getInt("board_index"));
+				dto.setTheme(rs.getString("theme"));
+				dto.setPerson(rs.getString("person"));
+				dto.setContent(rs.getString("content"));
+				dto.setEnterdate(rs.getString("enterdate"));
+				dto.setCount(rs.getInt("count"));
+				
+				list.add(dto);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBConnPool.close(conn, pstmt, rs);
+		}
+		
+		return list;
 	}
 }

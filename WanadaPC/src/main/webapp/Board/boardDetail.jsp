@@ -108,6 +108,7 @@
     <div class="board_detail_body">
         <header>
             <%@ include file="/Util/header.jsp" %>
+            <%@ include file="/Util/side_bar.jsp" %>
         </header>
         <main class="board_detail_main">
             <h1>게시판 상세보기</h1>
@@ -138,9 +139,9 @@
                  </tr>
             </table>
             <div class="action-buttons">
-                <c:if test="${!empty dto && dto.person eq user.userEmail}">
+                <c:if test="${(!empty dto && dto.person eq user.userEmail) || user.userEmail eq 'admin'}">
                  	<a href="boardUpdatePage?board_index=${dto.board_index}">수정</a>
-                 	<a href="boardDeletePage?board_index=${dto.board_index}">삭제</a>
+                 	<a href="boardDelete?board_index=${dto.board_index}">삭제</a>
                 </c:if>
                 <a href="/boardList">목록으로</a>
             </div>

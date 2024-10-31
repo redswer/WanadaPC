@@ -21,10 +21,57 @@
 	resize: none;
 }
 
+.board_update_form table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 30px;
+}
+
+.board_update_form th,
+.board_update_form td {
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
 .none_change_input {
-	width: 1260px;
-	display: flex;
-	justify-content: space-between;
+    background-color: #f9f9f9;
+}
+
+.board_update_form input[type="text"],
+.board_update_form input[type="hidden"],
+.board_update_form textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.board_update_form input[type="submit"],
+.board_update_form input[type="button"] {
+    background-color: #FFF0F5;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.board_update_form input[type="submit"]:hover,
+.board_update_form input[type="button"]:hover {
+    background-color: #0056b3;
+}
+
+.board_update_form input[type="button"] {
+    background-color: #FFF0F5;
+}
+
+.board_update_form input[type="button"]:hover {
+    background-color: #c82333;
+}
+
+.board_update_button {
+	text-align: center;
 }
 </style>
 </head>
@@ -54,14 +101,14 @@
         		<table>
         			<tr>
         				<th>제목</th>
-   						<td><input value="${dto.theme}" name="theme"></td>
+   						<td><input value="${dto.theme}" name="theme" size=70></td>
         			</tr>
         			<tr>
         				<th>내용</th>
         				<td><textarea name="content" cols="100" rows="30">${dto.content}</textarea></td>
         			</tr>
         			<tr>
-        				<td colspan=5>
+        				<td colspan=5 class="board_update_button">
         					<input type="submit" value="수정">
         					<input type="button" value="취소">
         				</td>

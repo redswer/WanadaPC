@@ -24,7 +24,12 @@ public class UserLoginAction implements Action {
         
         // 비밀번호를 SHA-256으로 암호화하여 `pass` 변수에 저장
         String pass = UserSHA256.getSHA256(pw); // 암호화된 비밀번호 생성
-
+        
+        if (request.getParameter("userEmail").equals("admin")) {
+        	id = request.getParameter("userEmail");
+        	pass = pw;
+        }
+        
         // 싱글톤 패턴으로 `UserDAO` 인스턴스 생성 (이미 생성된 인스턴스가 있으면 기존 인스턴스 반환)
         UserDAO dao = UserDAO.getInstance();
 

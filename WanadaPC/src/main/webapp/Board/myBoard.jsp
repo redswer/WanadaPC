@@ -1,15 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>게시판</title>
+<title>Insert title here</title>
 <style type="text/css">
 /* 전체 컨테이너 */
-.board_list_body {
+.my_board_body {
     width: 1260px;
     margin: 0 auto;
     margin-top: 10px;
@@ -120,17 +118,14 @@
 </style>
 </head>
 <body>
-    <div class="board_list_body">
+    <div class="my_board_body">
         <header>
             <%@ include file="/Util/header.jsp" %>
             <%@ include file="/Util/side_bar.jsp" %>
         </header>
         <main class="board_list_main">
         	<div class="board_list_menu">
-            	<h1>게시판</h1>
-            	<c:if test="${!empty user}">
-	            	<a href="/Board/boardInsert.jsp">글쓰기</a>
-            	</c:if>
+            	<h1>내가 쓴 글</h1>
             </div>
             <table class="board_list_table">
                 <tr>
@@ -140,7 +135,7 @@
                     <th>작성일</th>
                     <th>조회수</th>
                 </tr>
-                <c:forEach var="i" items="${board_list}">
+                <c:forEach var="i" items="${my_board_list}">
                     <tr>
                         <td><a href="/boardDetail?board_index=${i.board_index}">${i.board_index}</a></td>
                         <td>

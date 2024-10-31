@@ -21,6 +21,7 @@
 	<div class="board_insert_body">
 		<header>
 			<%@ include file="/Util/header.jsp" %>
+			<%@ include file="/Util/side_bar.jsp" %>
 		</header>
 		<main>
 			<h2>글 등록</h2>

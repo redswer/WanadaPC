@@ -162,4 +162,41 @@ public class BoardDAO {
 		
 		return row;
 	}
+	
+	public List<BoardDTO> indexBoardList() {
+		List<BoardDTO> list = new ArrayList<>();
+		String sql = "select * from boardcomment where rownum <= 8 order by board_index desc";
+		
+		try {
+			conn = DBConnPool.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				BoardDTO dto = new BoardDTO();
+				
+				dto.setBoard_index(rs.getInt("board_index"));
+				
+				if (rs.getString("theme").length() >= 10) {
+					dto.setTheme(rs.getString("theme").substring(0, 10) + "...");
+				} else {
+					dto.setTheme(rs.getString("theme"));
+				}
+				
+				if (rs.getString("content").length() >= 25) {
+					dto.setContent(rs.getString("content").substring(0, 25) + "...");
+				} else {
+					dto.setContent(rs.getString("content"));
+				}
+				
+				dto.setPerson(rs.getString("person"));
+				
+				list.add(dto);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return list;
+	}
 }

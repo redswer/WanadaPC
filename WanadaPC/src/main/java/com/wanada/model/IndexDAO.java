@@ -191,7 +191,7 @@ public class IndexDAO {
 		return list;
 	}
 	
-	public List<BoardDTO> searchBoardTheme(String text) {
+	public List<BoardDTO> searchBoard(String text) {
 		List<BoardDTO> list = new ArrayList<>();
 		String sql = "select * from boardcomment where theme like ? or content like ?";
 		

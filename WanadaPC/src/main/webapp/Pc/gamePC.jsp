@@ -108,6 +108,7 @@ window.onload = function() {
     <div class="etcPC_body">
         <header>
             <%@ include file="/Util/header.jsp" %>
+            <%@ include file="/Util/side_bar.jsp" %>
         </header>
         <main>
             <div class="ad">
