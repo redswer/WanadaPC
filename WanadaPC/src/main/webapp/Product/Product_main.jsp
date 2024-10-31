@@ -1,16 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-<style type="text/css">
+<title>컴퓨터 부품 선택</title>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<Style>
 .Product_body {
 	font-family: Arial, sans-serif;
-	width:1260;
-	margin:0 auto;
-	margin-top:10px;
+	width: 1260px;
+	margin: 0 auto;
+	margin-top: 10px;
+	background-color: #f9f9f9;
 }
 
 .Product_main {
@@ -22,42 +26,27 @@
 .Product_Kategorie ul {
 	list-style-type: none;
 	padding: 0;
-	margin: 0;
-	display: flex; /* 항목들이 한 줄로 나열되도록 설정 */
-	justify-content: space-between; /* 항목들이 경계에 맞게 균등하게 분배 */
-	width: 100%; /* ul 너비를 부모 컨테이너에 맞춤 */
+	display: flex;
+	width: 100%;
+	border: 1px solid #ccc; /* ul에 테두리 적용 */
+	border-radius: 5px; /* ul의 전체 모서리 둥글게 */
+	overflow: hidden; /* 테두리 둥근 모서리 안에서 li 요소가 넘치지 않도록 설정 */
 }
 
 .Product_Kategorie ul li {
-	flex: 1; /* 모든 li가 동일한 너비를 가지도록 설정 */
-	margin: 0 10px; /* 각 li 사이에 여백 추가 */
-	box-sizing: border-box; /* padding과 border를 포함한 크기 계산 */
+	flex: 1;
+	padding: 10px;
+	text-align: center;
+	background-color: #f4f4f4;
+	cursor: pointer;
+	border-left: 1px solid #ccc; /* li 간의 경계선을 만듦 */
 }
 
 .Product_Kategorie ul li:first-child {
-	margin-left: 0; /* 첫 번째 li의 좌측 여백 제거 */
+	border-left: none; /* 첫 번째 li의 왼쪽 경계선 제거 */
 }
 
-.Product_Kategorie ul li:last-child {
-	margin-right: 0; /* 마지막 li의 우측 여백 제거 */
-}
-
-.Product_Kategorie ul li a {
-	height: 65%;
-	text-decoration: none;
-	color: #333;
-	font-size: 20px;
-	padding: 10px;
-	display: block;
-	background-color: #f9f9f9;
-	border: 1px solid #ddd;
-	border-radius: 5px;
-	transition: background-color 0.3s;
-	text-align: center;
-	width: 100%;/* a 태그가 li의 전체 너비를 차지하도록 설정 */
-}
-
-.Product_Kategorie ul li a:hover {
+.Product_Kategorie ul li:hover {
 	background-color: #e9e9e9;
 }
 
@@ -69,7 +58,6 @@
 	background-color: #f0f0f0;
 	border: 1px solid #ccc;
 	border-radius: 5px;
-	width: 100%;
 }
 
 .Product_list table {
@@ -77,78 +65,35 @@
 	border-collapse: collapse;
 }
 
-.Product_list th, .Product_list td {
-	text-align: left;
-	padding: 10px;
-	border-bottom: 1px solid #ddd;
-}
-
 .Product_list th {
 	background-color: #f9f9f9;
+	font-weight: bold;
 	padding: 10px;
-	text-align: left;
 	border-bottom: 1px solid #ddd;
-	width: 150px; /* th의 너비를 고정 */
-	box-sizing: border-box; /* 패딩과 보더를 포함한 너비 계산 */
+	width: 150px;
 }
 
-.Product_list td input[type="checkbox"] {
-	margin-right: 10px;
+.Product_list td {
+	padding: 10px;
+	border-bottom: 1px solid #ddd;
+	background-color: #d0d0d0;
 }
 
-/* 카테고리 클릭 시 나타나는 스타일 */
 .Product_Show {
-	width: 100%;
-	display: flex;
-	flex-direction: column;
-	align-items: center; /* 가운데 정렬 */
 	margin: 0 auto;
-	padding: 20px 0;
 }
 
-.Product_Show_Option {
-	width: 100%; /* 부모 요소에 맞춰 전체 너비 설정 */
-}
-
-.Product_Show_Option ul {
-	list-style-type: none;
-	padding: 0;
-	display: flex;
-	justify-content: space-between; /* 옵션들이 부모의 경계에 맞춰지도록 설정 */
-	width: 100%;
-}
-
-.Product_Show_Option ul li {
-	margin: 0 10px;
-}
-
-.Product_Show_Option ul li a {
-	text-decoration: none;
-	color: #333;
-	padding: 10px 20px;
-	background-color: #f9f9f9;
-	border: 1px solid #ddd;
-	border-radius: 5px;
-	transition: background-color 0.3s;
-}
-
-.Product_Show_Option ul li a:hover {
-	background-color: #e9e9e9;
-}
-/* Product_Show_List 스타일 */
 .Product_Show_List {
-	width: 81.5%; /* 부모 요소에 맞춰 전체 너비 설정 */
-	margin-left: 20px;
+	width: 81.5%;
+	margin: 20px auto 0;
 	padding: 10px;
 	background-color: #f9f9f9;
 	border: 1px solid #ddd;
 	border-radius: 5px;
-	margin-top: 20px;
-	box-sizing: border-box;
 }
 
 .Product_Show_List table {
-	width: 100%; /* 테이블 너비를 부모에 맞춤 */
+	width: 100%;
 	border-collapse: collapse;
 }
 
@@ -160,38 +105,23 @@
 
 .Product_Show_List th {
 	background-color: #f0f0f0;
-	font-weight: bold;
 }
 
 .Product_Show_List td {
 	vertical-align: middle;
+	background-color: #d0d0d0;
 }
 
 .Product_Show_List img {
 	width: 50px;
 	height: auto;
 }
+
 .Product_Show_List_option ul {
 	list-style-type: none;
 	padding: 0;
-	margin: 0;
-	display: flex; /* 항목들이 한 줄로 나열되도록 설정 */
-	justify-content: space-between; /* 항목들이 부모의 경계에 맞게 균등하게 분배 */
-	width: 98.5%; /* ul 너비를 부모 컨테이너에 맞춤 */
-}
-
-.Product_Show_List_option ul li {
-	flex: 1; /* 모든 li가 동일한 너비를 가지도록 설정 */
-	margin: 0 10px; /* 각 li 사이에 여백 추가 */
-	box-sizing: border-box; /* padding과 border를 포함한 크기 계산 */
-}
-
-.Product_Show_List_option ul li:first-child {
-	margin-left: 0; /* 첫 번째 li의 좌측 여백 제거 */
-}
-
-.Product_Show_List_option ul li:last-child {
-	margin-right: 0; /* 마지막 li의 우측 여백 제거 */
+	display: flex;
+	justify-content: space-between;
 }
 
 .Product_Show_List_option ul li a {
@@ -199,369 +129,532 @@
 	color: #333;
 	font-size: 18px;
 	padding: 10px;
-	display: block;
 	background-color: #f9f9f9;
 	border: 1px solid #ddd;
 	border-radius: 5px;
 	transition: background-color 0.3s;
 	text-align: center;
-	width: 99%;
+	display: block;
 }
 
 .Product_Show_List_option ul li a:hover {
 	background-color: #e9e9e9;
 }
-
-</style>
-<script>
-	// 페이지 로드 시 CPU 리스트를 기본적으로 보여줌
-	document.addEventListener("DOMContentLoaded", function() {
-		showOptions('CPU_Product_list');
-	});
-
-	function showOptions(selectedId) {
-		// 모든 옵션 리스트를 숨김
-		var productLists = document.querySelectorAll('.Product_list');
-		productLists.forEach(function(list) {
-			list.style.display = 'none';
-		});
-
-		// 선택된 카테고리의 옵션만 표시
-		var selectedProductList = document.getElementById(selectedId);
-		if (selectedProductList) {
-			selectedProductList.style.display = 'block';
-		}
-	}
-</script>
+</Style>
 </head>
 <body class="Product_body">
-<%@ include file="/Util/header.jsp" %>
+	<%@ include file="/Util/header.jsp"%>
 	<div class="header">
 		<header>
-			<form action="" method="post" name="indexForm" id="indexForm">
-				<div class="Product_main">
-					<div class="Search_main">
-						<input type="text" placeholder="상품을 검색해주세요" name="Product_search"
-							id="Product_search">
-						<button type="submit">
-							<span>검색</span>
-						</button>
-					</div>
-					<div class="Product">
-						<div class="Product_Kategorie">
-							<ul>
-								<li><a href="#" onclick="showOptions('CPU_Product_list')">CPU</a></li>
-								<li><a href="#"
-									onclick="showOptions('COOLER_Product_list')">쿨러</a></li>
-								<li><a href="#"
-									onclick="showOptions('MainBoard_Product_list')">메인보드</a></li>
-								<li><a href="#" onclick="showOptions('REM_Product_list')">메모리</a></li>
-								<li><a href="#" onclick="showOptions('GPU_Product_list')">그래픽카드</a></li>
-								<li><a href="#" onclick="showOptions('SSD_Product_list')">SSD</a></li>
-								<li><a href="#" onclick="showOptions('HDD_Product_list')">HDD</a></li>
-								<li><a href="#" onclick="showOptions('CASE_Product_list')">케이스</a></li>
-								<li><a href="#" onclick="showOptions('POWER_Product_list')">파워</a></li>
-							</ul>
-						</div>
-						<div id="CPU_Product_list" class="Product_list"
-							style="display: none;">
-							<div class="CPU_Option_item">
-								<table>
-									<tr>
-										<th>제조사</th>
-										<td><input type="checkbox">인텔</td>
-										<td><input type="checkbox">AMD</td>
-									</tr>
-									<tr>
-										<th>인텔CPU종류</th>
-										<td><input type="checkbox">코어I9-14세대</td>
-										<td><input type="checkbox">코어I7-14세대</td>
-										<td><input type="checkbox">코어I5-14세대</td>
-										<td><input type="checkbox">코어I3-14세대</td>
-									</tr>
-									<tr>
-										<th>AMD CPU종류</th>
-										<td><input type="checkbox">라이젠9-6세대</td>
-										<td><input type="checkbox">라이젠7-6세대</td>
-										<td><input type="checkbox">라이젠5-6세대</td>
-										<td><input type="checkbox">라이젠9-5세대</td>
-										<td><input type="checkbox">라이젠7-5세대</td>
-									</tr>
-								</table>
-							</div>
-						</div>
-						<div id="COOLER_Product_list" class="Product_list"
-							style="display: none;">
-							<div class="COOLER_Option_item">
-								<table>
-									<tr>
-										<th>제조사</th>
-										<td><input type="checkbox">맥스엘리트</td>
-										<td><input type="checkbox">PCCOOLER</td>
-										<td><input type="checkbox">MSI</td>
-										<td><input type="checkbox">EMTEK</td>
-										<td><input type="checkbox">darkflash</td>
-									</tr>
-									<tr>
-										<th>제품종류</th>
-										<td><input type="checkbox">CPU쿨러</td>
-										<td><input type="checkbox">써멀파운트</td>
-										<td><input type="checkbox">시스템쿨러</td>
-										<td><input type="checkbox">M.2 SSD쿨러</td>
-									</tr>
-									<tr>
-										<th>냉각방식</th>
-										<td><input type="checkbox">공랭</td>
-										<td><input type="checkbox">수랭</td>
-									</tr>
-								</table>
-							</div>
-						</div>
-						<div id="MainBoard_Product_list" class="Product_list"
-							style="display: none;">
-							<div class="MainBoard_Option_item">
-								<table>
-									<tr>
-										<th>제조사</th>
-										<td><input type="checkbox">MSI</td>
-										<td><input type="checkbox">ASUS</td>
-										<td><input type="checkbox">ASRock</td>
-										<td><input type="checkbox">GIGABYTE</td>
-										<td><input type="checkbox">ECS</td>
-									</tr>
-									<tr>
-										<th>제품분류</th>
-										<td><input type="checkbox">인텔 CPU용</td>
-										<td><input type="checkbox">AMD CPU용</td>
-										<td><input type="checkbox">임베디드</td>
-									</tr>
-									<tr>
-										<th>CPU소캣</th>
-										<td><input type="checkbox">인텔(소켓1700)</td>
-										<td><input type="checkbox">인텔(소켓1200)</td>
-										<td><input type="checkbox">AMD(소켓AM5)</td>
-										<td><input type="checkbox">AMD(소켓AM4)</td>
-										<td><input type="checkbox">AMD(소켓sTRX4)</td>
-									</tr>
-								</table>
-							</div>
-						</div>
-						<div id="REM_Product_list" class="Product_list"
-							style="display: none;">
-							<div class="REM_Option_item">
-								<table>
-									<tr>
-										<th>제조사</th>
-										<td><input type="checkbox">삼성전자</td>
-										<td><input type="checkbox">마이크론</td>
-										<td><input type="checkbox">SK하이닉스</td>
-										<td><input type="checkbox">G.SKILL</td>
-										<td><input type="checkbox">TeamGroup</td>
-									</tr>
-									<tr>
-										<th>제품분류</th>
-										<td><input type="checkbox">DDR5</td>
-										<td><input type="checkbox">DDR4</td>
-										<td><input type="checkbox">DDR3</td>
-										<td><input type="checkbox">DDR2</td>
-									</tr>
-									<tr>
-										<th>메모리용량</th>
-										<td><input type="checkbox">64GB</td>
-										<td><input type="checkbox">32GB</td>
-										<td><input type="checkbox">16GB</td>
-										<td><input type="checkbox">8GB</td>
-										<td><input type="checkbox">4GB</td>
-									</tr>
-								</table>
-							</div>
-						</div>
-						<div id="GPU_Product_list" class="Product_list"
-							style="display: none;">
-							<div class="GPU_Option_item">
-								<table>
-									<tr>
-										<th>제조사</th>
-										<td><input type="checkbox">MSI</td>
-										<td><input type="checkbox">EMTEK</td>
-										<td><input type="checkbox">ASUS</td>
-										<td><input type="checkbox">COLORFUL</td>
-										<td><input type="checkbox">ZOTAC</td>
-										<td><input type="checkbox">GALAXY</td>
-										<td><input type="checkbox">GIGABYTE</td>
-									</tr>
-									<tr>
-										<th>칩셋 제조사</th>
-										<td><input type="checkbox">NVIDIA</td>
-										<td><input type="checkbox">AMD(ATi)</td>
-										<td><input type="checkbox">Intel</td>
-										<td><input type="checkbox">Matrox</td>
-										<td><input type="checkbox">FuriosaAI</td>
-									</tr>
-									<tr>
-										<th>칩셋</th>
-										<td><input type="checkbox">RTX</td>
-										<td><input type="checkbox">GTX</td>
-										<td><input type="checkbox">GT</td>
-										<td><input type="checkbox">RX</td>
-										<td><input type="checkbox">W</td>
-										<td><input type="checkbox">ARC</td>
-									</tr>
-								</table>
-							</div>
-						</div>
-						<div id="SSD_Product_list" class="Product_list"
-							style="display: none;">
-							<div class="SSD_Option_item">
-								<table>
-									<tr>
-										<th>제조사</th>
-										<td><input type="checkbox">삼성전자</td>
-										<td><input type="checkbox">SK하이닉스</td>
-										<td><input type="checkbox">마이크론</td>
-										<td><input type="checkbox">Western Digital</td>
-										<td><input type="checkbox">Seagate</td>
-									</tr>
-									<tr>
-										<th>폼팩터</th>
-										<td><input type="checkbox">M.2(2280)</td>
-										<td><input type="checkbox">6.4cm(2.5형)</td>
-										<td><input type="checkbox">M.2(2230)</td>
-										<td><input type="checkbox">M.2(2242)</td>
-										<td><input type="checkbox">Mini SATA(mSATA)</td>
-									</tr>
-									<tr>
-										<th>용량</th>
-										<td><input type="checkbox">4TB~3TB</td>
-										<td><input type="checkbox">2TB~1.1TB</td>
-										<td><input type="checkbox">1TB~600GB</td>
-										<td><input type="checkbox">525GB~270GB</td>
-										<td><input type="checkbox">256GB~130GB</td>
-									</tr>
-								</table>
-							</div>
-						</div>
-						<div id="HDD_Product_list" class="Product_list"
-							style="display: none;">
-							<div class="HDD_Option_item">
-								<table>
-									<tr>
-										<th>제조사</th>
-										<td><input type="checkbox">Western Digital</td>
-										<td><input type="checkbox">Seagate</td>
-										<td><input type="checkbox">도시바</td>
-										<td><input type="checkbox">CENTURY</td>
-										<td><input type="checkbox">DELL</td>
-									</tr>
-									<tr>
-										<th>디스크 크기</th>
-										<td><input type="checkbox">8.9cm(3.5인치)</td>
-										<td><input type="checkbox">6.4cm(2.5인치)</td>
-										<td><input type="checkbox">4.6cm(1.8인치)</td>
-									</tr>
-									<tr>
-										<th>용량</th>
-										<td><input type="checkbox">8TB</td>
-										<td><input type="checkbox">4TB</td>
-										<td><input type="checkbox">3TB</td>
-										<td><input type="checkbox">2TB</td>
-										<td><input type="checkbox">1TB</td>
-									</tr>
-								</table>
-							</div>
-						</div>
-						<div id="CASE_Product_list" class="Product_list"
-							style="display: none;">
-							<div class="CASE_Option_item">
-								<table>
-									<tr>
-										<th>제조사</th>
-										<td><input type="checkbox">앱코</td>
-										<td><input type="checkbox">darkFlash</td>
-										<td><input type="checkbox">마이크로닉스</td>
-										<td><input type="checkbox">아이구주</td>
-										<td><input type="checkbox">COX</td>
-									</tr>
-									<tr>
-										<th>제품분류</th>
-										<td><input type="checkbox">PC케이스(ATX)</td>
-										<td><input type="checkbox">PC케이스(M-ATX)</td>
-										<td><input type="checkbox">미니ITX</td>
-										<td><input type="checkbox">HTPC케이스</td>
-										<td><input type="checkbox">튜닝케이스</td>
-									</tr>
-									<tr>
-										<th>케이스크기</th>
-										<td><input type="checkbox">빅타워</td>
-										<td><input type="checkbox">미들타워</td>
-										<td><input type="checkbox">미니타워</td>
-										<td><input type="checkbox">미니타워(LP)</td>
-										<td><input type="checkbox">미니ITX(리를밸리)</td>
-									</tr>
-								</table>
-							</div>
-						</div>
-						<div id="POWER_Product_list" class="Product_list"
-							style="display: none;">
-							<div class="POWER_Option_item">
-								<table>
-									<tr>
-										<th>제조사</th>
-										<td><input type="checkbox">시소닉</td>
-										<td><input type="checkbox">앱코</td>
-										<td><input type="checkbox">MSI</td>
-										<td><input type="checkbox">마이크로닉스</td>
-										<td><input type="checkbox">맥스엘리트</td>
-									</tr>
-									<tr>
-										<th>정격출력</th>
-										<td><input type="checkbox">1000W~1299W</td>
-										<td><input type="checkbox">900W~999W</td>
-										<td><input type="checkbox">800W~899W</td>
-										<td><input type="checkbox">700W~799W</td>
-										<td><input type="checkbox">600W~699W</td>
-									</tr>
-									<tr>
-										<th>80PLUS인증</th>
-										<td><input type="checkbox">80 PLUS 티타늄</td>
-										<td><input type="checkbox">80 PLUS 플래티넘</td>
-										<td><input type="checkbox">80 PLUS 골드</td>
-										<td><input type="checkbox">80 PLUS 실버</td>
-										<td><input type="checkbox">80 PLUS 브론즈</td>
-									</tr>
-								</table>
-							</div>
-						</div>
-					</div>
+			<div class="Product_main">
+				<div class="Search_main">
+					<input type="text" placeholder="상품을 검색해주세요" name="Product_search"
+						id="Product_search">
+					<button type="submit">
+						<span>검색</span>
+					</button>
 				</div>
-			</form>
-		</header>
-	</div>
-	<div class="section">
-		<section>
-			<div class="Product_Show">
-				<div class="Product_Show_List">
-					<table>
-						<tr>
-							<th colspan="3" class="Product_Show_List_option">
-								<ul>
-									<li><a href="#">이름순(오름차순)</a></li>
-									<li><a href="#">이름순(내림차순)</a></li>
-									<li><a href="#">낮은가격순</a></li>
-									<li><a href="#">높은가격순</a></li>
-								</ul>
-							</th>
-						</tr>
-						<tr>
-							<td><img src="example.jpg" alt="상품 이미지"></td>
-							<td>상품 설명 예시</td>
-							<td>₩100,000</td>
-						</tr>
-					</table>
+				<div class="Product">
+					<!-- 큰 카테고리 선택 -->
+					<div class="Product_Kategorie">
+						<ul id="categoryList">
+							<li data-category="CPU_Product_list" class="active">CPU</li>
+							<li data-category="Mainboard_Product_list">메인보드</li>
+							<li data-category="GPU_Product_list">그래픽카드</li>
+							<li data-category="RAM_Product_list">램</li>
+							<li data-category="COOLER_Product_list">쿨러</li>
+							<li data-category="SSD_Product_list">SSD</li>
+							<li data-category="HDD_Product_list">HDD</li>
+							<li data-category="CASE_Product_list">케이스</li>
+							<li data-category="POWER_Product_list">파워</li>
+						</ul>
+					</div>
+					<!-- CPU 옵션 -->
+					<div id="CPU_Product_list" class="Product_list">
+
+						<form id="CPUForm">
+							<table>
+								<tr>
+									<th>제조사</th>
+									<td><input type="checkbox" name="MAKER_CPU" value="Intel">인텔</td>
+									<td colspan="2"><input type="checkbox" name="MAKER_CPU"
+										value="AMD">AMD</td>
+								</tr>
+								<tr>
+									<th>인텔 CPU 종류</th>
+									<td><input type="checkbox" name="Intel_Cpu"
+										value="Core_i9">코어 i9</td>
+									<td><input type="checkbox" name="Intel_Cpu"
+										value="Core_i7">코어 i7</td>
+									<td><input type="checkbox" name="Intel_Cpu"
+										value="Core_i5">코어 i5</td>
+								</tr>
+								<tr>
+									<th>AMD CPU 종류</th>
+									<td><input type="checkbox" name="Ryzen_Cpu"
+										value="Ryzen_9">라이젠 9</td>
+									<td><input type="checkbox" name="Ryzen_Cpu"
+										value="Ryzen_7">라이젠 7</td>
+									<td><input type="checkbox" name="Ryzen_Cpu"
+										value="Ryzen_5">라이젠 5</td>
+								</tr>
+							</table>
+						</form>
+					</div>
+
+					<!-- Mainboard 옵션 -->
+					<div id="Mainboard_Product_list" class="Product_list">
+
+						<form id="MainboardForm">
+							<table>
+								<tr>
+									<th>제조사</th>
+									<td><input type="checkbox" name="MAKER_MainBoard"
+										value="MSI">MSI</td>
+									<td><input type="checkbox" name="MAKER_MainBoard"
+										value="ASUS">ASUS</td>
+									<td><input type="checkbox" name="MAKER_MainBoard"
+										value="ASRock">ASRock</td>
+									<td><input type="checkbox" name="MAKER_MainBoard"
+										value="GIGABYTE">GIGABYTE</td>
+									<td><input type="checkbox" name="MAKER_MainBoard"
+										value="ECS">ECS</td>
+								</tr>
+								<tr>
+									<th>제품분류</th>
+									<td><input type="checkbox" name="TYPE_MainBoard"
+										value="Intel_Socket">인텔 CPU용</td>
+									<td><input type="checkbox" name="TYPE_MainBoard"
+										value="AMD_Socket">AMD CPU용</td>
+									<td colspan="3"><input type="checkbox"
+										name="TYPE_MainBoard" value="Embedded">임베디드</td>
+								</tr>
+								<tr>
+									<th>CPU소캣</th>
+									<td><input type="checkbox" name="SOCKET_MainBoard"
+										value="Intel_1700">인텔(소켓1700)</td>
+									<td><input type="checkbox" name="SOCKET_MainBoard"
+										value="Intel_1200">인텔(소켓1200)</td>
+									<td><input type="checkbox" name="SOCKET_MainBoard"
+										value="AMD_AM5">AMD(소켓AM5)</td>
+									<td><input type="checkbox" name="SOCKET_MainBoard"
+										value="AMD_AM4">AMD(소켓AM4)</td>
+									<td><input type="checkbox" name="SOCKET_MainBoard"
+										value="AMD_sTRX4">AMD(소켓sTRX4)</td>
+								</tr>
+							</table>
+						</form>
+					</div>
+
+					<!-- GPU 옵션 -->
+					<div id="GPU_Product_list" class="Product_list">
+
+						<form id="GPUForm">
+							<table>
+								<tr>
+									<th>제조사</th>
+									<td><input type="checkbox" name="MAKER_GPU" value="MSI">MSI</td>
+									<td><input type="checkbox" name="MAKER_GPU" value="EMTEK">EMTEK</td>
+									<td><input type="checkbox" name="MAKER_GPU" value="ASUS">ASUS</td>
+									<td><input type="checkbox" name="MAKER_GPU"
+										value="COLORFUL">COLORFUL</td>
+									<td><input type="checkbox" name="MAKER_GPU" value="ZOTAC">ZOTAC</td>
+									<td><input type="checkbox" name="MAKER_GPU" value="GALAXY">GALAXY</td>
+									<td><input type="checkbox" name="MAKER_GPU"
+										value="GIGABYTE">GIGABYTE</td>
+								</tr>
+								<tr>
+									<th>칩셋 제조사</th>
+									<td><input type="checkbox" name="CHIPSET_GPU"
+										value="NVIDIA">NVIDIA</td>
+									<td><input type="checkbox" name="CHIPSET_GPU" value="AMD">AMD(ATi)</td>
+									<td><input type="checkbox" name="CHIPSET_GPU"
+										value="Intel">Intel</td>
+									<td><input type="checkbox" name="CHIPSET_GPU"
+										value="Matrox">Matrox</td>
+									<td colspan="3"><input type="checkbox" name="CHIPSET_GPU"
+										value="FuriosaAI">FuriosaAI</td>
+								</tr>
+								<tr>
+									<th>칩셋</th>
+									<td><input type="checkbox" name="TYPE_GPU" value="RTX">RTX</td>
+									<td><input type="checkbox" name="TYPE_GPU" value="GTX">GTX</td>
+									<td><input type="checkbox" name="TYPE_GPU" value="GT">GT</td>
+									<td><input type="checkbox" name="TYPE_GPU" value="RX">RX</td>
+									<td><input type="checkbox" name="TYPE_GPU" value="W">W</td>
+									<td colspan="2"><input type="checkbox" name="TYPE_GPU"
+										value="ARC">ARC</td>
+								</tr>
+							</table>
+						</form>
+					</div>
+
+					<!-- RAM 옵션 -->
+					<div id="RAM_Product_list" class="Product_list">
+						<form id="RAMForm">
+							<table>
+								<tr>
+									<th>제조사</th>
+									<td><input type="checkbox" name="MAKER_REM"
+										value="Samsung">삼성전자</td>
+									<td><input type="checkbox" name="MAKER_REM" value="Micron">마이크론</td>
+									<td><input type="checkbox" name="MAKER_REM"
+										value="SK_Hynix">SK하이닉스</td>
+									<td><input type="checkbox" name="MAKER_REM"
+										value="G.SKILL">G.SKILL</td>
+									<td><input type="checkbox" name="MAKER_REM"
+										value="TeamGroup">TeamGroup</td>
+								</tr>
+								<tr>
+									<th>제품분류</th>
+									<td><input type="checkbox" name="TYPE_REM" value="DDR5">DDR5</td>
+									<td><input type="checkbox" name="TYPE_REM" value="DDR4">DDR4</td>
+									<td><input type="checkbox" name="TYPE_REM" value="DDR3">DDR3</td>
+									<td colspan="2"><input type="checkbox" name="TYPE_REM"
+										value="DDR2">DDR2</td>
+								</tr>
+								<tr>
+									<th>메모리용량</th>
+									<td><input type="checkbox" name="CAPACITY_REM"
+										value="64GB">64GB</td>
+									<td><input type="checkbox" name="CAPACITY_REM"
+										value="32GB">32GB</td>
+									<td><input type="checkbox" name="CAPACITY_REM"
+										value="16GB">16GB</td>
+									<td><input type="checkbox" name="CAPACITY_REM" value="8GB">8GB</td>
+									<td><input type="checkbox" name="CAPACITY_REM" value="4GB">4GB</td>
+								</tr>
+							</table>
+						</form>
+					</div>
+
+					<!-- COOLER 옵션 -->
+					<div id="COOLER_Product_list" class="Product_list">
+
+						<form id="CoolerForm">
+							<table>
+								<tr>
+									<th>제조사</th>
+									<td><input type="checkbox" name="MAKER_COOLER"
+										value="MAXELITE">맥스엘리트</td>
+									<td><input type="checkbox" name="MAKER_COOLER"
+										value="PCCOOLER">PCCOOLER</td>
+									<td><input type="checkbox" name="MAKER_COOLER" value="MSI">MSI</td>
+									<td><input type="checkbox" name="MAKER_COOLER"
+										value="EMTEK">EMTEK</td>
+									<td><input type="checkbox" name="MAKER_COOLER"
+										value="DARKFLASH">darkflash</td>
+								</tr>
+								<tr>
+									<th>제품종류</th>
+									<td><input type="checkbox" name="PRODUCT_TYPE"
+										value="CPU_Cooler">CPU쿨러</td>
+									<td><input type="checkbox" name="PRODUCT_TYPE"
+										value="Thermal_Grease">써멀구리스</td>
+									<td><input type="checkbox" name="PRODUCT_TYPE"
+										value="System_Cooler">시스템쿨러</td>
+									<td colspan="2"><input type="checkbox" name="PRODUCT_TYPE"
+										value="M2SSD_Cooler">M.2 SSD쿨러</td>
+								</tr>
+								<tr>
+									<th>냉각방식</th>
+									<td><input type="checkbox" name="COOLER_method"
+										value="air">공랭</td>
+									<td colspan="4"><input type="checkbox"
+										name="COOLER_method" value="water">수랭</td>
+								</tr>
+							</table>
+						</form>
+					</div>
+
+					<!-- SSD 옵션 -->
+					<div id="SSD_Product_list" class="Product_list">
+
+						<form id="SSDForm">
+							<table>
+								<tr>
+									<th>제조사</th>
+									<td><input type="checkbox" name="MAKER_SSD"
+										value="Samsung">삼성전자</td>
+									<td><input type="checkbox" name="MAKER_SSD"
+										value="SK_Hynix">SK하이닉스</td>
+									<td><input type="checkbox" name="MAKER_SSD" value="Micron">마이크론</td>
+									<td><input type="checkbox" name="MAKER_SSD"
+										value="Western_Digital">Western Digital</td>
+									<td><input type="checkbox" name="MAKER_SSD"
+										value="Seagate">Seagate</td>
+								</tr>
+								<tr>
+									<th>폼팩터</th>
+									<td><input type="checkbox" name="FORM_FACTOR_SSD"
+										value="M2_2280">M.2(2280)</td>
+									<td><input type="checkbox" name="FORM_FACTOR_SSD"
+										value="2_5_inch">6.4cm(2.5형)</td>
+									<td><input type="checkbox" name="FORM_FACTOR_SSD"
+										value="M2_2230">M.2(2230)</td>
+									<td><input type="checkbox" name="FORM_FACTOR_SSD"
+										value="M2_2242">M.2(2242)</td>
+									<td><input type="checkbox" name="FORM_FACTOR_SSD"
+										value="Mini_SATA">Mini SATA(mSATA)</td>
+								</tr>
+								<tr>
+									<th>용량</th>
+									<td><input type="checkbox" name="CAPACITY_SSD"
+										value="4TB_to_3TB">4TB~3TB</td>
+									<td><input type="checkbox" name="CAPACITY_SSD"
+										value="2TB_to_1_1TB">2TB~1.1TB</td>
+									<td><input type="checkbox" name="CAPACITY_SSD"
+										value="1TB_to_600GB">1TB~600GB</td>
+									<td><input type="checkbox" name="CAPACITY_SSD"
+										value="525GB_to_270GB">525GB~270GB</td>
+									<td><input type="checkbox" name="CAPACITY_SSD"
+										value="256GB_to_130GB">256GB~130GB</td>
+								</tr>
+							</table>
+						</form>
+					</div>
+
+					<!-- HDD 옵션 -->
+					<div id="HDD_Product_list" class="Product_list">
+
+						<form id="HDDForm">
+							<table>
+								<tr>
+									<th>제조사</th>
+									<td><input type="checkbox" name="MAKER_HDD"
+										value="Western_Digital">Western Digital</td>
+									<td><input type="checkbox" name="MAKER_HDD"
+										value="Seagate">Seagate</td>
+									<td><input type="checkbox" name="MAKER_HDD"
+										value="Toshiba">도시바</td>
+									<td><input type="checkbox" name="MAKER_HDD"
+										value="CENTURY">CENTURY</td>
+									<td><input type="checkbox" name="MAKER_HDD" value="DELL">DELL</td>
+								</tr>
+								<tr>
+									<th>디스크 크기</th>
+									<td><input type="checkbox" name="SIZE_HDD"
+										value="3_5_inch">8.9cm(3.5인치)</td>
+									<td><input type="checkbox" name="SIZE_HDD"
+										value="2_5_inch">6.4cm(2.5인치)</td>
+									<td><input type="checkbox" name="SIZE_HDD"
+										value="1_8_inch">4.6cm(1.8인치)</td>
+									<td></td>
+									<td></td>
+								</tr>
+								<tr>
+									<th>용량</th>
+									<td><input type="checkbox" name="CAPACITY_HDD" value="8TB">8TB</td>
+									<td><input type="checkbox" name="CAPACITY_HDD" value="4TB">4TB</td>
+									<td><input type="checkbox" name="CAPACITY_HDD" value="3TB">3TB</td>
+									<td><input type="checkbox" name="CAPACITY_HDD" value="2TB">2TB</td>
+									<td><input type="checkbox" name="CAPACITY_HDD" value="1TB">1TB</td>
+								</tr>
+							</table>
+						</form>
+					</div>
+
+					<!-- CASE 옵션 -->
+					<div id="CASE_Product_list" class="Product_list">
+
+						<form id="CaseForm">
+							<table>
+								<tr>
+									<th>제조사</th>
+									<td><input type="checkbox" name="MAKER_CASE" value="Abko">앱코</td>
+									<td><input type="checkbox" name="MAKER_CASE"
+										value="darkFlash">darkFlash</td>
+									<td><input type="checkbox" name="MAKER_CASE"
+										value="Micronics">마이크로닉스</td>
+									<td><input type="checkbox" name="MAKER_CASE" value="Igus">아이구주</td>
+									<td><input type="checkbox" name="MAKER_CASE" value="COX">COX</td>
+								</tr>
+								<tr>
+									<th>제품분류</th>
+									<td><input type="checkbox" name="TYPE_CASE" value="ATX">PC케이스(ATX)</td>
+									<td><input type="checkbox" name="TYPE_CASE" value="MATX">PC케이스(M-ATX)</td>
+									<td><input type="checkbox" name="TYPE_CASE"
+										value="MiniITX">미니ITX</td>
+									<td><input type="checkbox" name="TYPE_CASE" value="HTPC">HTPC케이스</td>
+									<td><input type="checkbox" name="TYPE_CASE"
+										value="TuningCase">튜닝케이스</td>
+								</tr>
+								<tr>
+									<th>케이스크기</th>
+									<td><input type="checkbox" name="SIZE_CASE"
+										value="BigTower">빅타워</td>
+									<td><input type="checkbox" name="SIZE_CASE"
+										value="MidTower">미들타워</td>
+									<td><input type="checkbox" name="SIZE_CASE"
+										value="MiniTower">미니타워</td>
+									<td><input type="checkbox" name="SIZE_CASE"
+										value="MiniTowerLP">미니타워(LP)</td>
+									<td><input type="checkbox" name="SIZE_CASE"
+										value="MiniITX">미니ITX(리를밸리)</td>
+								</tr>
+							</table>
+						</form>
+					</div>
+
+					<!-- POWER 옵션 -->
+					<div id="POWER_Product_list" class="Product_list">
+
+						<form id="PowerForm">
+							<table>
+								<tr>
+									<th>제조사</th>
+									<td><input type="checkbox" name="MAKER_POWER"
+										value="Seasonic">시소닉</td>
+									<td><input type="checkbox" name="MAKER_POWER" value="Abko">앱코</td>
+									<td><input type="checkbox" name="MAKER_POWER" value="MSI">MSI</td>
+									<td><input type="checkbox" name="MAKER_POWER"
+										value="Micronics">마이크로닉스</td>
+									<td><input type="checkbox" name="MAKER_POWER"
+										value="MAXELITE">맥스엘리트</td>
+								</tr>
+								<tr>
+									<th>정격출력</th>
+									<td><input type="checkbox" name="OUTPUT_POWER"
+										value="1000W_to_1299W">1000W~1299W</td>
+									<td><input type="checkbox" name="OUTPUT_POWER"
+										value="900W_to_999W">900W~999W</td>
+									<td><input type="checkbox" name="OUTPUT_POWER"
+										value="800W_to_899W">800W~899W</td>
+									<td><input type="checkbox" name="OUTPUT_POWER"
+										value="700W_to_799W">700W~799W</td>
+									<td><input type="checkbox" name="OUTPUT_POWER"
+										value="600W_to_699W">600W~699W</td>
+								</tr>
+								<tr>
+									<th>80PLUS인증</th>
+									<td><input type="checkbox" name="CERTIFICATION_POWER"
+										value="Titanium">80 PLUS 티타늄</td>
+									<td><input type="checkbox" name="CERTIFICATION_POWER"
+										value="Platinum">80 PLUS 플래티넘</td>
+									<td><input type="checkbox" name="CERTIFICATION_POWER"
+										value="Gold">80 PLUS 골드</td>
+									<td><input type="checkbox" name="CERTIFICATION_POWER"
+										value="Silver">80 PLUS 실버</td>
+									<td><input type="checkbox" name="CERTIFICATION_POWER"
+										value="Bronze">80 PLUS 브론즈</td>
+								</tr>
+							</table>
+						</form>
+					</div>
 				</div>
 			</div>
-		</section>
+		</header>
 	</div>
-<%@ include file="/Util/footer.jsp" %>
+	<div id="productResults">
+		<div class="section">
+			<section>
+				<div class="Product_Show">
+					<div class="Product_Show_List">
+						<table>
+							<tr>
+								<th>
+									이미지
+								</th>
+								<th>
+									정보
+								</th>
+								<th>
+									가격
+								</th>
+							</tr>
+							<tbody id="product_Result">
+								
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</section>
+		</div>
+	</div>
+	<script>
+	
+	$(document).ready(function () {
+	    // 초기 설정: CPU 카테고리 옵션만 보이도록 설정
+	    $('#CPU_Product_list').show();
+	    $('.Product_list').not('#CPU_Product_list').hide();
+	    loadProducts(); // 초기 로드
+
+	    // 카테고리 클릭 시 해당 옵션만 표시하고 다른 옵션은 체크 해제
+	    $('#categoryList li').click(function () {
+	        $('#categoryList li').removeClass('active');
+	        $(this).addClass('active');
+	        const category = $(this).data('category');
+
+	        // 모든 체크박스를 초기화하고, 선택된 카테고리만 보이게 설정
+	        $('.Product_list input[type="checkbox"]').prop('checked', false);
+	        $('.Product_list').hide();
+	        $('#' + category).show();
+	        loadProducts(); // 필터 적용하여 제품 목록 로드
+	    });
+		
+	    // 체크박스 변경 시 Ajax로 필터링된 제품 목록 요청
+	    $('.Product_list input[type="checkbox"]').change(function () {
+	        loadProducts();
+	    });
+		
+	    // 서버로 Ajax 요청을 보내 필터링된 제품 목록을 가져오는 함수
+	    function loadProducts() {
+	        //console.log("loadProducts");
+
+	        const selectedFilters = {};
+			
+	        // 각 카테고리의 체크된 값을 가져와서 selectedFilters 객체에 추가
+	        $('.Product_list').each(function () {
+	            const formId = $(this).attr('id');
+	            selectedFilters[formId] = $(this).find('input[type="checkbox"]:checked').map(function () {
+	                return $(this).val();
+	            }).get();
+	        });
+
+	        // RAM 제조사 필터 추가 (예: MAKER_REM 항목)
+	        selectedFilters["MAKER_REM"] = $('input[name="MAKER_REM"]:checked').map(function() {
+	            return $(this).val();
+	        }).get();
+	        //console.log(selectedFilters);
+			//console.log("Selected Filters (before Ajax):", selectedFilters);
+	        let productListHtml = ``;
+	        
+	        $.ajax({
+	            url: "/ProductController",  // 요청 URL 설정
+	            type: "POST",
+	            data: $.param(selectedFilters),
+	            contentType: "application/x-www-form-urlencoded",
+	            dataType: "json",
+	            
+	            success: function (data) {
+	            	//console.log(data);
+	                //console.log("Selected Filters:", selectedFilters);
+	                if (data.length > 0) {
+	                    data.forEach(function (product) {
+	                    	//console.log(product);
+	                    	productListHtml += 
+	                    	    "<tr>" +
+	                    	        "<th><img src=\"" + product.image + "\" alt=\"" + product.title + "\" width=\"100\" height=\"100\"></th>" +
+	                    	        "<td>" + product.title + "</td>" +
+	                    	        "<td>가격:" + product.price + "원</td>" +
+	                    	    "</tr>";
+	                    });
+	                } else {
+	                    productListHtml = '<p>해당 조건에 맞는 제품이 없습니다.</p>';
+	                }
+	                
+	                // $('#product_Result').html(productListHtml);
+	                $('#product_Result').html(productListHtml);
+	                // $('tbody').append(productListHtml);
+	            },
+	            error: function (xhr, status, error) {
+	                console.error("Failed to fetch filtered products:", error);
+	            }
+	        });
+	       
+	    }
+	}); // $(document).ready 닫는 괄호
+</script>
+	<%@ include file="/Util/footer.jsp"%>
 </body>
 </html>
