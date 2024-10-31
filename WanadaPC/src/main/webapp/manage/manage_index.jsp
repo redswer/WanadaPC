@@ -25,6 +25,11 @@
 	color: red;
 	font-weight: bold;
 }
+
+.magae_index_body ul li a:not([href]):hover {
+	text-decoration: line-through;
+	color: black;
+}
 </style>
 </head>
 <body>
@@ -35,9 +40,9 @@
 		<h3>관리자 페이지</h3>
 		<ul>
 			<li><a href="/manage?cmd=index">index 관리 / PC 관리</a></li>
-			<li><a href="">회원 관리</a></li>
-			<li><a href="">상품 관리</a></li>
-			<li><a href="">게시판 관리</a></li>
+			<li><a>회원 관리</a></li>
+			<li><a>상품 관리</a></li>
+			<li><a>게시판 관리</a></li>
 		</ul>
 	</div>
 </body>
