@@ -10,9 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.wanada.service.Action;
 import com.wanada.service.UserInsertAction;
-import com.wanada.model.UserDAO;
-import com.wanada.model.UserDTO;
-import com.wanada.util.UserSHA256;
 
 /**
  * Servlet implementation class UserInsertServlet

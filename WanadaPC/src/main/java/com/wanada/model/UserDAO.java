@@ -90,14 +90,14 @@ public class UserDAO {
 		      return row;
 		   }
 	//특정 email을 이용한 회원 검색 수정 
-	public UserDTO userSelect(String email) {
+	public UserDTO userSelect(String userEmail) {
 		UserDTO dto = new UserDTO();
 		String sql = "select * from user_table where userEmail=?";
 		
 		try {
 			conn = DBConnPool.getConnection();
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, email);
+			pstmt.setString(1, userEmail);
 			rs = pstmt.executeQuery(); // 쿼리문 실행 값을 rs 에 넣는다 
 			
 				//if(rs.next())는 결과가 존재하는지 확인하는 조건문입니다.
@@ -116,6 +116,32 @@ public class UserDAO {
 			DBConnPool.close(conn, pstmt, rs);
 		}
 		return dto;
+	}
+		// 특정 회원 정보를 수정하는 메서드
+		public int userUpdate(UserDTO dto) {
+	    
+	    int row = 0; // 데이터 변경 결과를 저장할 변수 (업데이트된 행 수)
+	    // SQL 쿼리문 작성, 특정 회원 Email 에 해당하는 데이터를 업데이트
+	    String sql = "update user_table set userName = ?, userPassword = ?, tell = ? where userEmail = ? ";
+	    
+	    try {
+	    	// 데이터베이스 연결 객체 가져오기
+	    	Connection conn = DBConnPool.getConnection();
+	        pstmt = conn.prepareStatement(sql); // 쿼리문을 매개변수로 준비된 Statement 생성
+	        pstmt.setString(1, dto.getUserName()); // 세 번째 매개변수에 회원이름
+	        pstmt.setString(2, dto.getUserPassword()); //두번쨰 매게 변수에 회원 비밀번호 설정 
+	        pstmt.setString(3, dto.getTell()); // 네 번째 매게변수에 회원 번호
+	        pstmt.setString(4, dto.getUserEmail()); // 여섯 번째 매게변수에 회원 생년월일 설정
+	        
+	        row = pstmt.executeUpdate(); // 쿼리문 실행 및 수정된 행 수 반환
+	    } catch (Exception e) {
+	        e.printStackTrace(); // 예외 발생 시 오류 메시지 출력
+	    } finally {
+	        // 자원 해제 - DB 연결과 PreparedStatement를 닫음
+	        DBConnPool.close(conn, pstmt);//?
+	    }
+	    
+	    return row; // 수정된 행 수 반환 (0이면 수정 실패, 1 이상이면 수정 성공)
 	}
 	
 	//비밀번호업데이트
