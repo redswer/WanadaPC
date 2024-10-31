@@ -138,13 +138,10 @@
                  </tr>
             </table>
             <div class="action-buttons">
-                <!-- 관리자에게만 보이는 수정, 삭제 링크 -->
-                <c:if test="${!empty dto && dto.person.equals(user)}">
+                <c:if test="${!empty dto && dto.person eq user.userEmail}">
                  	<a href="boardUpdatePage?board_index=${dto.board_index}">수정</a>
                  	<a href="boardDeletePage?board_index=${dto.board_index}">삭제</a>
-                <</c:if>
-               	<a href="boardUpdatePage?board_index=${dto.board_index}">수정</a>
-               	<a href="boardDelete?board_index=${dto.board_index}">삭제</a>
+                </c:if>
                 <a href="/boardList">목록으로</a>
             </div>
         </main>

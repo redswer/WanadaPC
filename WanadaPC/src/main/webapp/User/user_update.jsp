@@ -7,54 +7,54 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>회원정보 수정</title>
     <style>
-        body {
+        .user_update_body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
+	   		width: 1260px;
+		    margin: 0 auto;
+		    margin-top: 10px;       
         }
 
-        .lupdate-containe {
-            background-color: #fff;
+        .lupdate-container {
+            background-color: #f4f4f4;
             padding: 40px;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
             max-width: 400px;
-            width: 100%;
             text-align: center;
         }
+        
+        .update-container form {
+        	text-align: center;
+        	margin-bottom: 50px;
+        }
 
-        h2 {
+        .update-container h2 {
             color: #333;
             margin-bottom: 20px;
         }
 
         .form-group {
+        	width: 50%;
             display: flex;
             flex-direction: column;
-            margin-bottom: 20px;
             text-align: left;
+            margin: 20px auto;
         }
 
-        label {
+        .form-group label {
             color: #555;
             font-weight: bold;
             font-size: 15px;
             margin-bottom: 8px;
         }
 
-        input[type="text"], input[type="password"], select {
-            width: 100%;
+        .form-group input[type="text"], .form-group input[type="password"], .form-group select {
             padding: 10px;
             border: 1px solid #ccc;
             border-radius: 4px;
         }
 
         .update-button {
-            width: 100%;
             padding: 10px;
             background-color: #FF3333;
             color: white;
@@ -79,7 +79,6 @@
         }
 
         .find-buttons button {
-            width: 48%;
             background-color: #ddd;
             color: #000;
             padding: 10px;
@@ -93,7 +92,11 @@
         }
     </style>
 </head>
-<body>
+<body class="user_update_body">
+	<div>
+		<%@ include file="/Util/header.jsp" %>
+		<%@ include file="/Util/side_bar.jsp" %>
+	</div>
     <div class="update-container">
         <h2>회원정보 수정</h2>
         <form action="/user_update" method="POST" name="modifyForm">
@@ -103,11 +106,11 @@
                 <!-- read only는 수정 불가능  -->
             </div>
             <div class="form-group">
-                <label for="userPassword">비밀번호</label>
+                <label for="userPassword">현재 비밀번호</label>
                 <input type="password" id="userPassword" name="userPassword" placeholder="새 비밀번호를 입력하세요">
             </div>
             <div class="form-group">
-                <label for="userRepassword">비밀번호 확인</label>
+                <label for="userRepassword">새 비밀번호</label>
                 <input type="password" id="userRepassword" name="userRepassword" placeholder="비밀번호를 다시 입력하세요">
             </div>
             <div class="form-group">
@@ -129,6 +132,9 @@
             </div>
             <button type="submit" class="update_button">수정하기</button>
         </form>
+    </div>
+    <div>
+    	<%@ include file="/Util/footer.jsp" %>
     </div>
 </body>
 </html>

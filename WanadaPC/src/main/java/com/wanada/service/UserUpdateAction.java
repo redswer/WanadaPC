@@ -16,9 +16,11 @@ public class UserUpdateAction implements Action {
 
 	@Override
 	public void process(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String id = request.getParameter("userEmail")+"@"+request.getParameter("emailDomain");
-		String pw = request.getParameter("userPassword");
-		String pass = UserSHA256.getSHA256(pw); //인코딩 = 비밀번호암호화
+		String id = request.getParameter("userEmail");
+		String password = request.getParameter("userPassword");
+		String pw = UserSHA256.getSHA256(password);
+		String repw = request.getParameter("userRepassword");
+		String rePass = UserSHA256.getSHA256(repw); //인코딩 = 비밀번호암호화
 		String username = request.getParameter("userName");
 		String gender = request.getParameter("gender");
 		String tell = request.getParameter("tell");
@@ -27,12 +29,12 @@ public class UserUpdateAction implements Action {
 		UserDAO dao = UserDAO.getInstance();
 		
 		dto.setUserEmail(id);
-		dto.setUserPassword(pass);
+		dto.setUserPassword(pw);
 		dto.setUserName(username);
 		dto.setGender(gender);
 		dto.setTell(tell);
 		
-		int row = dao.userUpdate(dto);
+		int row = dao.userUpdate(dto, rePass);
 		
 		request.setAttribute("row", row);
 

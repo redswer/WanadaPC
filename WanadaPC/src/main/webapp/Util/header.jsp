@@ -118,12 +118,7 @@
 			    </form>
 			</div>
 			<div class="header_link">
-				<a href="/User/user_login.jsp">로그인</a>
-				<a href="/User/user_insert.jsp">회원가입</a>
-				<a href="/manage">관리자</a>
-				<a href="/user_logout">로그아웃</a>
-				<a href="/User/myPage.jsp">마이 페이지</a>
-				<!-- <c:if test="${empty user}">
+				<c:if test="${empty user}">
 					<a href="/User/user_login.jsp">로그인</a>
 					<a href="/User/user_insert.jsp">회원가입</a>
 				</c:if>
@@ -131,11 +126,11 @@
 					<c:if test="${user.userEmail.equals('admin')}">
 						<a href="/manage">관리자</a>
 					</c:if>
-					<a href="/User/user_login.jsp">로그아웃</a>
+					<a href="/user_logout">로그아웃</a>
 					<c:if test="${!user.userEmail.equals('admin')}">
 						<a href="/User/myPage.jsp">마이 페이지</a>
 					</c:if>
-				</c:if> -->
+				</c:if>
 			</div>
 		</div>
 		<div>

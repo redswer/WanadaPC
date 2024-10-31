@@ -127,7 +127,9 @@
         <main class="board_list_main">
         	<div class="board_list_menu">
             	<h1>게시판</h1>
-            	<a href="/Board/boardInsert.jsp">글쓰기</a>
+            	<c:if test="${!empty user}">
+	            	<a href="/Board/boardInsert.jsp">글쓰기</a>
+            	</c:if>
             </div>
             <table class="board_list_table">
                 <tr>

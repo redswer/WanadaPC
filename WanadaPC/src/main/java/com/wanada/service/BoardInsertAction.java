@@ -27,8 +27,7 @@ public class BoardInsertAction implements Action {
 		String theme = request.getParameter("theme");
 		String content = request.getParameter("content");
 		
-//		String person = log.getUserEmail();
-		String person = "test";
+		String person = log.getUserEmail();
 		
 		Date date = new Date();
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd");

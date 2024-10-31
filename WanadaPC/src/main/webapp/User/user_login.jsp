@@ -6,14 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>로그인</title>
     <style>
-        body {
+        .login_body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
             margin: 0;
+            background-color: #f4f4f4;
         }
 
         .login-container {
@@ -26,7 +26,7 @@
             text-align: center;
         }
 
-        h2 {
+        .login-container h2 {
             color: #333;
             margin-bottom: 20px;
         }
@@ -38,14 +38,14 @@
             text-align: left;
         }
 
-        label {
+        .form-group label {
             color: #555;
             font-weight: bold;
             font-size: 15px;
             margin-bottom: 8px;
         }
 
-        input[type="text"], input[type="password"], select {
+        .form-group input[type="text"], input[type="password"], select {
             width: 100%;
             padding: 10px;
             border: 1px solid #ccc;
@@ -92,8 +92,9 @@
         }
     </style>
 </head>
-<body>
+<body class="login_body">
     <div class="login-container">
+		<%@ include file="/Util/main_logo.jsp" %>
         <h2>로그인</h2>
         <form action="/user_login" method="POST" name="userlogin">
             <div class="form-group">

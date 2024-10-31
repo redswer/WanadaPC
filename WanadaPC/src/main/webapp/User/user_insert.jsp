@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>와나다 회원가입</title>
 <style>
-body {
+.user_insert_body {
     /* 폰트를 Arial로 설정하고, 사용할 수 없을 경우 sans-serif로 대체 */
     font-family: Arial, sans-serif;
     /* 페이지의 배경 색상 설정 */
@@ -16,10 +16,6 @@ body {
     display: flex;
     justify-content: center;  /* 컨테이너를 수평 가운데 정렬 */
     align-items: center;      /* 컨테이너를 수직 가운데 정렬 */
-    /* 전체 화면 높이를 사용 */
-    height: 100vh;
-    /* 기본 여백 제거 */
-    margin: 0;
 }
 
 .signup-container {
@@ -38,7 +34,7 @@ body {
     width: 100%;
 }
 
-h1 {
+.signup-container h1 {
     /* 제목 텍스트를 가운데 정렬 */
     text-align: center;
     /* 제목 텍스트 색상을 진한 회색으로 설정 */
@@ -50,10 +46,10 @@ h1 {
     display: flex;
     flex-direction: column;
     /* 폼 그룹 사이의 간격 추가 */
-    margin-bottom: 10px;
+    margin: 20px auto;
 }
 
-label {
+.form_group label {
     /* 라벨 아래에 간격 추가 */
     margin-bottom: 35px;
     /* 라벨 텍스트 색상을 중간 회색으로 설정 */
@@ -64,7 +60,7 @@ label {
     font-size: 15px;
 }
 
-input[type="text"], input[type="password"], input[type="email"] {
+.form_group input[type="text"], input[type="password"], input[type="email"] {
     /* 입력 필드의 너비를 컨테이너의 90%로 설정 */
     width: 90%;
     /* 입력 필드 내부 여백 */
@@ -107,7 +103,7 @@ input[type="text"], input[type="password"], input[type="email"] {
 </style>
 
 </head>
-<body>
+<body class="user_insert_body">
 	<div class="inner">
 		<h1 class="logo_wanada">
 			<a href="http://wanada.com" class="link"> <span class="blind">
