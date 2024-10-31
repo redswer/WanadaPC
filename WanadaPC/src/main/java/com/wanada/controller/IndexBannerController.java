@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.wanada.service.Action;
 import com.wanada.service.IndexBannerDeleteAction;
+import com.wanada.service.IndexBannerInsertAction;
 import com.wanada.service.IndexBannerUpdateAction;
 
 @WebServlet("/index_banner")
@@ -21,15 +22,17 @@ public class IndexBannerController extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String cmd = request.getParameter("cmd");
+		String sql = request.getParameter("sql");
 		
 		Action action = null;
-		System.out.println(cmd);
+		System.out.println(sql);
 		
-		if (cmd.equals("update")) {
+		if (sql.equals("update")) {
 			action = new IndexBannerUpdateAction();
-		} else if (cmd.equals("delete")) {
+		} else if (sql.equals("delete")) {
 			action = new IndexBannerDeleteAction();
+		} else if (sql.equals("insert")) {
+			action = new IndexBannerInsertAction();
 		}
 		
 		action.process(request, response);

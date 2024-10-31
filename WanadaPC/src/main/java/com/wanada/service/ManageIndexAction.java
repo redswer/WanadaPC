@@ -22,9 +22,11 @@ public class ManageIndexAction implements Action {
 		
 		List<IndexBannerDTO> list = dao.indexBannerList();
 		List<IndexGamePcDTO> list2 = dao.indexGamePcList();
+		int index = dao.findBannerIndex();
 		
 		request.setAttribute("index_banner_list", list);
 		request.setAttribute("index_game_pc_list", list2);
+		request.setAttribute("index", index);
 		
 		RequestDispatcher rd = request.getRequestDispatcher("/manage/index_page.jsp");
 		rd.forward(request, response);

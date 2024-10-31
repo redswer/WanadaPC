@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.wanada.model.IndexDAO;
 import com.wanada.model.IndexGamePcDTO;
+import com.wanada.model.RecommandPcDTO;
 
 public class GamePcAction implements Action {
 
@@ -18,10 +19,12 @@ public class GamePcAction implements Action {
 		request.setCharacterEncoding("utf-8");
 
 		IndexDAO dao = IndexDAO.getInstance();
-		List<IndexGamePcDTO> list = dao.indexGamePcList();
+		List<IndexGamePcDTO> list = dao.gamePcList();
+		List<RecommandPcDTO> list2 = dao.recommandPcGame();
 		String category = request.getParameter("category");
 		
 		request.setAttribute("list", list);
+		request.setAttribute("recommand_pc_game_list", list2);
 		request.setAttribute("category", category);
 		
 		RequestDispatcher rd = request.getRequestDispatcher("/Pc/gamePC.jsp");

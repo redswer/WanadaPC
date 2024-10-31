@@ -152,10 +152,6 @@
     font-size: 0.9em; /* 작은 글씨 */
 }
 
-.ad {
-	margin-top: 30px;
-}
-
 .recommend_product_section {
     display: flex;
     flex-direction: column; /* 세로 방향으로 정렬 */
@@ -189,7 +185,7 @@
 	                <c:forEach var="i" items="${index_banner_list}" varStatus="status">
 	                    <div class="banner_item" style="display: ${status.index == 0 ? 'block' : 'none'};">
 	                        <a href="${i.page_link}?category=${i.category}">
-	                            <img src="./Image/${i.image}">
+	                            <img src="./Image/${i.index_image}">
 	                        </a>
 	                        <div class="image-counter">${status.index + 1} / ${fn:length(index_banner_list)}</div>
 	                    </div>
@@ -207,7 +203,7 @@
 		                        <a href="/gamePC?category=${i.category}">
 		                            <img alt="" src="./Image/${i.image}">
 		                            <span class="index_game_pc_main_txt">${i.subject}</span>
-		                            <span class="index_game_pc_sub_txt">${i.infomation}</span>
+		                            <span class="index_game_pc_sub_txt">${i.information}</span>
 		                        </a>
 		                    </div>
 		                </c:forEach>
@@ -215,13 +211,13 @@
 	                <div class="windows_guide">
 	            		<h3>초보자를 위한 조립 PC 가이드</h3>
 	            		<div class="windows">
-	            			<a href="">
+	            			<a href="/Pc/windowGuide.jsp">
 	            				<img src="/Image/windows_guide_1.png">
 	            				<span>윈도우 구매 가이드</span>
 	            			</a>
 	            		</div>
 	            		<div class="windows">
-	            			<a href="">
+	            			<a href="/Pc/windowInstall.jsp">
 	            				<img src="/Image/windows_guide_2.png">
 	            				<span>윈도우 설치방법</span>
 	            			</a>
@@ -229,55 +225,29 @@
 	            	</div>
 	            </div>
 	        </section>
-	        <div class="ad">
-	            <a href="">
-	                <img alt="main_ad" src="./Image/ad_index_1.jpg">
-	            </a>
-	        </div>
+			<%@ include file="/Util/ad.jsp" %>
 	        <section class="sub_section">
 	            <h2>추천 상품</h2>
 	            <div class="recommend_product_section">
-	                <div>
-	                    <a>
-	                        <img alt="" src="./Image/index_recommend_product_intel.jpg">
-	                    </a>
-	                    <a>
-	                        상품 내용
-	                    </a>
-	                </div>
-	                <div>
-	                    <a>
-	                        상품 내용
-	                    </a>
-	                    <a>
-	                        <img alt="" src="./Image/index_recommend_product_ryzen_7000.jpg">
-	                    </a>
-	                </div>
-	                <div>
-	                    <a>
-	                        <img alt="" src="./Image/index_recommend_product_nvidia.jpg">
-	                    </a>
-	                    <a>
-	                        상품 내용
-	                    </a>
-	                </div>
-	                <div>
-	                    <a>
-	                        상품 내용
-	                    </a>
-	                    <a>
-	                        <img alt="" src="./Image/index_recommend_product_radeon.jpg">
-	                    </a>
-	                </div>
-	            </div>
+	            	<c:forEach var="i" items="${recommand_pc_game_list}">
+		                <div>
+				            <a href="/gamePC?category=${i.category}">
+				                <img src="/Image/${i.image}">
+				            </a>
+		                </div>
+	                </c:forEach>
+	                <c:forEach var="i" items="${recommand_pc_parts_list}">
+	                	<div>
+	                		<a href="/etcPC?category=${i.category}">
+	                			<img src="/Image/${i.image}">
+	                		</a>
+	                	</div>
+	                </c:forEach>
+	           	</div>
 	        </section>
 	        <section>
 	            <h3>커뮤니티</h3>
 	            <div>커뮤니티 내용</div>
-	        </section>
-	        <section>
-	            <h3>유튜브 / 쇼츠</h3>
-	            <div>링크</div>
 	        </section>
 	    </main>
 	    <footer>

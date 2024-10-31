@@ -84,42 +84,24 @@
     }
 </style>
 <script>
-    function showSection(sectionId, menuName) {
-        const sections = document.querySelectorAll('.image-section');
-        sections.forEach(section => {
-            section.style.display = 'none';
-        });
-        const activeSection = document.getElementById(sectionId);
-        if (activeSection) {
-            activeSection.style.display = 'block';
-        }
+function showSection(sectionId) {
+    const sections = document.querySelectorAll('.image-section');
+    sections.forEach(section => {
+        section.style.display = 'none';
+    });
+    const activeSection = document.getElementById(sectionId);
+    if (activeSection) {
+        activeSection.style.display = 'block';
     }
+}
 
-    // 페이지 로드 시 섹션을 보여주는 함수
-    window.onload = function() {
-        const category = '<%= request.getAttribute("category") %>'; // 서버에서 전달받은 category
-        if (category) {
-            let menuName = '조립 PC'; // 기본값
-
-            // 카테고리 확인 및 메뉴 이름 설정
-            switch (category) {
-                case 'godOfWar':
-                    menuName = '갓 오브 워:라그나로크';
-                    break;
-                case 'blackMyth':
-                    menuName = '검은 신화:오공';
-                    break;
-                case 'battleGround':
-                    menuName = '배틀그라운드';
-                    break;
-                case 'leagueOfLegend':
-                    menuName = '리그 오브 레전드';
-                    break;
-            }
-
-            showSection(category, menuName); // 해당 섹션 보여주기
-        }
-    };
+// 페이지 로드 시 섹션을 보여주는 함수
+window.onload = function() {
+    const category = '<%= request.getParameter("category") %>'; // 서버에서 전달받은 category
+    if (category) {
+        showSection(category); // 해당 섹션 보여주기
+    }
+};
 </script>
 </head>
 <body>
@@ -156,55 +138,14 @@
 	                </div>
                 </c:forEach>
                 <div class="recommend_product_section">
-                    <div>
-                        <img alt="" src="/Image/pc_home_banner.jpg">
-                        <a>
-                            <img alt="" src="">
-                        </a>
-                        <a>
-                            <img alt="" src="">
-                        </a>
-                        <a>
-                            <img alt="" src="">
-                        </a>
-                    </div>
-                    <div>
-                        <img alt="" src="/Image/pc_office_banner.jpg">
-                        <a>
-                            <img alt="" src="">
-                        </a>
-                        <a>
-                            <img alt="" src="">
-                        </a>
-                        <a>
-                            <img alt="" src="">
-                        </a>
-                    </div>
-                    <div>
-                        <img alt="" src="/Image/pc_edit_banner.jpg">
-                        <a>
-                            <img alt="" src="">
-                        </a>
-                        <a>
-                            <img alt="" src="">
-                        </a>
-                        <a>
-                            <img alt="" src="">
-                        </a>
-                    </div>
-                    <div>
-                        <img alt="" src="/Image/pc_bj_banner.jpg">
-                        <a>
-                            <img alt="" src="">
-                        </a>
-                        <a>
-                            <img alt="" src="">
-                        </a>
-                        <a>
-                            <img alt="" src="">
-                        </a>
-                    </div>
-                </div>
+	            	<c:forEach var="i" items="${recommand_pc_game_list}">
+		                <div>
+				            <a href="/gamePC?category=${i.category}">
+				                <img src="/Image/${i.image}">
+				            </a>
+		                </div>
+	                </c:forEach>
+	           	</div>
             </div>
         </main>
         <footer>
