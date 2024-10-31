@@ -3,6 +3,7 @@ package com.wanada.model;
 public class BoardDTO {
 	private int board_index;
 	private String theme;
+	private String content;
 	private String person;
 	private String enterdate;
 	private int count;
@@ -36,5 +37,11 @@ public class BoardDTO {
 	}
 	public void setCount(int count) {
 		this.count = count;
+	}
+	public String getContent() {
+		return content;
+	}
+	public void setContent(String content) {
+		this.content = content;
 	}
 }
