@@ -25,11 +25,6 @@
 	color: red;
 	font-weight: bold;
 }
-
-.magae_index_body ul li a:not([href]):hover {
-	text-decoration: line-through;
-	color: black;
-}
 </style>
 </head>
 <body>

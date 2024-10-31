@@ -23,7 +23,7 @@ public class BoardDAO {
 	
 	public List<BoardDTO> boardList() {
 		List<BoardDTO> list = new ArrayList<>();
-		String sql = "select * from boardcomment";
+		String sql = "select * from boardcomment order by board_index desc";
 		
 		try {
 			conn = DBConnPool.getConnection();
@@ -89,6 +89,70 @@ public class BoardDAO {
 			pstmt.setString(2, dto.getContent());
 			pstmt.setInt(3, dto.getBoard_index());
 			
+			row = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBConnPool.close(conn, pstmt);
+		}
+		
+		return row;
+	}
+	
+	public int maxIndex() {
+		int row = 0;
+		String sql = "select max(board_index) as max from boardcomment";
+		
+		try {
+			conn = DBConnPool.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			if (rs.next()) {
+				row = rs.getInt("max");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBConnPool.close(conn, pstmt, rs);
+		}
+		
+		return row;
+	}
+	
+	public int boardInsert(BoardDTO dto) {
+		int row = 0;
+		String sql = "insert into boardcomment values(?, ?, ?, ?, ?, ?)";
+		
+		try {
+			conn = DBConnPool.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, dto.getBoard_index());
+			pstmt.setString(2, dto.getTheme());
+			pstmt.setString(3, dto.getPerson());
+			pstmt.setString(4, dto.getEnterdate());
+			pstmt.setInt(5, dto.getCount());
+			pstmt.setString(6, dto.getContent());
+			
+			row = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBConnPool.close(conn, pstmt);
+		}
+		
+		return row;
+	}
+	
+	public int boardDelete(int index) {
+		int row = 0;
+		String sql = "delete from boardcomment where board_index = ?";
+		
+		try {
+			conn = DBConnPool.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, index);
 			row = pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();

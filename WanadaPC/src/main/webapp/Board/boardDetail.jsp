@@ -142,7 +142,9 @@
                 <c:if test="${!empty dto && dto.person.equals(user)}">
                  	<a href="boardUpdatePage?board_index=${dto.board_index}">수정</a>
                  	<a href="boardDeletePage?board_index=${dto.board_index}">삭제</a>
-                </c:if>
+                <</c:if>
+               	<a href="boardUpdatePage?board_index=${dto.board_index}">수정</a>
+               	<a href="boardDelete?board_index=${dto.board_index}">삭제</a>
                 <a href="/boardList">목록으로</a>
             </div>
         </main>

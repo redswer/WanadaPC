@@ -10,7 +10,7 @@
 <style type="text/css">
 /* 전체 컨테이너 */
 .board_list_body {
-    width: 80%;
+    width: 1260px;
     margin: 0 auto;
     margin-top: 10px;
     font-family: Arial, sans-serif;
@@ -101,6 +101,22 @@
 .board_list_main {
 	margin-bottom:50px;
 }
+
+.board_list_menu{
+	display: flex;
+	justify-content:space-between;
+	align-items: center;
+}
+
+.board_list_menu a {
+	text-decoration: none;
+	color: white;
+	border: 1px solid gray;
+	text-align: center;
+	width: 80px;
+	line-height: 30px;
+	background-color: gray;
+}
 </style>
 </head>
 <body>
@@ -109,7 +125,10 @@
             <%@ include file="/Util/header.jsp" %>
         </header>
         <main class="board_list_main">
-            <h1>게시판</h1>
+        	<div class="board_list_menu">
+            	<h1>게시판</h1>
+            	<a href="/Board/boardInsert.jsp">글쓰기</a>
+            </div>
             <table class="board_list_table">
                 <tr>
                     <th>번호</th>
