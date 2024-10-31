@@ -62,7 +62,7 @@
         			</tr>
         			<tr>
         				<td colspan=5>
-        					<input type="button" value="수정">
+        					<input type="submit" value="수정">
         					<input type="button" value="취소">
         				</td>
         			</tr>
