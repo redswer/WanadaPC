@@ -147,7 +147,7 @@
 						<tbody class="scrollable-tbody">
 							<c:forEach var="i" items="${CPU}">
 								<tr class="showList">
-									<td><img src="${i.CPU_IMAGE}" alt="CPU 이미지" /></td>
+									<td><img src="/Image/CPU/${i.CPU_IMAGE}" alt="CPU 이미지" /></td>
 									<td colspan="1">${i.CPU_NAME}</td>
 									<td colspan="1">${i.CPU_INFORMATION}</td>
 									<td class="price">${i.CPU_PRICE}</td>

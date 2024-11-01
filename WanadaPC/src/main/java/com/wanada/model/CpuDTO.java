@@ -14,7 +14,14 @@ public class CpuDTO {
  	private String CPU_THREAD;
  	private String CPU_MIN_CIRCUIT;
  	private String CPU_MAX_CIRCUIT;
+ 	private String CPU_MANUFACTURER;
  	
+	public String getCPU_MANUFACTURER() {
+		return CPU_MANUFACTURER;
+	}
+	public void setCPU_MANUFACTURER(String cPU_MANUFACTURER) {
+		CPU_MANUFACTURER = cPU_MANUFACTURER;
+	}
 	public String getCPU_DATE() {
 		return CPU_DATE;
 	}
