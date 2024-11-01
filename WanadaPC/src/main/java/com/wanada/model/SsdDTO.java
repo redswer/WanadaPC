@@ -7,7 +7,7 @@ public class SsdDTO {
 	private String FORM_FACTOR_SSD;
 	private String CAPACITY_SSD;
 	private String SSD_IMAGE;
- 	private double SSD_PRICE;
+ 	private String SSD_PRICE;
  	private String SSD_INFORMATION;
  	
 	public String getSSD_NAME() {
@@ -40,10 +40,10 @@ public class SsdDTO {
 	public void setSSD_IMAGE(String sSD_IMAGE) {
 		SSD_IMAGE = sSD_IMAGE;
 	}
-	public double getSSD_PRICE() {
+	public String getSSD_PRICE() {
 		return SSD_PRICE;
 	}
-	public void setSSD_PRICE(double sSD_PRICE) {
+	public void setSSD_PRICE(String sSD_PRICE) {
 		SSD_PRICE = sSD_PRICE;
 	}
 	public String getSSD_INFORMATION() {

@@ -6,7 +6,7 @@ public class RamDTO {
 	private String TYPE_REM;
 	private String CAPACITY_REM;
 	private String RAM_IMAGE;
- 	private double RAM_PRICE;
+ 	private String RAM_PRICE;
  	private String RAM_INFORMATION;
  	
 	public String getRAM_NAME() {
@@ -39,10 +39,10 @@ public class RamDTO {
 	public void setRAM_IMAGE(String rAM_IMAGE) {
 		RAM_IMAGE = rAM_IMAGE;
 	}
-	public double getRAM_PRICE() {
+	public String getRAM_PRICE() {
 		return RAM_PRICE;
 	}
-	public void setRAM_PRICE(double rAM_PRICE) {
+	public void setRAM_PRICE(String rAM_PRICE) {
 		RAM_PRICE = rAM_PRICE;
 	}
 	public String getRAM_INFORMATION() {

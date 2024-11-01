@@ -147,13 +147,7 @@
 	<div class="header">
 		<header>
 			<div class="Product_main">
-				<div class="Search_main">
-					<input type="text" placeholder="상품을 검색해주세요" name="Product_search"
-						id="Product_search">
-					<button type="submit">
-						<span>검색</span>
-					</button>
-				</div>
+				
 				<div class="Product">
 					<!-- 큰 카테고리 선택 -->
 					<div class="Product_Kategorie">

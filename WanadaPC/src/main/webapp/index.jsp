@@ -341,6 +341,6 @@
         showImage(currentIndex);
     }
 
-    setInterval(nextImage, 3000); // 5초마다 다음 이미지로 이동
+    setInterval(nextImage, 3000); // 3초마다 다음 이미지로 이동
 </script>
 </html>

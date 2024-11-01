@@ -20,8 +20,12 @@ public class UserInsertAction implements Action {
         
         UserDAO dao = UserDAO.getInstance();
         UserDTO dto = new UserDTO();
-        
         String userEmail = request.getParameter("userEmail").trim() + "@" + request.getParameter("emailDomain");
+        
+        if (request.getParameter("emailDomain").equals("0")) {
+        	userEmail = request.getParameter("userEmail").trim() + "@" + request.getParameter("customEmailDomain");
+        }
+        
         String userPassword = request.getParameter("userPassword");
         String userName = request.getParameter("userName");
         String userBirthdate = request.getParameter("userBirthdate"); // 생년월일을 String으로 받음
