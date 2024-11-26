@@ -173,7 +173,7 @@
 
 .board_section {
 	padding: 15px;
-	background-color: honeydew;
+	background-color: #FFF0F5;
 }
 
 .index_board_list {
@@ -187,11 +187,26 @@
 
 .index_board_table {
 	width: calc((100% - 2px - 40px) / 2);
+	border: 1px solid black;
+	border-collapse: collapse;
+}
+
+.index_board_table th, td {
+	border: 1px solid black;
+}
+
+.index_board_table th {
+	background-color: lightgray;
+}
+
+.index_board_table td {
+	background-color: white;
 }
 
 .index_board_table td a {
 	text-decoration: none;
 	color: black;
+	margin-left:5px;
 }
 
 .index_board_table td a:hover {
@@ -221,7 +236,7 @@
 	                <c:forEach var="i" items="${index_banner_list}" varStatus="status">
 	                    <div class="banner_item" style="display: ${status.index == 0 ? 'block' : 'none'};">
 	                        <a href="${i.page_link}?category=${i.category}">
-	                            <img src="./Image/${i.index_image}">
+	                            <img src="/Image/${i.index_image}">
 	                        </a>
 	                        <div class="image-counter">${status.index + 1} / ${fn:length(index_banner_list)}</div>
 	                    </div>
