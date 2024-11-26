@@ -136,15 +136,16 @@
 		<div>
 			<ul class="header_navigation">
 				<li><a href="/etcPC?category=home">조립 PC</a></li>
-				<li><a href="">CPU</a></li>
-				<li><a href="">쿨러/튜닝</a></li>
-				<li><a href="">메인보드</a></li>
-				<li><a href="">그래픽카드</a></li>
-				<li><a href="">SSD</a></li>
-				<li><a href="">HDD</a></li>
+				<li><a href="/Product/Product_main.jsp">PC 부품</a></li>
+				<li><a href="/ProductCPUController">CPU</a></li>
+				<li><a href="/ProductMBController">메인보드</a></li>
+				<li><a href="/ProductGPUController">그래픽카드</a></li>
+				<li><a href="/ProductRAMController">램</a></li>
+				<li><a href="/ProductSSDController">SSD</a></li>
+				<li><a href="/ProductCOOLERController">쿨러/튜닝</a></li>
+				<li><a href="/ProductHDDController">HDD</a></li>
 				<li><a href="">케이스</a></li>
-				<li><a href="">파워</a></li>
-				<li><a href="">소프트웨어</a></li>
+				<li><a href="/ProductPOWERController">파워</a></li>
 				<li><a href="/boardList">커뮤니티</a></li>
 			</ul>
 		</div>

@@ -131,10 +131,10 @@
 	                    <img src="/Image/${i.page_image}">
 	                    <div>
 	                        <ul>
-	                            <li>가정용 PC 1</li>
-	                            <li>가정용 PC 2</li>
-	                            <li>가정용 PC 3</li>
-	                            <li>가정용 PC 4</li>
+	                            <li>PC 1</li>
+	                            <li>PC 2</li>
+	                            <li>PC 3</li>
+	                            <li>PC 4</li>
 	                        </ul>
 	                    </div>
 	                </div>

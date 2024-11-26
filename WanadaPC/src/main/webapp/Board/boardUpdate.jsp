@@ -110,7 +110,7 @@
         			<tr>
         				<td colspan=5 class="board_update_button">
         					<input type="submit" value="수정">
-        					<input type="button" value="취소">
+        					<input type="button" value="취소" onClick="history.back()">
         				</td>
         			</tr>
         		</table>

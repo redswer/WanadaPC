@@ -90,7 +90,7 @@
 		<div class="footer_menu">
 			<div>
 				<span>공지</span>
-				<a href="">공지 게시판의 최신내용</a>
+				<a href="/boardList">공지 게시판의 최신내용</a>
 			</div>
 			<div>
 				<a href="">회사소개</a>
